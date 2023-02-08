@@ -11,6 +11,7 @@ import {
 const list = ['문그로우', '파스티기아타', '블루 애로우'];
 const CategoryDialog = (props) => {
     const { isOpen, dialogCloseHandler } = props;
+
     return (
         <Dialog open={isOpen} onClose={dialogCloseHandler} maxWidth="lg">
             <Container>

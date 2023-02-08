@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import Main from './page/Main';
+import Login from './page/Login';
 import SignUp from './page/SignUp';
 import Product from './page/Product';
 import Category from './page/Category';
@@ -13,12 +14,17 @@ import DashBoard from './page/DashBoard';
 import ManageProduct from './page/ManageProduct';
 import Write from './page/ManageProduct/Write';
 import ManageCustomer from './page/ManageCustomer';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8000/api/';
+axios.defaults.withCredentials = true; // refreshToken cookie를 주고받기 위함
 
 function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
                 <Route path="/" element={<Main />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/product/:product_id" element={<Product />} />
                 <Route path="/category/:category_id" element={<Category />} />
