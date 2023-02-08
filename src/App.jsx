@@ -10,6 +10,9 @@ import CustomerCenter from './page/CustomerCenter';
 import NotFound from './page/NotFound';
 import AdminLayout from './Layout/AdminLayout';
 import DashBoard from './page/DashBoard';
+import ManageProduct from './page/ManageProduct';
+import Write from './page/ManageProduct/Write';
+import ManageCustomer from './page/ManageCustomer';
 
 function App() {
     return (
@@ -25,6 +28,9 @@ function App() {
             </Route>
             <Route path="/" element={<AdminLayout />}>
                 <Route path="/admin" element={<DashBoard />} />
+                <Route path="/admin/product" element={<ManageProduct />} />
+                <Route path="/admin/product/write" element={<Write />} />
+                <Route path="/admin/customer" element={<ManageCustomer />} />
             </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>
