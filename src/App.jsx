@@ -7,6 +7,7 @@ import Category from './page/Category';
 import Introduction from './page/Introduction';
 import Notice from './page/Notice';
 import CustomerCenter from './page/CustomerCenter';
+import NotFound from './page/NotFound';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/notice" element={<Notice />} />
                 <Route path="/customer_center" element={<CustomerCenter />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
