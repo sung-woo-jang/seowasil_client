@@ -5,6 +5,7 @@ import SignUp from './page/SignUp';
 import Product from './page/Product';
 import Category from './page/Category';
 import Introduction from './page/Introduction';
+import Notice from './page/Notice';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/product/:product_id" element={<Product />} />
                 <Route path="/category/:category_id" element={<Category />} />
                 <Route path="/introduction" element={<Introduction />} />
+                <Route path="/notice" element={<Notice />} />
             </Route>
         </Routes>
     );
