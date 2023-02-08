@@ -1,4 +1,5 @@
 import React from 'react';
+import { CookiesProvider } from 'react-cookie';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -11,9 +12,10 @@ const root = createRoot(container);
 
 root.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </QueryClientProvider>
+        <CookiesProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </CookiesProvider>
     </Provider>
 );
