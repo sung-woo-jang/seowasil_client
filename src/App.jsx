@@ -6,6 +6,7 @@ import Product from './page/Product';
 import Category from './page/Category';
 import Introduction from './page/Introduction';
 import Notice from './page/Notice';
+import CustomerCenter from './page/CustomerCenter';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/category/:category_id" element={<Category />} />
                 <Route path="/introduction" element={<Introduction />} />
                 <Route path="/notice" element={<Notice />} />
+                <Route path="/customer_center" element={<CustomerCenter />} />
             </Route>
         </Routes>
     );
