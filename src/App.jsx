@@ -8,6 +8,8 @@ import Introduction from './page/Introduction';
 import Notice from './page/Notice';
 import CustomerCenter from './page/CustomerCenter';
 import NotFound from './page/NotFound';
+import AdminLayout from './Layout/AdminLayout';
+import DashBoard from './page/DashBoard';
 
 function App() {
     return (
@@ -20,6 +22,9 @@ function App() {
                 <Route path="/introduction" element={<Introduction />} />
                 <Route path="/notice" element={<Notice />} />
                 <Route path="/customer_center" element={<CustomerCenter />} />
+            </Route>
+            <Route path="/" element={<AdminLayout />}>
+                <Route path="/admin" element={<DashBoard />} />
             </Route>
             <Route path="*" element={<NotFound />} />
         </Routes>
