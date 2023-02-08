@@ -4,8 +4,13 @@ const InputField = (props) => {
     return (
         <InputFieldWrapper>
             <InputBox>
-                <input type="text" required="required" />
-                <span>{props.text}</span>
+                <input
+                    type={props.isType ? props.isType : 'text'}
+                    required
+                    ref={props.inputRef}
+                />
+                <span></span>
+                <label>{props.text}</label>
             </InputBox>
         </InputFieldWrapper>
     );
