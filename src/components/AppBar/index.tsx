@@ -25,10 +25,7 @@ const AppBar = () => {
             <SNS>
                 <Button size="small" variant="text">
                     <YouTube sx={{ color: '#fe0000' }} />
-                    <a
-                        href="https://www.youtube.com/@user-sl1sq3rt7m"
-                        style={{ color: '#000' }}
-                    >
+                    <a href="https://www.youtube.com/@user-sl1sq3rt7m" style={{ color: '#000' }}>
                         유튜브
                     </a>
                 </Button>

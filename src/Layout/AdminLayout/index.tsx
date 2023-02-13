@@ -1,11 +1,4 @@
-import {
-    Dashboard,
-    Forest,
-    Inventory2,
-    LocalShipping,
-    Menu,
-    People,
-} from '@mui/icons-material';
+import { Dashboard, Forest, Inventory2, LocalShipping, Menu, People } from '@mui/icons-material';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import SearchBar from './../../components/SearchBar';

@@ -85,10 +85,7 @@ function ContentContainer() {
                             />
                         </ListItemButton>
                         <ListItemButton left={10} onClick={dialogOpenHandler}>
-                            <ListItemText
-                                primary="카테고리 관리"
-                                sx={{ color: '#1976d2' }}
-                            />
+                            <ListItemText primary="카테고리 관리" sx={{ color: '#1976d2' }} />
                         </ListItemButton>
                     </List>
                 </Collapse>

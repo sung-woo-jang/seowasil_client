@@ -86,23 +86,21 @@ const ManageProduct = () => {
                             </TopTr>
                         </thead>
                         <tbody>
-                            {detailList.map(
-                                ({ id, price, name, category, registDate, status }) => (
-                                    <TableUnderRow key={id}>
-                                        <td>{id}</td>
-                                        <td>
-                                            <ImageBox text={name} />
-                                        </td>
-                                        <td>{category}</td>
-                                        <td>{price}₩</td>
-                                        <td>{status}</td>
-                                        <td>{registDate}</td>
-                                        <td>
-                                            <MoreHoriz />
-                                        </td>
-                                    </TableUnderRow>
-                                )
-                            )}
+                            {detailList.map(({ id, price, name, category, registDate, status }) => (
+                                <TableUnderRow key={id}>
+                                    <td>{id}</td>
+                                    <td>
+                                        <ImageBox text={name} />
+                                    </td>
+                                    <td>{category}</td>
+                                    <td>{price}₩</td>
+                                    <td>{status}</td>
+                                    <td>{registDate}</td>
+                                    <td>
+                                        <MoreHoriz />
+                                    </td>
+                                </TableUnderRow>
+                            ))}
                         </tbody>
                     </Table>
                 </ContentContainer>

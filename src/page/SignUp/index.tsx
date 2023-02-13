@@ -1,13 +1,5 @@
 import Avatar from '@mui/material/Avatar';
-import {
-    Button,
-    CssBaseline,
-    TextField,
-    Grid,
-    Box,
-    Typography,
-    Container,
-} from '@mui/material';
+import { Button, CssBaseline, TextField, Grid, Box, Typography, Container } from '@mui/material';
 import { LockOutlined } from '@mui/icons-material';
 
 export default function SignUp() {
@@ -83,12 +75,7 @@ export default function SignUp() {
                             />
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
+                    <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                         가입하기
                     </Button>
                 </Box>

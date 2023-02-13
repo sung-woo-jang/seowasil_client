@@ -1,13 +1,7 @@
 import { UploadFile } from '@mui/icons-material';
 import { useRef, useState } from 'react';
 import ImageContainer from './ImageContainer';
-import {
-    Error,
-    ImageDisplay,
-    UploadButton,
-    UploadFormWrapper,
-    UploadLabel,
-} from './style';
+import { Error, ImageDisplay, UploadButton, UploadFormWrapper, UploadLabel } from './style';
 
 const UploadForm = () => {
     const [isActive, setIsActive] = useState(false);
@@ -95,14 +89,10 @@ const UploadForm = () => {
                 {imageDataArray.map(
                     (
                         { imageUrl, imageAlt }: { imageUrl: string; imageAlt: string },
-                        idx: number
+                        idx: number,
                     ) => (
-                        <ImageContainer
-                            key={idx + 1}
-                            imageUrl={imageUrl}
-                            imageAlt={imageAlt}
-                        />
-                    )
+                        <ImageContainer key={idx + 1} imageUrl={imageUrl} imageAlt={imageAlt} />
+                    ),
                 )}
             </ImageDisplay>
         </UploadFormWrapper>

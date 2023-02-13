@@ -45,8 +45,8 @@ const BestItem = () => {
                                         문그로우
                                     </Typography>
                                     <Typography>
-                                        잎은 은청색을 띠어 우아하고 고급스러우며 폭은 넓은
-                                        수직 피라미드 수형으로 자라는 것이 특징이다
+                                        잎은 은청색을 띠어 우아하고 고급스러우며 폭은 넓은 수직
+                                        피라미드 수형으로 자라는 것이 특징이다
                                     </Typography>
                                 </CardContent>
                             </Link>

@@ -1,13 +1,7 @@
 import { Dialog } from '@mui/material';
 import Button from '../Button';
 import InputField from '../InputField';
-import {
-    AddCategory,
-    CategoryEditor,
-    CategoryItem,
-    CategoryList,
-    Container,
-} from './style';
+import { AddCategory, CategoryEditor, CategoryItem, CategoryList, Container } from './style';
 
 const list = ['문그로우', '파스티기아타', '블루 애로우'];
 
