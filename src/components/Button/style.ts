@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
 
+type ButtonWrapperProps = {
+    contained?: boolean;
+};
 export const ButtonWrapper = styled.button`
     background: white;
     color: black;
@@ -10,7 +13,7 @@ export const ButtonWrapper = styled.button`
     border-radius: 5px;
     text-align: center;
 
-    ${({ contained }) =>
+    ${({ contained }: ButtonWrapperProps) =>
         contained &&
         css`
             background: #287bff;

@@ -1,6 +1,6 @@
 import { ManageCustomerWrapper } from './style';
 
-const ManageCustomer = (props) => {
+const ManageCustomer = () => {
     return <ManageCustomerWrapper></ManageCustomerWrapper>;
 };
 

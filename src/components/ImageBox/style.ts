@@ -1,6 +1,10 @@
 import { css } from '@emotion/react';
 import styled from 'styled-components';
 
+type ImageBoxWrapperProps = {
+    isRound?: boolean;
+};
+
 export const ImageBoxWrapper = styled.div`
     position: relative;
     display: flex;
@@ -9,7 +13,7 @@ export const ImageBoxWrapper = styled.div`
     width: 100%;
     height: 40px;
     overflow: hidden;
-    ${({ isRound }) =>
+    ${({ isRound }: ImageBoxWrapperProps) =>
         isRound &&
         css`
             border-radius: 50%;

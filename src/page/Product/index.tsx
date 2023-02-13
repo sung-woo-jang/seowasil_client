@@ -1,6 +1,6 @@
-import MainProduct from './../../components/Product/MainProduct';
+import MainProduct from '../../components/Product/MainProduct';
 
-const Product = (props) => {
+const Product = () => {
     return (
         <>
             <MainProduct />

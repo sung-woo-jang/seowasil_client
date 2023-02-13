@@ -8,9 +8,16 @@ import {
     CategoryList,
     Container,
 } from './style';
+
 const list = ['문그로우', '파스티기아타', '블루 애로우'];
-const CategoryDialog = (props) => {
-    const { isOpen, dialogCloseHandler } = props;
+
+type CategoryDialogProps = {
+    isOpen: boolean;
+    dialogCloseHandler: () => void;
+};
+
+function CategoryDialog({ isOpen, dialogCloseHandler }: CategoryDialogProps) {
+    // const { isOpen, dialogCloseHandler } = props;
 
     return (
         <Dialog open={isOpen} onClose={dialogCloseHandler} maxWidth="lg">
@@ -34,6 +41,6 @@ const CategoryDialog = (props) => {
             </Container>
         </Dialog>
     );
-};
+}
 
 export default CategoryDialog;

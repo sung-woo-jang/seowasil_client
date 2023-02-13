@@ -16,9 +16,9 @@ function Copyright() {
     );
 }
 
-function Footer(props) {
-    const { description, title } = props;
-
+function Footer() {
+    const title = 'Footer';
+    const description = 'Something here to give the footer a purpose!';
     return (
         <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
             <Container maxWidth="lg">

@@ -4,7 +4,7 @@ import AppBar from '../components/AppBar';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-const Layout = (props) => {
+const Layout = () => {
     return (
         <>
             <Container fixed>
@@ -14,10 +14,7 @@ const Layout = (props) => {
                     <Outlet />
                 </main>
             </Container>
-            <Footer
-                title="Footer"
-                description="Something here to give the footer a purpose!"
-            />
+            <Footer />
         </>
     );
 };

@@ -1,7 +1,13 @@
 import { ImageBoxWrapper } from './style';
 
-const ImageBox = (props) => {
-    const { imageSrc, imageAlt, isRound, text } = props;
+type ImageBoxProps = {
+    imageSrc?: string;
+    imageAlt?: string;
+    isRound?: boolean;
+    text?: string;
+};
+
+function ImageBox({ imageSrc, imageAlt, isRound, text }: ImageBoxProps) {
     return (
         <ImageBoxWrapper isRound={isRound}>
             <img
@@ -15,6 +21,6 @@ const ImageBox = (props) => {
             {text ? <div>{text}</div> : ''}
         </ImageBoxWrapper>
     );
-};
+}
 
 export default ImageBox;

@@ -32,6 +32,10 @@ export const TextAreaBox = styled.div`
     }
 `;
 
+type TextAreaPrpos = {
+    isActive: boolean;
+};
+
 export const TextArea = styled.textarea`
     width: 100%;
     height: 20vh;
@@ -42,20 +46,22 @@ export const TextArea = styled.textarea`
     resize: none;
     border-color: #e2e2e2;
     margin-top: 20px;
-    ${({ isActive }) =>
+    ${({ isActive }: TextAreaPrpos) =>
         isActive &&
         css`
             border-color: black;
         `}
 `;
-
+type ListItemButtonPrpos = {
+    left?: number;
+};
 export const ListItemButton = styled.div`
     display: flex;
     justify-content: space-between;
     padding-top: 5px;
     padding-left: 15px;
 
-    ${({ left }) =>
+    ${({ left }: ListItemButtonPrpos) =>
         left &&
         css`
             padding-left: ${15 + left}px;

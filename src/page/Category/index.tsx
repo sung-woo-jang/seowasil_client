@@ -1,6 +1,6 @@
 import { CategoryWrapper } from './style';
 
-const Category = (props) => {
+const Category = () => {
     return <CategoryWrapper></CategoryWrapper>;
 };
 

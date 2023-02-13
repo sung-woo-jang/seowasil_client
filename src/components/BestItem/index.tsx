@@ -13,7 +13,7 @@ import { ProductTitle, SubTitle, Title } from './style';
 
 const cards = [1, 2, 3];
 
-const BestItem = (props) => {
+const BestItem = () => {
     return (
         <Container>
             <ProductTitle>

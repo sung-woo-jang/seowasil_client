@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { AppBarWrapper, Right, SNS } from './style';
 
-const AppBar = (props) => {
+const AppBar = () => {
     return (
         <AppBarWrapper>
             <div>

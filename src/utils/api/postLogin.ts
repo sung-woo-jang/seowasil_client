@@ -3,7 +3,7 @@ import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
-export const setRefreshToken = (refreshToken) => {
+export const setRefreshToken = (refreshToken: string) => {
     const today = new Date();
     const expireDate = today.setDate(today.getDate() + 7);
 
@@ -18,7 +18,7 @@ export const getCookieRefreshToken = () => {
     return cookies.get('refreshToken');
 };
 
-export const setAccessToken = (accessToken) => {
+export const setAccessToken = (accessToken: string) => {
     const today = new Date();
     const expireDate = today.setDate(today.getDate() + 7);
 
@@ -33,7 +33,7 @@ export const getCookieAccessToken = () => {
     return cookies.get('accessToken');
 };
 
-const postLogin = async (account, password) => {
+const postLogin = async (account: string, password: string) => {
     try {
         const { data } = await axios.post('users/signin', {
             account,
@@ -45,7 +45,7 @@ const postLogin = async (account, password) => {
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
         return user;
-    } catch (e) {
+    } catch (e: any) {
         throw new Error(e.message);
     }
 };
