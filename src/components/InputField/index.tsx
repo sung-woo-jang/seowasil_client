@@ -1,19 +1,20 @@
 import { InputBox, InputFieldWrapper } from './style';
 
-const InputField = (props) => {
+type InputFieldProps = {
+    isType?: string;
+    text: string;
+};
+
+function InputField({ isType, text }: InputFieldProps) {
     return (
         <InputFieldWrapper>
             <InputBox>
-                <input
-                    type={props.isType ? props.isType : 'text'}
-                    required
-                    ref={props.inputRef}
-                />
+                <input type={isType ? isType : 'text'} required />
                 <span></span>
-                <label>{props.text}</label>
+                <label>{text}</label>
             </InputBox>
         </InputFieldWrapper>
     );
-};
+}
 
 export default InputField;

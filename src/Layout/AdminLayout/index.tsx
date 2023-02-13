@@ -31,8 +31,8 @@ const navlist = [
     { id: 5, title: '배송 관리', icon: <LocalShipping />, url: 'delivery' },
 ];
 
-const AdminLayout = (props) => {
-    const [toggle, setToggle] = useState(false);
+const AdminLayout = () => {
+    const [toggle, setToggle] = useState<boolean>(false);
 
     const toggleHandler = () => {
         setToggle(!toggle);

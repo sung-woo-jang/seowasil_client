@@ -1,7 +1,11 @@
 import { TableWrapper } from './style';
 
-const Table = (props) => {
-    return <TableWrapper>{props.children}</TableWrapper>;
+type TableProps = {
+    children: React.ReactNode;
 };
+
+function Table({ children }: TableProps) {
+    return <TableWrapper>{children}</TableWrapper>;
+}
 
 export default Table;

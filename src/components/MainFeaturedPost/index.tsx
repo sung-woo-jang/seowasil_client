@@ -14,7 +14,7 @@ const post = {
     imageText: '나무박사 주민창.jpg',
 };
 
-function MainFeaturedPost(props) {
+function MainFeaturedPost() {
     return (
         <Paper
             sx={{

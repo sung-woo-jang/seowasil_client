@@ -1,17 +1,18 @@
 import { SearchBarWrapper, SearchIcon } from './style';
 
-const SearchBar = (props) => {
+type SearchBarProps = {
+    isPlaceHolder?: string;
+};
+
+function SearchBar({ isPlaceHolder }: SearchBarProps) {
     return (
         <SearchBarWrapper>
             <label>
-                <input
-                    type="text"
-                    placeholder={props.isPlaceHolder ? props.isPlaceHolder : '검색'}
-                />
+                <input type="text" placeholder={isPlaceHolder ? isPlaceHolder : '검색'} />
                 <SearchIcon />
             </label>
         </SearchBarWrapper>
     );
-};
+}
 
 export default SearchBar;

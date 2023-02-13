@@ -1,10 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import accessTokenSliceReducer from './slice/authSlice';
+import accessTokenReducer from './slice/authSlice';
 import selectedUserReducer from './slice/userSlice';
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
-        accessToken: accessTokenSliceReducer,
+        accessToken: accessTokenReducer,
         selectedUser: selectedUserReducer,
     },
 });
+
+export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

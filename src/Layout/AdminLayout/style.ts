@@ -9,6 +9,10 @@ const color = {
     black2: '#999',
 };
 
+type toggleProps = {
+    toggle: boolean;
+};
+
 // @media screen and (max-width: 991px) {}
 
 export const AdminWrapper = styled.div`
@@ -35,7 +39,7 @@ export const Navigation = styled.div`
         width: 100%;
     }
 
-    ${({ toggle }) =>
+    ${({ toggle }: toggleProps) =>
         toggle &&
         css`
             width: 80px;
@@ -43,7 +47,7 @@ export const Navigation = styled.div`
 
     @media screen and (max-width: 991px) {
         left: -300px;
-        ${({ toggle }) =>
+        ${({ toggle }: toggleProps) =>
             toggle &&
             css`
                 width: 300px;
@@ -56,7 +60,7 @@ export const Navigation = styled.div`
         left: -100%;
         z-index: 1000;
 
-        ${({ toggle }) =>
+        ${({ toggle }: toggleProps) =>
             toggle &&
             css`
                 width: 100%;
@@ -152,7 +156,7 @@ export const MainWrapper = styled.div`
     transition: 0.5s;
     background: #eeeeee;
 
-    ${({ toggle }) =>
+    ${({ toggle }: toggleProps) =>
         toggle &&
         css`
             width: calc(100% - 80px);
@@ -162,7 +166,7 @@ export const MainWrapper = styled.div`
         width: 100%;
         left: 0;
 
-        ${({ toggle }) =>
+        ${({ toggle }: toggleProps) =>
             toggle &&
             css`
                 left: 300px;
@@ -190,7 +194,7 @@ export const Toggle = styled.div`
     @media screen and (max-width: 480px) {
         z-index: 10001;
 
-        ${({ toggle }) =>
+        ${({ toggle }: toggleProps) =>
             toggle &&
             css`
                 & svg path {
@@ -352,23 +356,6 @@ export const TableUnderRow = styled.tr`
         background: ${color.blue};
         color: ${color.white};
     }
-`;
-
-const statusColors = {
-    delivered: '#8de02c',
-    pending: '#f9ca3f',
-    return: '#f00',
-    inprogress: '#1795ce',
-};
-
-export const Status = styled.span`
-    padding: 2px 4px;
-    background-color: ${({ color }) => statusColors[color]};
-    color: ${color.white};
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    /* font-weight: 500; */
 `;
 
 export const RecentCustomers = styled.div`

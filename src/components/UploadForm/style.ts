@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const UploadFormWrapper = styled.div`
+export const UploadFormWrapper = styled.div<{ isActive: boolean }>`
     /* width: 60%; */
     /* max-width: 37.5em; */
     /* width: 50%; */

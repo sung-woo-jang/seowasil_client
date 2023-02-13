@@ -9,14 +9,14 @@ import {
     UploadLabel,
 } from './style';
 
-const UploadForm = (props) => {
+const UploadForm = () => {
     const [isActive, setIsActive] = useState(false);
     const [errorMessage, setErrorMessage] = useState(true);
-    const [imageDataArray, setImageDataArray] = useState([]);
+    const [imageDataArray, setImageDataArray] = useState<any>([]);
 
-    const inputEl = useRef(null);
+    const inputEl = useRef<any>(null);
 
-    const fileHandler = (file, name, type) => {
+    const fileHandler = (file: any, name: any, type: string) => {
         setErrorMessage(true);
         if (type.split('/')[0] !== 'image') {
             setErrorMessage(false);
@@ -25,7 +25,7 @@ const UploadForm = (props) => {
         let reader = new FileReader();
         reader.onloadend = () => {
             //image and file name
-            setImageDataArray((prevState) => [
+            setImageDataArray((prevState: any) => [
                 ...prevState,
                 { imageUrl: reader.result, imageAlt: name },
             ]);
@@ -35,37 +35,37 @@ const UploadForm = (props) => {
 
     const uploadButtonChangeHandler = () => {
         setImageDataArray([]);
-        Array.from(inputEl.current.files).forEach((file) => {
+        Array.from(inputEl.current.files).forEach((file: any) => {
             fileHandler(file, file.name, file.type);
         });
     };
 
-    const onDragEnterHandler = (e) => {
+    const onDragEnterHandler = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
         setIsActive(true);
     };
 
-    const onDragLeaveHandler = (e) => {
+    const onDragLeaveHandler = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
         setIsActive(false);
     };
 
-    const onDragOverHandler = (e) => {
+    const onDragOverHandler = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
         setIsActive(true);
     };
 
-    const onDropHandler = (e) => {
+    const onDropHandler = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
         setIsActive(false);
         let draggedData = e.dataTransfer;
         let files = draggedData.files;
         setImageDataArray([]);
-        Array.from(files).forEach((file) => {
+        Array.from(files).forEach((file: any) => {
             fileHandler(file, file.name, file.type);
         });
     };
@@ -92,13 +92,18 @@ const UploadForm = (props) => {
             </UploadLabel>
             {errorMessage ? <Error /> : <Error>사진 파일만 업로드 해주세요.</Error>}
             <ImageDisplay>
-                {imageDataArray.map((el, idx) => (
-                    <ImageContainer
-                        key={idx + 1}
-                        imageUrl={el.imageUrl}
-                        imageAlt={el.imageAlt}
-                    />
-                ))}
+                {imageDataArray.map(
+                    (
+                        { imageUrl, imageAlt }: { imageUrl: string; imageAlt: string },
+                        idx: number
+                    ) => (
+                        <ImageContainer
+                            key={idx + 1}
+                            imageUrl={imageUrl}
+                            imageAlt={imageAlt}
+                        />
+                    )
+                )}
             </ImageDisplay>
         </UploadFormWrapper>
     );

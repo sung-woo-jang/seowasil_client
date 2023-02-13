@@ -1,14 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+type accessToken = {
+    authenticated: boolean;
+    accessToken: string | null;
+    expireTime: Date | number | null;
+};
+
+const initState: accessToken = {
+    authenticated: false,
+    accessToken: null,
+    expireTime: null,
+};
+
 export const TOKEN_TIME_OUT = 600 * 1000;
 
-export const { reducer: accessTokenSliceReducer, actions } = createSlice({
+export const { reducer: accessTokenReducer, actions } = createSlice({
     name: 'accessToken',
-    initialState: {
-        authenticated: false,
-        accessToken: null,
-        expireTime: null,
-    },
+    initialState: initState,
     reducers: {
         SET_TOKEN: (state, action) => {
             state.authenticated = true;
@@ -25,4 +33,4 @@ export const { reducer: accessTokenSliceReducer, actions } = createSlice({
 
 export const { SET_TOKEN, DELETE_TOKEN } = actions;
 
-export default accessTokenSliceReducer;
+export default accessTokenReducer;

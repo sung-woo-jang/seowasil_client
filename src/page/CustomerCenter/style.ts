@@ -80,20 +80,3 @@ export const TableUnderRow = styled.tr`
         color: ${color.white};
     }
 `;
-
-const statusColors = {
-    delivered: '#8de02c',
-    pending: '#f9ca3f',
-    return: '#f00',
-    inprogress: '#1795ce',
-};
-
-export const Status = styled.span`
-    padding: 2px 4px;
-    background-color: ${({ color }) => statusColors[color]};
-    color: ${color.white};
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    /* font-weight: 500; */
-`;

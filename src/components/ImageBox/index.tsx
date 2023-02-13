@@ -3,13 +3,13 @@ import { ImageBoxWrapper } from './style';
 type ImageBoxProps = {
     imageSrc?: string;
     imageAlt?: string;
-    isRound?: boolean;
+    // isRound?: boolean;
     text?: string;
 };
 
-function ImageBox({ imageSrc, imageAlt, isRound, text }: ImageBoxProps) {
+function ImageBox({ imageSrc, imageAlt, text }: ImageBoxProps) {
     return (
-        <ImageBoxWrapper isRound={isRound}>
+        <ImageBoxWrapper>
             <img
                 src={
                     imageSrc

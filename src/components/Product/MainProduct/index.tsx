@@ -40,10 +40,10 @@ const images = [
     },
 ];
 
-const MainProduct = (props) => {
+function MainProduct() {
     const [imageData, setImageData] = useState(images[0]);
 
-    const handleClick = (index) => {
+    const handleClick = (index: number) => {
         const imageSlider = images[index];
         setImageData(imageSlider);
     };
@@ -59,7 +59,7 @@ const MainProduct = (props) => {
                     </ImageDisplay>
 
                     <ImageSelect>
-                        {images.map(({ id, url }, index) => (
+                        {images.map(({ id, url }, index: number) => (
                             <ImageItem key={id}>
                                 <img
                                     key={id}
@@ -113,6 +113,6 @@ const MainProduct = (props) => {
             </Card>
         </CardWrapper>
     );
-};
+}
 
 export default MainProduct;

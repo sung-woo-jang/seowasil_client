@@ -108,7 +108,7 @@ const detailList = [
     },
 ];
 
-const CustomerCenter = (props) => {
+const CustomerCenter = () => {
     return (
         <>
             <Details>
@@ -128,7 +128,7 @@ const CustomerCenter = (props) => {
                         </QuestionTableTitle>
                         <div>
                             {detailList.map(({ id, category, name, title, product }) => (
-                                <DetailList key={id}>
+                                <DetailList to="/" key={id}>
                                     <span>{id}</span>
                                     <span>{category}</span>
                                     <span>{product}</span>

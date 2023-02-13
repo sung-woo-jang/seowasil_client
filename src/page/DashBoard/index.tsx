@@ -18,7 +18,6 @@ import {
     RecentCustomers,
     RecentCustomersTableRow,
     RecentOrders,
-    Status,
     TableUnderRow,
 } from './style';
 
@@ -40,7 +39,7 @@ const detailList = [
         price: 1500,
         name: '주민창',
         payment: '결제 완료',
-        statusCode: 'pending',
+        // statusCode: 'pending',
         status: '배송중',
     },
     {
@@ -48,7 +47,7 @@ const detailList = [
         price: 1800,
         name: '안동민',
         payment: '결제 대기중',
-        statusCode: 'inprogress',
+        // statusCode: 'inprogress',
         status: '상품 준비중',
     },
     {
@@ -56,7 +55,7 @@ const detailList = [
         price: 30000,
         name: '이민성',
         payment: '결제 취소',
-        statusCode: 'return',
+        // statusCode: 'return',
         status: '반품 완료',
     },
     {
@@ -64,7 +63,7 @@ const detailList = [
         price: 5000,
         name: '장성우',
         payment: '결제 완료',
-        statusCode: 'delivered',
+        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -72,7 +71,7 @@ const detailList = [
         price: 80000,
         name: '황성한',
         payment: '결제 완료',
-        statusCode: 'delivered',
+        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -80,7 +79,7 @@ const detailList = [
         price: 30000,
         name: '임동영',
         payment: '결제 취소',
-        statusCode: 'return',
+        // statusCode: 'return',
         status: '반품 완료',
     },
     {
@@ -88,7 +87,7 @@ const detailList = [
         price: 1500,
         name: '주민창',
         payment: '결제 완료',
-        statusCode: 'pending',
+        // statusCode: 'pending',
         status: '배송중',
     },
     {
@@ -96,7 +95,7 @@ const detailList = [
         price: 1800,
         name: '안동민',
         payment: '결제 대기중',
-        statusCode: 'inprogress',
+        // statusCode: 'inprogress',
         status: '상품 준비중',
     },
     {
@@ -104,7 +103,7 @@ const detailList = [
         price: 30000,
         name: '이민성',
         payment: '결제 취소',
-        statusCode: 'return',
+        // statusCode: 'return',
         status: '반품 완료',
     },
     {
@@ -112,7 +111,7 @@ const detailList = [
         price: 5000,
         name: '장성우',
         payment: '결제 완료',
-        statusCode: 'delivered',
+        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -120,7 +119,7 @@ const detailList = [
         price: 80000,
         name: '황성한',
         payment: '결제 완료',
-        statusCode: 'delivered',
+        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -128,7 +127,7 @@ const detailList = [
         price: 30000,
         name: '임동영',
         payment: '결제 취소',
-        statusCode: 'return',
+        // statusCode: 'return',
         status: '반품 완료',
     },
 ];
@@ -154,7 +153,7 @@ const DashBoard = () => {
                 <RecentOrders>
                     <CardHeader className="CardHeader">
                         <CardTitle>최근 주문 내역</CardTitle>
-                        <DetailButton>전부 보기</DetailButton>
+                        <DetailButton to="/">전부 보기</DetailButton>
                     </CardHeader>
                     <OrderTable>
                         <thead>
@@ -166,18 +165,16 @@ const DashBoard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {detailList.map(
-                                ({ id, name, payment, status, price, statusCode }) => (
-                                    <TableUnderRow key={id}>
-                                        <td>{name}</td>
-                                        <td>{price}₩</td>
-                                        <td>{payment}</td>
-                                        <td>
-                                            <Status color={statusCode}>{status}</Status>
-                                        </td>
-                                    </TableUnderRow>
-                                )
-                            )}
+                            {detailList.map(({ id, name, payment, status, price }) => (
+                                <TableUnderRow key={id}>
+                                    <td>{name}</td>
+                                    <td>{price}₩</td>
+                                    <td>{payment}</td>
+                                    <td>
+                                        <td>{status}</td>
+                                    </td>
+                                </TableUnderRow>
+                            ))}
                         </tbody>
                     </OrderTable>
                 </RecentOrders>

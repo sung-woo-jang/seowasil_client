@@ -45,7 +45,7 @@ const detailList = [
     },
 ];
 
-const ManageProduct = (props) => {
+const ManageProduct = () => {
     const { pathname } = useLocation();
     return (
         <ManageProductWrapper>

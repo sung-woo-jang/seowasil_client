@@ -1,6 +1,6 @@
 import { Search as MuiSearch } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const color = {
     blue: '#287bff',
@@ -18,7 +18,9 @@ export const DashBoardWrapper = styled.div`
     min-height: 100vh;
     transition: 0.5s;
     background: #eeeeee;
-
+`;
+/*  
+    나중에 위로 올리기
     ${({ toggle }) =>
         toggle &&
         css`
@@ -30,12 +32,11 @@ export const DashBoardWrapper = styled.div`
         left: 0;
 
         ${({ toggle }) =>
-            toggle &&
-            css`
-                left: 300px;
-            `}
-    }
-`;
+        toggle &&
+        css`
+            left: 300px;
+        `}
+    } */
 export const TopBar = styled.div`
     width: 100%;
     height: 60px;
@@ -44,7 +45,7 @@ export const TopBar = styled.div`
     align-items: center;
     padding: 0 10px;
 `;
-export const Toggle = styled.div`
+/* export const Toggle = styled.div`
     position: relative;
     top: 0;
     width: 60px;
@@ -68,7 +69,7 @@ export const Toggle = styled.div`
                 }
             `}
     }
-`;
+`; */
 
 export const Search = styled.div`
     position: relative;
@@ -246,23 +247,6 @@ export const TableUnderRow = styled.tr`
         background: ${color.blue};
         color: ${color.white};
     }
-`;
-
-const statusColors = {
-    delivered: '#8de02c',
-    pending: '#f9ca3f',
-    return: '#f00',
-    inprogress: '#1795ce',
-};
-
-export const Status = styled.span`
-    padding: 2px 4px;
-    background-color: ${({ color }) => statusColors[color]};
-    color: ${color.white};
-    border-radius: 4px;
-    font-size: 14px;
-    white-space: nowrap;
-    /* font-weight: 500; */
 `;
 
 export const RecentCustomers = styled.div`
