@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import accessTokenReducer from './slice/authSlice';
-import selectedUserReducer from './slice/userSlice';
+import authReducer from './slice/authSlice';
 
 const store = configureStore({
     reducer: {
-        accessToken: accessTokenReducer,
-        selectedUser: selectedUserReducer,
+        auth: authReducer,
     },
 });
 

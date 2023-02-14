@@ -1,36 +1,58 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import * as authApi from '../../api/authApi';
+import {
+    getUserInfo,
+    setAccessToken,
+    setRefreshToken,
+    setUserInfo,
+} from '../../utils/auth/useInfo';
 
-type accessToken = {
-    authenticated: boolean;
-    accessToken: string | null;
-    expireTime: Date | number | null;
-};
+interface userInfo {
+    id: number;
+    name: string;
+    phoneNumber: string;
+    role: string;
+    isLogin: boolean;
+}
 
-const initState: accessToken = {
-    authenticated: false,
-    accessToken: null,
-    expireTime: null,
+const initialState: userInfo = {
+    id: 0,
+    name: '',
+    phoneNumber: '',
+    role: '',
+
+    isLogin: false,
 };
 
 export const TOKEN_TIME_OUT = 600 * 1000;
 
-export const { reducer: accessTokenReducer, actions } = createSlice({
-    name: 'accessToken',
-    initialState: initState,
+export const login = createAsyncThunk(
+    'auth/login',
+    async (formData: { account: string | undefined; password: string | undefined }) => {
+        const { accessToken, refreshToken, user } = await authApi.loginApi(formData);
+        setAccessToken(accessToken);
+        setRefreshToken(refreshToken);
+        setUserInfo(user);
+    },
+);
+
+export const { reducer: authReducer, actions } = createSlice({
+    name: 'auth',
+    initialState,
     reducers: {
-        SET_TOKEN: (state, action) => {
-            state.authenticated = true;
-            state.accessToken = action.payload;
-            state.expireTime = new Date().getTime() + TOKEN_TIME_OUT;
-        },
-        DELETE_TOKEN: (state) => {
-            state.authenticated = false;
-            state.accessToken = null;
-            state.expireTime = null;
+        loginCheck(state) {
+            const userInfo = getUserInfo();
+            if (userInfo) {
+                state.isLogin = true;
+                state.id = userInfo.id;
+                state.name = userInfo.name;
+                state.phoneNumber = userInfo.phoneNumber;
+                state.role = userInfo.role;
+            }
         },
     },
 });
 
-export const { SET_TOKEN, DELETE_TOKEN } = actions;
+export const { loginCheck } = actions;
 
-export default accessTokenReducer;
+export default authReducer;

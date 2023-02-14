@@ -1,14 +1,17 @@
 import { YouTube } from '@mui/icons-material';
 import { Button } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from '../../store';
 import { AppBarWrapper, Right, SNS } from './style';
 
 const AppBar = () => {
+    const { isLogin } = useSelector((state: RootState) => state.auth);
     return (
         <AppBarWrapper>
             <div>
                 <Button component={Link} to="/login" variant="text" size="small">
-                    로그인
+                    {isLogin ? '로그아웃' : '로그인'}
                 </Button>
                 <Button component={Link} to="/signup" variant="text" size="small">
                     회원가입

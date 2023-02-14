@@ -15,11 +15,19 @@ import ManageProduct from './page/ManageProduct';
 import Write from './page/ManageProduct/Write';
 import ManageCustomer from './page/ManageCustomer';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { loginCheck } from './store/slice/authSlice';
 
-axios.defaults.baseURL = 'http://localhost:8000/api/';
 axios.defaults.withCredentials = true; // refreshToken cookie를 주고받기 위함
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loginCheck());
+    }, [dispatch]);
+
     return (
         <Routes>
             <Route element={<Layout />}>
