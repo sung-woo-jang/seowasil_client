@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
     width: 100%;
@@ -29,45 +29,5 @@ export const TextAreaBox = styled.div`
     padding: 20px;
     & div {
         font-size: 28px;
-    }
-`;
-
-type TextAreaProps = {
-    isActive: boolean;
-};
-
-export const TextArea = styled.textarea`
-    width: 100%;
-    height: 20vh;
-    padding: 15px;
-    font-size: 15px;
-    border-radius: 5px;
-    outline: none;
-    resize: none;
-    border-color: #e2e2e2;
-    margin-top: 20px;
-    ${({ isActive }: TextAreaProps) =>
-        isActive &&
-        css`
-            border-color: black;
-        `}
-`;
-type ListItemButtonPrpos = {
-    left?: number;
-};
-export const ListItemButton = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding-top: 5px;
-    padding-left: 15px;
-
-    ${({ left }: ListItemButtonPrpos) =>
-        left &&
-        css`
-            padding-left: ${15 + left}px;
-        `}
-    cursor: pointer;
-    &:hover {
-        background: #f5f5f5;
     }
 `;
