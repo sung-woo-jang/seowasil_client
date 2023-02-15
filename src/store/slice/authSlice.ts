@@ -27,7 +27,8 @@ const initialState: userInfo = {
 
 export const TOKEN_TIME_OUT = 600 * 1000;
 
-export const login = createAsyncThunk(
+// createAsyncThunk는 비동기 작업을 처리하는 액션을 만들어준다.
+export const asyncLoginFetch = createAsyncThunk(
     'auth/login',
     async (formData: { account: string | undefined; password: string | undefined }) => {
         const { accessToken, refreshToken, user } = await authApi.loginApi(formData);
@@ -37,6 +38,10 @@ export const login = createAsyncThunk(
         return user;
     },
 );
+
+export const asyncSignUpFetch = createAsyncThunk('auth/signup', async (formData) => {
+    const response = await authApi;
+});
 
 export const { reducer: authReducer, actions } = createSlice({
     name: 'auth',
@@ -62,7 +67,7 @@ export const { reducer: authReducer, actions } = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(login.fulfilled, (state, { payload }) => {
+        builder.addCase(asyncLoginFetch.fulfilled, (state, { payload }) => {
             state.isLogin = true;
             state.id = payload.id;
             state.name = payload.name;

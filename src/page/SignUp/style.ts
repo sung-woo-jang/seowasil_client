@@ -29,8 +29,6 @@ export const Control = styled.div`
 
     & input {
         font: inherit;
-        /* background-color: #f1e1fc; */
-        /* color: #38015c; */
         border-radius: 4px;
         border: 1px solid black;
         width: 100%;
@@ -53,10 +51,5 @@ export const Actions = styled.div`
         /* border: 1px solid #9f5ccc; */
         border-radius: 4px;
         padding: 0.5rem 2.5rem;
-    }
-
-    & button:hover {
-        /* background-color: #873abb; */
-        /* border-color: #873abb; */
     }
 `;

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
-import { login } from '../../store/slice/authSlice';
+import { asyncLoginFetch } from '../../store/slice/authSlice';
 import { Actions, Control, Section } from './style';
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
         e.preventDefault();
         const account = accountRef.current?.value;
         const password = passwordRef.current?.value;
-        dispatch(login({ account, password }));
+        dispatch(asyncLoginFetch({ account, password }));
     };
 
     useEffect(() => {
