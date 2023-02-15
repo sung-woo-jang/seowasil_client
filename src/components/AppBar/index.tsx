@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import { logOut } from '../../store/slice/authSlice';
-import { Button } from '../Button/style';
+import { Button } from '../UI/Button';
 import { AppBarWrapper, Right, SNS } from './style';
 
 const AppBar = () => {

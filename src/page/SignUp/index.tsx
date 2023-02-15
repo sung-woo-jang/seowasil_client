@@ -1,7 +1,11 @@
 import { Actions, Control, Section } from './style';
-import DaumPostcodeEmbed, { Address, useDaumPostcodePopup } from 'react-daum-postcode';
-import { useState } from 'react';
-import { Button } from '../../components/Button/style';
+import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
+import { useEffect, useState } from 'react';
+import { Button } from '../../components/UI/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { AppDispatch, RootState } from '../../store';
+import { asyncSignUpFetch } from '../../store/slice/authSlice';
 
 export default function SignUp() {
     const [userInfo, setUserInfo] = useState({
@@ -14,6 +18,9 @@ export default function SignUp() {
         address2: '', // 주소
         address3: '', // 상세주소
     });
+
+    const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
 
     const open = useDaumPostcodePopup();
 
@@ -38,6 +45,9 @@ export default function SignUp() {
     const handleClick = () => {
         open({ onComplete: handleComplete });
     };
+
+    // 회원가입 관련 State
+    const { isLogin, isRegistCompleted } = useSelector((state: RootState) => state.auth);
 
     const {
         addressDetailInputHandler,
@@ -89,9 +99,21 @@ export default function SignUp() {
         },
     };
 
+    const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        dispatch(asyncSignUpFetch(userInfo));
+    };
+
+    // 로그인이 되어있으면 회원가입 페이지에서 나가라
+    useEffect(() => {
+        if (isLogin || isRegistCompleted) {
+            navigate('/', { replace: true });
+        }
+    }, [isLogin, isRegistCompleted, navigate]);
+
     return (
         <Section>
-            <form>
+            <form onSubmit={formSubmitHandler}>
                 <Control>
                     <label htmlFor="account">계정</label>
                     <input
@@ -177,14 +199,7 @@ export default function SignUp() {
                     />
                 </Control>
                 <Actions>
-                    <button
-                        onClick={(e: React.MouseEvent<HTMLElement>) => {
-                            e.preventDefault();
-                            console.log(userInfo);
-                        }}
-                    >
-                        회원가입
-                    </button>
+                    <Button type="submit">회원가입</Button>
                 </Actions>
             </form>
         </Section>

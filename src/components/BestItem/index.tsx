@@ -8,7 +8,7 @@ import {
     Link,
     Typography,
 } from '@mui/material';
-import { Button } from '../Button/style';
+import { Button } from '../UI/Button';
 import { ProductTitle, SubTitle, Title } from './style';
 
 const cards = [1, 2, 3];

@@ -1,6 +1,6 @@
 import { Dialog } from '@mui/material';
 import { useState } from 'react';
-import { Button } from '../Button/style';
+import { Button } from '../UI/Button';
 import InputField from '../InputField';
 import { AddCategory, CategoryEditor, CategoryItem, CategoryList, Container } from './style';
 
