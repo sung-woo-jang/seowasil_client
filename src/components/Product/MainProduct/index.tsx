@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import { useState } from 'react';
 import {
     Card,
@@ -14,7 +13,6 @@ import {
     ProductImages,
     ProductPrice,
     ProductTitle,
-    PurchaseInfo,
 } from './style';
 
 const images = [

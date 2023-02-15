@@ -32,7 +32,7 @@ export const TextAreaBox = styled.div`
     }
 `;
 
-type TextAreaPrpos = {
+type TextAreaProps = {
     isActive: boolean;
 };
 
@@ -46,7 +46,7 @@ export const TextArea = styled.textarea`
     resize: none;
     border-color: #e2e2e2;
     margin-top: 20px;
-    ${({ isActive }: TextAreaPrpos) =>
+    ${({ isActive }: TextAreaProps) =>
         isActive &&
         css`
             border-color: black;

@@ -111,39 +111,37 @@ const detailList = [
 
 const CustomerCenter = () => {
     return (
-        <>
-            <Details>
-                <RecentOrders>
-                    <CardHeader>
-                        <CardTitle>문의 내역</CardTitle>
-                        <Button>
-                            <Link to="/customer_center/write">글쓰기</Link>
-                        </Button>
-                    </CardHeader>
+        <Details>
+            <RecentOrders>
+                <CardHeader>
+                    <CardTitle>문의 내역</CardTitle>
+                    <Button>
+                        <Link to="/customer_center/write">글쓰기</Link>
+                    </Button>
+                </CardHeader>
 
-                    <QuestionTable>
-                        <QuestionTableTitle>
-                            <span>번호</span>
-                            <span>카테고리</span>
-                            <span>상품</span>
-                            <span>제목</span>
-                            <span>글쓴이</span>
-                        </QuestionTableTitle>
-                        <div>
-                            {detailList.map(({ id, category, name, title, product }) => (
-                                <DetailList to="/" key={id}>
-                                    <span>{id}</span>
-                                    <span>{category}</span>
-                                    <span>{product}</span>
-                                    <span>{title}</span>
-                                    <span>{name}</span>
-                                </DetailList>
-                            ))}
-                        </div>
-                    </QuestionTable>
-                </RecentOrders>
-            </Details>
-        </>
+                <QuestionTable>
+                    <QuestionTableTitle>
+                        <span>번호</span>
+                        <span>카테고리</span>
+                        <span>상품</span>
+                        <span>제목</span>
+                        <span>글쓴이</span>
+                    </QuestionTableTitle>
+                    <div>
+                        {detailList.map(({ id, category, name, title, product }) => (
+                            <DetailList to="/" key={id}>
+                                <span>{id}</span>
+                                <span>{category}</span>
+                                <span>{product}</span>
+                                <span>{title}</span>
+                                <span>{name}</span>
+                            </DetailList>
+                        ))}
+                    </div>
+                </QuestionTable>
+            </RecentOrders>
+        </Details>
     );
 };
 
