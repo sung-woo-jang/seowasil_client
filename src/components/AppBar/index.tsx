@@ -1,23 +1,33 @@
 import { YouTube } from '@mui/icons-material';
-import { Button } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
+import { logOut } from '../../store/slice/authSlice';
+import { Button } from '../Button/style';
 import { AppBarWrapper, Right, SNS } from './style';
 
 const AppBar = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isLogin } = useSelector((state: RootState) => state.auth);
+
+    const logoutHandler = () => {
+        dispatch(logOut());
+        navigate('/', { replace: true });
+    };
+
     return (
         <AppBarWrapper>
             <div>
-                <Button component={Link} to="/login" variant="text" size="small">
-                    {isLogin ? '로그아웃' : '로그인'}
+                <Button>
+                    {isLogin ? (
+                        <div onClick={logoutHandler}>로그아웃</div>
+                    ) : (
+                        <Link to="/login">로그인</Link>
+                    )}
                 </Button>
-                <Button component={Link} to="/signup" variant="text" size="small">
-                    회원가입
-                </Button>
-                <Button component={Link} to="/cart" variant="text" size="small">
-                    장바구니
+                <Button>
+                    <Link to="/signup">회원가입</Link>
                 </Button>
             </div>
             <Right>
@@ -26,13 +36,13 @@ const AppBar = () => {
                 <Link to="/customer_center">고객센터</Link>
             </Right>
             <SNS>
-                <Button size="small" variant="text">
+                <Button>
                     <YouTube sx={{ color: '#fe0000' }} />
                     <a href="https://www.youtube.com/@user-sl1sq3rt7m" style={{ color: '#000' }}>
                         유튜브
                     </a>
                 </Button>
-                <Button size="small" variant="text">
+                <Button>
                     <img
                         src={`${process.env.PUBLIC_URL}/images/naverBlogLogo.png`}
                         alt=""

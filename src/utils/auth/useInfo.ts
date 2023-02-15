@@ -38,3 +38,9 @@ export const getUserInfo = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     return userInfo;
 };
+
+export const removeUserData = () => {
+    cookies.remove('accessToken');
+    cookies.remove('refreshToken');
+    localStorage.removeItem('userInfo');
+};

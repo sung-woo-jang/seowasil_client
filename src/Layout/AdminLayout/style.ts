@@ -112,7 +112,8 @@ export const NavList = styled.li`
 
     &:nth-child(1) {
         margin-bottom: 40px;
-        pointer-events: none;
+        /* background: #353535; */
+        /* pointer-events: none; */
     }
 `;
 

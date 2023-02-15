@@ -17,11 +17,11 @@ import {
 } from './style';
 
 const navlist = [
-    { id: 1, title: '서와실 농원', icon: <Forest />, url: '' },
-    { id: 2, title: '대시보드', icon: <Dashboard />, url: '' },
-    { id: 3, title: '상품 관리', icon: <Inventory2 />, url: 'product' },
-    { id: 4, title: '사용자 관리', icon: <People />, url: 'customer' },
-    { id: 5, title: '배송 관리', icon: <LocalShipping />, url: 'delivery' },
+    { id: 1, title: '서와실 농원', icon: <Forest />, url: '/' },
+    { id: 2, title: '대시보드', icon: <Dashboard />, url: '/admin' },
+    { id: 3, title: '상품 관리', icon: <Inventory2 />, url: '/admin/product' },
+    { id: 4, title: '사용자 관리', icon: <People />, url: '/admin/customer' },
+    { id: 5, title: '배송 관리', icon: <LocalShipping />, url: '/admin/delivery' },
 ];
 
 const AdminLayout = () => {
@@ -38,7 +38,7 @@ const AdminLayout = () => {
                     <ul>
                         {navlist.map(({ id, title, icon, url }) => (
                             <NavList key={id}>
-                                <NavItemLink to={`/admin/${url}`}>
+                                <NavItemLink to={`${url}`}>
                                     <NavIconLine>{icon}</NavIconLine>
                                     <Title>{title}</Title>
                                 </NavItemLink>

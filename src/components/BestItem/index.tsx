@@ -1,5 +1,4 @@
 import {
-    Button,
     Card,
     CardActions,
     CardContent,
@@ -9,6 +8,7 @@ import {
     Link,
     Typography,
 } from '@mui/material';
+import { Button } from '../Button/style';
 import { ProductTitle, SubTitle, Title } from './style';
 
 const cards = [1, 2, 3];
@@ -60,7 +60,7 @@ const BestItem = () => {
                                                 color: 'black',
                                             }}
                                         >
-                                            <Button size="small">상품 보기</Button>
+                                            <Button>상품 보기</Button>
                                         </Link>
                                     </Grid>
                                 </Grid>

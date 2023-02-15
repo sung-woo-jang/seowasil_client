@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as authApi from '../../api/authApi';
 import {
     getUserInfo,
+    removeUserData,
     setAccessToken,
     setRefreshToken,
     setUserInfo,
@@ -33,6 +34,7 @@ export const login = createAsyncThunk(
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
         setUserInfo(user);
+        return user;
     },
 );
 
@@ -50,9 +52,26 @@ export const { reducer: authReducer, actions } = createSlice({
                 state.role = userInfo.role;
             }
         },
+        logOut(state) {
+            removeUserData();
+            state.isLogin = false;
+            state.id = 0;
+            state.name = '';
+            state.phoneNumber = '';
+            state.role = '';
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(login.fulfilled, (state, { payload }) => {
+            state.isLogin = true;
+            state.id = payload.id;
+            state.name = payload.name;
+            state.phoneNumber = payload.phoneNumber;
+            state.role = payload.role;
+        });
     },
 });
 
-export const { loginCheck } = actions;
+export const { loginCheck, logOut } = actions;
 
 export default authReducer;

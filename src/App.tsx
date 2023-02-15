@@ -22,6 +22,12 @@ import CustomerCenterWrite from './page/CustomerCenterWrite';
 
 axios.defaults.withCredentials = true; // refreshToken cookie를 주고받기 위함
 
+/* 
+    - Feat
+        1. 로그아웃
+        2. 회원가입
+*/
+
 function App() {
     const dispatch = useDispatch();
 
