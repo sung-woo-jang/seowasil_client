@@ -1,4 +1,5 @@
-import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Button from '../../components/Button';
 import {
     CardHeader,
     CardTitle,
@@ -115,7 +116,9 @@ const CustomerCenter = () => {
                 <RecentOrders>
                     <CardHeader>
                         <CardTitle>문의 내역</CardTitle>
-                        <Button>글쓰기</Button>
+                        <Button>
+                            <Link to="/customer_center/write">글쓰기</Link>
+                        </Button>
                     </CardHeader>
 
                     <QuestionTable>

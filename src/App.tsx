@@ -18,6 +18,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loginCheck } from './store/slice/authSlice';
+import CustomerCenterWrite from './page/CustomerCenterWrite';
 
 axios.defaults.withCredentials = true; // refreshToken cookie를 주고받기 위함
 
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/introduction" element={<Introduction />} />
                 <Route path="/notice" element={<Notice />} />
                 <Route path="/customer_center" element={<CustomerCenter />} />
+                <Route path="/customer_center/write" element={<CustomerCenterWrite />} />
             </Route>
             <Route path="/" element={<AdminLayout />}>
                 <Route path="/admin" element={<DashBoard />} />

@@ -105,10 +105,6 @@ function MainProduct() {
                             </li>
                         </ul>
                     </ProductDetail>
-                    <PurchaseInfo>
-                        <input type="number" min={0} defaultValue={1} />
-                        <Button variant="outlined">구매하기</Button>
-                    </PurchaseInfo>
                 </ProductContent>
             </Card>
         </CardWrapper>
