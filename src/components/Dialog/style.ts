@@ -1,10 +1,28 @@
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
 
+export const DialogWrapper = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    z-index: 2;
+`;
+
 export const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 60px 1fr;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
     width: 640px;
     height: 570px;
 `;
@@ -12,8 +30,8 @@ export const Container = styled.div`
 export const AddCategory = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
     grid-column: 1 / 3;
+    align-items: center;
     border-bottom: 1px solid #000;
     padding: 0 10px;
     & input {

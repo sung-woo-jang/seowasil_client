@@ -1,39 +1,41 @@
-import { useState } from 'react';
 import { Caret, DropDown, Menu, Select } from './style';
 
-const list = ['파스티기아타', '문그로우', '블루 애로우'];
+interface DropdownProps {
+    isData: { id: number; title: string }[];
+    isSelected: boolean;
+    isCategory: string;
+    onDialog: () => void;
+    onSelectToggleHandler: () => void;
+    onDropdownCloseHandler: (index: number) => void;
+}
 
-function Dropdown() {
-    // Select State
-    const [select, setSelect] = useState(false);
-    const selectToggleHandler = () => {
-        setSelect(!select);
-    };
-
-    const [title, setTitle] = useState(list[0]);
-    const selectCancelHandler = (index: number) => {
-        setTitle(list[index]);
-        setSelect(false);
-    };
-    // toggle State
+function Dropdown({
+    isData,
+    isSelected,
+    isCategory,
+    onDialog,
+    onSelectToggleHandler,
+    onDropdownCloseHandler,
+}: DropdownProps) {
     return (
         <DropDown>
-            <Select onClick={selectToggleHandler} isActive={select}>
+            <Select onClick={onSelectToggleHandler} isActive={isSelected}>
                 {/* 클릭한 놈으로 내용 바꾸기 */}
-                <span>{title}</span>
-                <Caret isActive={select}></Caret>
+                <span>{isCategory}</span>
+                <Caret isActive={isSelected}></Caret>
             </Select>
-            <Menu isActive={select}>
-                {list.map((el, idx) => (
+            <Menu isActive={isSelected}>
+                {isData.map(({ id, title }, index) => (
                     <li
-                        key={idx + 1}
+                        key={id}
                         onClick={() => {
-                            selectCancelHandler(idx);
+                            onDropdownCloseHandler(index);
                         }}
                     >
-                        {el}
+                        {title}
                     </li>
                 ))}
+                <li onClick={onDialog}>새 카테고리</li>
             </Menu>
         </DropDown>
     );

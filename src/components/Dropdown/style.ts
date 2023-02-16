@@ -25,12 +25,12 @@ export const DropDown = styled.div`
 `;
 
 export const Select = styled.div`
-    background: #2a2f3b;
+    background: #353535;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px #2a2f3b solid;
+    border: 2px #353535 solid;
     border-radius: 0.5em;
     padding: 1em;
     cursor: pointer;

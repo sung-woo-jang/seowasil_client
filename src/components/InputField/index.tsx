@@ -3,15 +3,15 @@ import { InputBox, InputFieldWrapper } from './style';
 type InputFieldProps = {
     isType?: string;
     text: string;
+    isValue: string;
 };
 
-function InputField({ isType, text }: InputFieldProps) {
+function InputField({ isType, text, isValue }: InputFieldProps) {
     return (
         <InputFieldWrapper>
             <InputBox>
-                <input type={isType ? isType : 'text'} required />
+                <input type={isType ? isType : 'text'} required readOnly value={isValue} />
                 <span></span>
-                <label>{text}</label>
             </InputBox>
         </InputFieldWrapper>
     );

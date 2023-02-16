@@ -11,7 +11,7 @@ export const InputFieldWrapper = styled.div`
 `;
 export const InputBox = styled.div`
     position: relative;
-    border-bottom: 2px solid #adadad;
+    border-bottom: 2px solid #2691d9;
     margin: 30px 0;
     & input {
         width: 100%;
