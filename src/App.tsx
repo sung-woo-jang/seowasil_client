@@ -19,11 +19,12 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loginCheck } from './store/slice/authSlice';
 import CustomerCenterWrite from './page/CustomerCenterWrite';
+import { AppDispatch } from './store';
 
 axios.defaults.withCredentials = true; // refreshToken cookie를 주고받기 위함
 
 function App() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         dispatch(loginCheck());

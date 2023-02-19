@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { asyncGetCategoryFetch } from '../../store/slice/productSlice';
 import { Caret, DropDown, Menu, Select } from './style';
 
 interface DropdownProps {
-    isData: { id: number; title: string }[];
     isSelected: boolean;
     isCategory: string;
     onDialog: () => void;
@@ -10,13 +13,18 @@ interface DropdownProps {
 }
 
 function Dropdown({
-    isData,
     isSelected,
     isCategory,
     onDialog,
     onSelectToggleHandler,
     onDropdownCloseHandler,
 }: DropdownProps) {
+    const dispatch = useDispatch<AppDispatch>();
+    const categories = useSelector((state: RootState) => state.product.categories);
+    useEffect(() => {
+        dispatch(asyncGetCategoryFetch());
+    }, [dispatch]);
+
     return (
         <DropDown>
             <Select onClick={onSelectToggleHandler} isActive={isSelected}>
@@ -24,14 +32,14 @@ function Dropdown({
                 <Caret isActive={isSelected}></Caret>
             </Select>
             <Menu isActive={isSelected}>
-                {isData.map(({ id, title }, index) => (
+                {categories.map(({ id, name }, index) => (
                     <li
                         key={id}
                         onClick={() => {
                             onDropdownCloseHandler(index);
                         }}
                     >
-                        {title}
+                        {name}
                     </li>
                 ))}
                 <li onClick={onDialog}>새 카테고리</li>

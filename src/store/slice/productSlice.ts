@@ -8,6 +8,7 @@ interface postProduct {
     sellPrice: string; // 판매 가격
     minAmount: string; // 최소 주문 수량
     status: string; // 판매여부 (ex: 판매중, 임시 판매 중단)
+    categories: [{ id: string; name: string }];
     category_id: string; // 카테고리 항목 id (ex: 문그로우 카테고리의 id)
     isCompleted: boolean; // 게시물 생성 성공 여부
 }
@@ -19,7 +20,8 @@ const initialState: postProduct = {
     sellPrice: '0',
     minAmount: '0',
     status: '판매중',
-    category_id: '5',
+    category_id: '',
+    categories: [{ id: '', name: '' }],
     isCompleted: false,
 };
 
@@ -51,6 +53,11 @@ export const asyncPostProductFetch = createAsyncThunk(
     },
 );
 
+export const asyncGetCategoryFetch = createAsyncThunk('product/categories', async () => {
+    const response = await productApi.getProductCategories();
+    return response;
+});
+
 export const { reducer: productReducer, actions } = createSlice({
     name: 'product',
     initialState,
@@ -73,16 +80,30 @@ export const { reducer: productReducer, actions } = createSlice({
         addStatus(state, { payload }) {
             state.status = payload;
         },
+        addCategoryId(state, { payload }) {
+            state.category_id = payload;
+        },
     },
     extraReducers: (builder) => {
         // 게시물 등록 성공
         builder.addCase(asyncPostProductFetch.fulfilled, (state) => {
             state.isCompleted = true;
         });
+        // 카테고리 목록 물러오기
+        builder.addCase(asyncGetCategoryFetch.fulfilled, (state, { payload }) => {
+            state.categories = payload;
+        });
     },
 });
 
-export const { addTitle, addDescription, addPrevPrice, addSellPrice, addMinAmount, addStatus } =
-    actions;
+export const {
+    addTitle,
+    addDescription,
+    addPrevPrice,
+    addSellPrice,
+    addMinAmount,
+    addStatus,
+    addCategoryId,
+} = actions;
 
 export default productReducer;

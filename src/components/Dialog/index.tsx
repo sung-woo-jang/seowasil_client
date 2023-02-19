@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import InputField from '../InputField';
 import { Button } from '../UI/Button';
 import {
@@ -10,7 +12,6 @@ import {
 } from './style';
 
 interface DialogProps {
-    isData: { id: number; title: string }[];
     isCategory: string;
     onSelectToggleHandler: () => void;
     onDropdownCloseHandler: (index: number) => void;
@@ -18,12 +19,12 @@ interface DialogProps {
 }
 
 function Dialog({
-    isData,
     isCategory,
     onDialog,
     onSelectToggleHandler,
     onDropdownCloseHandler,
 }: DialogProps) {
+    const categories = useSelector((state: RootState) => state.product.categories);
     return (
         <DialogWrapper onClick={onDialog}>
             <Container onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}>
@@ -39,14 +40,14 @@ function Dialog({
                 </AddCategory>
 
                 <CategoryList>
-                    {isData.map((list, index) => (
+                    {categories.map(({ name, id }, index) => (
                         <CategoryItem
-                            key={list.id}
+                            key={id}
                             onClick={() => {
                                 onDropdownCloseHandler(index);
                             }}
                         >
-                            {list.title}
+                            {name}
                         </CategoryItem>
                     ))}
                 </CategoryList>

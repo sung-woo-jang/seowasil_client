@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
+    addCategoryId,
     addDescription,
     addMinAmount,
     addPrevPrice,
@@ -13,12 +14,6 @@ import Dialog from '../Dialog';
 import Dropdown from '../Dropdown';
 import { TextArea } from '../UI/TextArea';
 import { ContentWrapper, InputBox, Left, Rigth, TextAreaBox } from './style';
-
-const data = [
-    { id: 1, title: '파스티기아타' },
-    { id: 2, title: '문그로우' },
-    { id: 3, title: '블루 애로우' },
-];
 
 function ContentContainer() {
     const [isActive, setIsActive] = useState(false);
@@ -41,9 +36,13 @@ function ContentContainer() {
         setSelect(!select);
     };
 
-    const [category, setCategory] = useState(data[0].title);
+    const categories = useSelector((state: RootState) => state.product.categories);
+
+    const [category, setCategory] = useState('카테고리 선택');
+
     const dropdownCloseHandler = (index: number) => {
-        setCategory(data[index].title);
+        setCategory(categories[index].name);
+        dispatch(addCategoryId(categories[index].id));
         setSelect(false);
     };
 
@@ -78,7 +77,6 @@ function ContentContainer() {
                 </TextAreaBox>
                 <Dropdown
                     onDialog={handleDialog}
-                    isData={data}
                     isSelected={select}
                     isCategory={category}
                     onSelectToggleHandler={selectToggleHandler}
@@ -86,7 +84,6 @@ function ContentContainer() {
                 />
                 {dialog && (
                     <Dialog
-                        isData={data}
                         onDialog={handleDialog}
                         isCategory={category}
                         onSelectToggleHandler={selectToggleHandler}

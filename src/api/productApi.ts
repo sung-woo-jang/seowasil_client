@@ -24,3 +24,8 @@ export const uploadProductImage = async (formData: File[]) => {
 
     return data.data;
 };
+
+export const getProductCategories = async () => {
+    const { data } = await instance.get('categories');
+    return data.data;
+};
