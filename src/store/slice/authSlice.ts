@@ -30,7 +30,7 @@ const initialState: userInfo = {
 export const asyncLoginFetch = createAsyncThunk(
     'auth/login',
     async (formData: { account: string | undefined; password: string | undefined }) => {
-        const { accessToken, refreshToken, user } = await authApi.loginApi(formData);
+        const { accessToken, refreshToken, user } = await authApi.login(formData);
         setAccessToken(accessToken);
         setRefreshToken(refreshToken);
         setUserInfo(user);

@@ -1,14 +1,10 @@
 import styled, { css } from 'styled-components';
 
 export const UploadFormWrapper = styled.div<{ isActive: boolean }>`
-    /* width: 60%; */
-    /* max-width: 37.5em; */
-    /* width: 50%; */
     max-height: 60vh;
     overflow: scroll;
 
     padding: 3.12em 1.87em;
-    /* position: absolute; */
     box-shadow: 0 1.25em 3.43em rgba(0, 0, 0, 0.08);
     border-radius: 0.5em;
     background: white;

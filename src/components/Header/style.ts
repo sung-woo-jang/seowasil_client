@@ -13,5 +13,4 @@ export const Logo = styled(Link)`
     font-family: 'Do Hyeon';
     font-size: 3rem;
     color: black;
-    /* font-weight: 700; */
 `;

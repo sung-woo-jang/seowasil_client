@@ -22,14 +22,7 @@ const Navbar = () => {
             sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
         >
             {sections.map((section) => (
-                <NavLinks
-                    // component={LinkR}
-                    // color="inherit"
-                    // noWrap
-                    key={section.id}
-                    to={section.url}
-                    // sx={{ p: 1, flexShrink: 0, textDecoration: 'none' }}
-                >
+                <NavLinks key={section.id} to={section.url}>
                     {section.title}
                 </NavLinks>
             ))}

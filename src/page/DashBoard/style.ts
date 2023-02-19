@@ -19,24 +19,7 @@ export const DashBoardWrapper = styled.div`
     transition: 0.5s;
     background: #eeeeee;
 `;
-/*  
-    나중에 위로 올리기
-    ${({ toggle }) =>
-        toggle &&
-        css`
-            width: calc(100% - 80px);
-            left: 80px;
-        `}
-    @media screen and (max-width: 991px) {
-        width: 100%;
-        left: 0;
 
-        ${({ toggle }) =>
-        toggle &&
-        css`
-            left: 300px;
-        `}
-    } */
 export const TopBar = styled.div`
     width: 100%;
     height: 60px;
@@ -45,31 +28,6 @@ export const TopBar = styled.div`
     align-items: center;
     padding: 0 10px;
 `;
-/* export const Toggle = styled.div`
-    position: relative;
-    top: 0;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5em;
-    cursor: pointer;
-    @media screen and (max-width: 480px) {
-        z-index: 10001;
-
-        ${({ toggle }) =>
-            toggle &&
-            css`
-                & svg path {
-                    position: fixed;
-                    right: 0;
-                    left: initial;
-                    color: ${color.white};
-                }
-            `}
-    }
-`; */
 
 export const Search = styled.div`
     position: relative;
@@ -177,7 +135,6 @@ export const Details = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 30px;
-    /* margin-top: 10px; */
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
     }
@@ -200,7 +157,6 @@ export const CardHeader = styled.div`
     align-items: flex-start;
 `;
 export const CardTitle = styled.h2`
-    /* font-weight: 600; */
     color: ${color.blue};
     @media screen and (max-width: 480px) {
         font-size: 20px;
@@ -264,7 +220,6 @@ export const RecentCustomersTableRow = styled.tr`
         padding: 12px 10px;
         & h4 {
             font-size: 16px;
-            /* font-weight: 500; */
             line-height: 1.2em;
             & span {
                 font-size: 14px;

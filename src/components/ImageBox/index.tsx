@@ -3,7 +3,6 @@ import { ImageBoxWrapper } from './style';
 type ImageBoxProps = {
     imageSrc?: string;
     imageAlt?: string;
-    // isRound?: boolean;
     text?: string;
 };
 

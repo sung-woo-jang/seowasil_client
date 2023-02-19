@@ -20,7 +20,6 @@ function Dropdown({
     return (
         <DropDown>
             <Select onClick={onSelectToggleHandler} isActive={isSelected}>
-                {/* 클릭한 놈으로 내용 바꾸기 */}
                 <span>{isCategory}</span>
                 <Caret isActive={isSelected}></Caret>
             </Select>

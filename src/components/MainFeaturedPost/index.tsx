@@ -29,7 +29,6 @@ function MainFeaturedPost() {
                 textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
             }}
         >
-            {/* Increase the priority of the hero background image */}
             {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
             <Box
                 sx={{

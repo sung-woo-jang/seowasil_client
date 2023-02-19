@@ -13,8 +13,6 @@ type toggleProps = {
     toggle: boolean;
 };
 
-// @media screen and (max-width: 991px) {}
-
 export const AdminWrapper = styled.div`
     height: 100vh;
 `;
@@ -112,8 +110,6 @@ export const NavList = styled.li`
 
     &:nth-child(1) {
         margin-bottom: 40px;
-        /* background: #353535; */
-        /* pointer-events: none; */
     }
 `;
 
@@ -287,7 +283,6 @@ export const Details = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 30px;
-    /* margin-top: 10px; */
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
     }
@@ -310,7 +305,6 @@ export const CardHeader = styled.div`
     align-items: flex-start;
 `;
 export const CardTitle = styled.h2`
-    /* font-weight: 600; */
     color: ${color.blue};
     @media screen and (max-width: 480px) {
         font-size: 20px;
@@ -374,7 +368,6 @@ export const RecentCustomersTableRow = styled.tr`
         padding: 12px 10px;
         & h4 {
             font-size: 16px;
-            /* font-weight: 500; */
             line-height: 1.2em;
             & span {
                 font-size: 14px;

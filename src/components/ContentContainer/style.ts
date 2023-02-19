@@ -2,18 +2,25 @@ import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
     width: 100%;
-    /* max-height: 50vh; */
     background: white;
     box-shadow: 0 1.25em 3.43em rgba(0, 0, 0, 0.08);
     border-radius: 0.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+`;
+
+export const Left = styled.div`
+    grid-column: 1 / 2;
+    border-right: 1px solid #dfdfdf;
+`;
+export const Rigth = styled.div`
+    grid-column: 2 / -1;
 `;
 
 export const InputBox = styled.div`
     padding: 20px;
     width: 100%;
-    /* position: relative; */
     & input {
-        /* position: relative; */
         width: 100%;
         border: none;
         outline: none;
@@ -25,7 +32,6 @@ export const InputBox = styled.div`
 
 export const TextAreaBox = styled.div`
     width: 100%;
-    /* border: 1px #e2e2e2 solid; */
     padding: 20px;
     & div {
         font-size: 28px;

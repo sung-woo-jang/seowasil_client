@@ -15,7 +15,6 @@ export const Details = styled.div`
     width: 100%;
     padding: 20px;
     display: grid;
-    /* grid-template-columns: 1fr; */
 `;
 export const RecentOrders = styled.div`
     position: relative;
@@ -33,7 +32,6 @@ export const CardHeader = styled.div`
     align-items: flex-start;
 `;
 export const CardTitle = styled.h2`
-    /* font-weight: 600; */
     color: ${color.black1};
     @media screen and (max-width: 480px) {
         font-size: 20px;
@@ -43,7 +41,6 @@ export const CardTitle = styled.h2`
 export const QuestionTable = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    /* width: 100%; */
     border-top: 2px solid #222;
     border-bottom: 1px solid #222;
     margin-top: 10px;

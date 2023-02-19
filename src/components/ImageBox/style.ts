@@ -1,15 +1,5 @@
 import styled from 'styled-components';
 
-/* 
-type ImageBoxWrapperProps = {
-    isRound?: boolean;
-};
-${({ isRound }: ImageBoxWrapperProps) =>
-    isRound &&
-    css`
-        border-radius: 50%;
-    `} */
-
 export const ImageBoxWrapper = styled.div`
     position: relative;
     display: flex;

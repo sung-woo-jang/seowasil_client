@@ -39,7 +39,6 @@ const detailList = [
         price: 1500,
         name: '주민창',
         payment: '결제 완료',
-        // statusCode: 'pending',
         status: '배송중',
     },
     {
@@ -47,7 +46,6 @@ const detailList = [
         price: 1800,
         name: '안동민',
         payment: '결제 대기중',
-        // statusCode: 'inprogress',
         status: '상품 준비중',
     },
     {
@@ -55,7 +53,6 @@ const detailList = [
         price: 30000,
         name: '이민성',
         payment: '결제 취소',
-        // statusCode: 'return',
         status: '반품 완료',
     },
     {
@@ -63,7 +60,6 @@ const detailList = [
         price: 5000,
         name: '장성우',
         payment: '결제 완료',
-        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -71,7 +67,6 @@ const detailList = [
         price: 80000,
         name: '황성한',
         payment: '결제 완료',
-        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -79,7 +74,6 @@ const detailList = [
         price: 30000,
         name: '임동영',
         payment: '결제 취소',
-        // statusCode: 'return',
         status: '반품 완료',
     },
     {
@@ -87,7 +81,6 @@ const detailList = [
         price: 1500,
         name: '주민창',
         payment: '결제 완료',
-        // statusCode: 'pending',
         status: '배송중',
     },
     {
@@ -95,7 +88,6 @@ const detailList = [
         price: 1800,
         name: '안동민',
         payment: '결제 대기중',
-        // statusCode: 'inprogress',
         status: '상품 준비중',
     },
     {
@@ -103,7 +95,6 @@ const detailList = [
         price: 30000,
         name: '이민성',
         payment: '결제 취소',
-        // statusCode: 'return',
         status: '반품 완료',
     },
     {
@@ -111,7 +102,6 @@ const detailList = [
         price: 5000,
         name: '장성우',
         payment: '결제 완료',
-        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -119,7 +109,6 @@ const detailList = [
         price: 80000,
         name: '황성한',
         payment: '결제 완료',
-        // statusCode: 'delivered',
         status: '배송완료',
     },
     {
@@ -127,7 +116,6 @@ const detailList = [
         price: 30000,
         name: '임동영',
         payment: '결제 취소',
-        // statusCode: 'return',
         status: '반품 완료',
     },
 ];

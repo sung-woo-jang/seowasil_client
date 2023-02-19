@@ -17,11 +17,6 @@ export const DropDown = styled.div`
     width: 15em;
     position: relative;
     margin: 2em;
-
-    & * {
-        // 굳이?
-        box-sizing: border-box;
-    }
 `;
 
 export const Select = styled.div`

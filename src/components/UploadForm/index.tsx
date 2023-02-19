@@ -3,32 +3,40 @@ import { useRef, useState } from 'react';
 import ImageContainer from './ImageContainer';
 import { Error, ImageDisplay, UploadButton, UploadFormWrapper, UploadLabel } from './style';
 
-const UploadForm = () => {
+interface UploadFormProps {
+    onChangeFiles: React.Dispatch<React.SetStateAction<File[]>>;
+}
+
+function UploadForm({ onChangeFiles }: UploadFormProps) {
     const [isActive, setIsActive] = useState(false);
     const [errorMessage, setErrorMessage] = useState(true);
     const [imageDataArray, setImageDataArray] = useState<any>([]);
-
     const inputEl = useRef<any>(null);
 
     const fileHandler = (file: any, name: any, type: string) => {
         setErrorMessage(true);
+
         if (type.split('/')[0] !== 'image') {
             setErrorMessage(false);
             return;
         }
         let reader = new FileReader();
+        // 이미지를 DataURL로 만드는 메서드
+        reader.readAsDataURL(file);
         reader.onloadend = () => {
             //image and file name
+
             setImageDataArray((prevState: any) => [
                 ...prevState,
                 { imageUrl: reader.result, imageAlt: name },
             ]);
         };
-        reader.readAsDataURL(file);
     };
 
-    const uploadButtonChangeHandler = () => {
+    const imageDataOnChangeHandler = async () => {
         setImageDataArray([]);
+        onChangeFiles(Array.from(inputEl.current.files));
+
         Array.from(inputEl.current.files).forEach((file: any) => {
             fileHandler(file, file.name, file.type);
         });
@@ -78,7 +86,7 @@ const UploadForm = () => {
                 multiple
                 accept="image/*"
                 ref={inputEl}
-                onChange={uploadButtonChangeHandler}
+                onChange={imageDataOnChangeHandler}
             />
             <UploadLabel htmlFor="upload-button">
                 <UploadFile />
@@ -97,6 +105,6 @@ const UploadForm = () => {
             </ImageDisplay>
         </UploadFormWrapper>
     );
-};
+}
 
 export default UploadForm;

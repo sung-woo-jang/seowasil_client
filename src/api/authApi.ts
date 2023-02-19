@@ -7,7 +7,7 @@ interface loginApiResponseData {
     user: { id: number; name: string; phoneNumber: string; role: string };
 }
 
-export const loginApi = async (formData: {
+export const login = async (formData: {
     account: string | undefined;
     password: string | undefined;
 }): Promise<loginApiResponseData> => {

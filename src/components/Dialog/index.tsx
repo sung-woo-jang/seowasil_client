@@ -29,12 +29,7 @@ function Dialog({
             <Container onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}>
                 <AddCategory>
                     <div>+ 새 카테고리</div>
-                    <input
-                        type="text"
-                        placeholder="카테고리 이름"
-                        // value={titleInput}
-                        // onChange={onChangeHandler}
-                    />
+                    <input type="text" placeholder="카테고리 이름" />
                     <div>
                         <Button onClick={onDialog}>취소</Button>
                         <Button onClick={onDialog} contained={true}>
