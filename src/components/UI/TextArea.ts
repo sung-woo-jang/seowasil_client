@@ -13,7 +13,6 @@ export const TextArea = styled.textarea`
     outline: none;
     resize: none;
     border-color: #e2e2e2;
-    margin-top: 20px;
     ${({ isActive }: TextAreaProps) =>
         isActive &&
         css`

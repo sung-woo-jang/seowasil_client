@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const Section = styled.section`
     margin: 3rem auto;
-    width: 95%;
-    max-width: 25rem;
+    width: 100%;
+    /* max-width: 25rem; */
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     padding: 1rem;
@@ -23,9 +23,11 @@ export const Control = styled.div`
         color: black;
         font-weight: bold;
         margin-bottom: 0.5rem;
+        float: left;
     }
 
-    & input {
+    & input,
+    & textarea {
         font: inherit;
         border-radius: 4px;
         border: 1px solid black;
