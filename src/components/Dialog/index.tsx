@@ -1,5 +1,7 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncPostCategoryFetch } from '../../api/productApi';
+import { AppDispatch, RootState } from '../../store';
 import InputField from '../InputField';
 import { Button } from '../UI/Button';
 import {
@@ -13,27 +15,33 @@ import {
 
 interface DialogProps {
     isCategory: string;
-    onSelectToggleHandler: () => void;
     onDropdownCloseHandler: (index: number) => void;
     onDialog: () => void;
 }
 
-function Dialog({
-    isCategory,
-    onDialog,
-    onSelectToggleHandler,
-    onDropdownCloseHandler,
-}: DialogProps) {
+function Dialog({ isCategory, onDialog, onDropdownCloseHandler }: DialogProps) {
+    const dispatch = useDispatch<AppDispatch>();
     const categories = useSelector((state: RootState) => state.product.categories);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const postCategoryHandler = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+
+        if (inputRef.current && inputRef.current.value.length) {
+            dispatch(asyncPostCategoryFetch(inputRef.current.value));
+            inputRef.current.value = '';
+        }
+    };
+
     return (
         <DialogWrapper onClick={onDialog}>
             <Container onClick={(e: React.MouseEvent<HTMLElement>) => e.stopPropagation()}>
                 <AddCategory>
                     <div>+ 새 카테고리</div>
-                    <input type="text" placeholder="카테고리 이름" />
+                    <input type="text" placeholder="카테고리 이름" ref={inputRef} />
                     <div>
                         <Button onClick={onDialog}>취소</Button>
-                        <Button onClick={onDialog} contained={true}>
+                        <Button onClick={postCategoryHandler} contained={true}>
                             저장
                         </Button>
                     </div>

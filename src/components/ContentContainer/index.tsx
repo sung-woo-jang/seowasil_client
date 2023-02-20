@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
-    addCategoryId,
-    addDescription,
-    addMinAmount,
-    addPrevPrice,
-    addSellPrice,
-    addStatus,
-    addTitle,
+    setSelectedTitle,
+    setSelectedDescription,
+    setSelectedPrevPrice,
+    setSelectedSellPrice,
+    setSelectedMinAmount,
+    setSelectedStatus,
+    setSelectedCategoryId,
 } from '../../store/slice/productSlice';
 import Dialog from '../Dialog';
 import Dropdown from '../Dropdown';
@@ -24,7 +24,6 @@ function ContentContainer() {
     };
 
     // Dialog
-
     const [dialog, setDialog] = useState(false);
     const handleDialog = () => {
         setDialog(!dialog);
@@ -42,7 +41,7 @@ function ContentContainer() {
 
     const dropdownCloseHandler = (index: number) => {
         setCategory(categories[index].name);
-        dispatch(addCategoryId(categories[index].id));
+        dispatch(setSelectedCategoryId(categories[index].id));
         setSelect(false);
     };
 
@@ -58,7 +57,7 @@ function ContentContainer() {
                         type="text"
                         id="content-title"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            dispatch(addTitle(e.target.value));
+                            dispatch(setSelectedTitle(e.target.value));
                         }}
                     />
                 </InputBox>
@@ -71,7 +70,7 @@ function ContentContainer() {
                         onBlur={isActiveHandler}
                         isActive={isActive}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                            dispatch(addDescription(e.target.value));
+                            dispatch(setSelectedDescription(e.target.value));
                         }}
                     />
                 </TextAreaBox>
@@ -86,7 +85,6 @@ function ContentContainer() {
                     <Dialog
                         onDialog={handleDialog}
                         isCategory={category}
-                        onSelectToggleHandler={selectToggleHandler}
                         onDropdownCloseHandler={dropdownCloseHandler}
                     />
                 )}
@@ -99,7 +97,7 @@ function ContentContainer() {
                         id="prevPrice"
                         defaultValue={prevPrice}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            dispatch(addPrevPrice(e.target.value));
+                            dispatch(setSelectedPrevPrice(e.target.value));
                         }}
                     />
                 </InputBox>
@@ -110,7 +108,7 @@ function ContentContainer() {
                         id="sellPrice"
                         defaultValue={minAmount}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            dispatch(addSellPrice(e.target.value));
+                            dispatch(setSelectedSellPrice(e.target.value));
                         }}
                     />
                 </InputBox>
@@ -121,7 +119,7 @@ function ContentContainer() {
                         id="minAmount"
                         defaultValue={sellPrice}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            dispatch(addMinAmount(e.target.value));
+                            dispatch(setSelectedMinAmount(e.target.value));
                         }}
                     />
                 </InputBox>
@@ -132,7 +130,7 @@ function ContentContainer() {
                         id="status"
                         defaultValue={'판매중'}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            dispatch(addStatus(e.target.value));
+                            dispatch(setSelectedStatus(e.target.value));
                         }}
                     />
                 </InputBox>

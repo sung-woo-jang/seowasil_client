@@ -158,9 +158,7 @@ const DashBoard = () => {
                                     <td>{name}</td>
                                     <td>{price}₩</td>
                                     <td>{payment}</td>
-                                    <td>
-                                        <td>{status}</td>
-                                    </td>
+                                    <td>{status}</td>
                                 </TableUnderRow>
                             ))}
                         </tbody>

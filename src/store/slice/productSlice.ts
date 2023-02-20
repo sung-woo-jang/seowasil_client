@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import * as productApi from '../../api/productApi';
 // 상품등록 관련 slice
 interface postProduct {
@@ -25,85 +25,56 @@ const initialState: postProduct = {
     isCompleted: false,
 };
 
-export const asyncPostProductFetch = createAsyncThunk(
-    'product/images',
-    async (formData: {
-        files: File[];
-        category_id: string;
-        description: string;
-        minAmount: string;
-        prevPrice: string;
-        sellPrice: string;
-        status: string;
-        title: string;
-    }) => {
-        const filesResponseData = await productApi.uploadProductImage(formData.files);
-        const response = await productApi.createProduct({
-            productImage_id: `${filesResponseData.id}`,
-            category_id: formData.category_id,
-            description: formData.description,
-            minAmount: formData.minAmount,
-            prevPrice: formData.prevPrice,
-            sellPrice: formData.sellPrice,
-            status: formData.status,
-            title: formData.title,
-        });
-
-        return response;
-    },
-);
-
-export const asyncGetCategoryFetch = createAsyncThunk('product/categories', async () => {
-    const response = await productApi.getProductCategories();
-    return response;
-});
-
 export const { reducer: productReducer, actions } = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        addTitle(state, { payload }) {
+        setSelectedTitle(state, { payload }) {
             state.title = payload;
         },
-        addDescription(state, { payload }) {
+        setSelectedDescription(state, { payload }) {
             state.description = payload;
         },
-        addPrevPrice(state, { payload }) {
+        setSelectedPrevPrice(state, { payload }) {
             state.prevPrice = payload;
         },
-        addSellPrice(state, { payload }) {
+        setSelectedSellPrice(state, { payload }) {
             state.sellPrice = payload;
         },
-        addMinAmount(state, { payload }) {
+        setSelectedMinAmount(state, { payload }) {
             state.minAmount = payload;
         },
-        addStatus(state, { payload }) {
+        setSelectedStatus(state, { payload }) {
             state.status = payload;
         },
-        addCategoryId(state, { payload }) {
+        setSelectedCategoryId(state, { payload }) {
             state.category_id = payload;
         },
     },
     extraReducers: (builder) => {
         // 게시물 등록 성공
-        builder.addCase(asyncPostProductFetch.fulfilled, (state) => {
+        builder.addCase(productApi.asyncPostProductFetch.fulfilled, (state) => {
             state.isCompleted = true;
         });
         // 카테고리 목록 물러오기
-        builder.addCase(asyncGetCategoryFetch.fulfilled, (state, { payload }) => {
+        builder.addCase(productApi.asyncGetCategoryFetch.fulfilled, (state, { payload }) => {
             state.categories = payload;
+        });
+        // 카테고리 등록
+        builder.addCase(productApi.asyncPostCategoryFetch.fulfilled, (state, { payload }) => {
+            state.categories.push({ id: payload.id, name: payload.name });
         });
     },
 });
 
 export const {
-    addTitle,
-    addDescription,
-    addPrevPrice,
-    addSellPrice,
-    addMinAmount,
-    addStatus,
-    addCategoryId,
+    setSelectedTitle,
+    setSelectedDescription,
+    setSelectedPrevPrice,
+    setSelectedSellPrice,
+    setSelectedMinAmount,
+    setSelectedStatus,
+    setSelectedCategoryId,
 } = actions;
 
 export default productReducer;

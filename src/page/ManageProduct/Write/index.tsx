@@ -3,9 +3,9 @@ import ContentContainer from '../../../components/ContentContainer';
 import { WriteWrapper } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store';
-import { asyncPostProductFetch } from '../../../store/slice/productSlice';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { asyncPostProductFetch } from '../../../api/productApi';
 
 const Write = () => {
     const dispatch = useDispatch<AppDispatch>();

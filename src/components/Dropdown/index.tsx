@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { asyncGetCategoryFetch } from '../../api/productApi';
 import { AppDispatch, RootState } from '../../store';
-import { asyncGetCategoryFetch } from '../../store/slice/productSlice';
 import { Caret, DropDown, Menu, Select } from './style';
 
 interface DropdownProps {
@@ -21,6 +21,7 @@ function Dropdown({
 }: DropdownProps) {
     const dispatch = useDispatch<AppDispatch>();
     const categories = useSelector((state: RootState) => state.product.categories);
+
     useEffect(() => {
         dispatch(asyncGetCategoryFetch());
     }, [dispatch]);
