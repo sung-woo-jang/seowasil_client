@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from '../../../store';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postCreateProduct } from '../../../utils/api/postCreateProduct';
+import { setSeletedIsCompleted } from '../../../store/slice/productSlice';
 
 const Write = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -41,8 +42,11 @@ const Write = () => {
 
     // 게시물 등록 완료 시 관리자 페이지로 이동
     useEffect(() => {
-        if (isCompleted) navigate('/admin', { replace: true });
-    }, [isCompleted, navigate]);
+        if (isCompleted) {
+            navigate('/admin', { replace: true });
+            dispatch(setSeletedIsCompleted());
+        }
+    }, [isCompleted, navigate, dispatch]);
 
     return (
         <WriteWrapper>

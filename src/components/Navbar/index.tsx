@@ -1,5 +1,4 @@
 import { Toolbar } from '@mui/material';
-import React from 'react';
 import { NavLinks } from './style';
 
 const sections = [

@@ -1,7 +1,4 @@
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Paper, Typography, Grid, Box } from '@mui/material';
 
 const post = {
     title: '부여 서와실농원',
@@ -29,7 +26,7 @@ function MainFeaturedPost() {
                 textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
             }}
         >
-            {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+            <img style={{ display: 'none' }} src={post.image} alt={post.imageText} />
             <Box
                 sx={{
                     position: 'absolute',

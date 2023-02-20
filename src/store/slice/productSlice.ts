@@ -3,6 +3,7 @@ import { postCreateCategory } from './../../utils/api/postCreateCategory';
 import { createSlice } from '@reduxjs/toolkit';
 import { postCreateProduct } from '../../utils/api/postCreateProduct';
 import { deleteCategory } from '../../utils/api/deleeteCategory';
+
 // 상품등록 관련 slice
 interface postProduct {
     title: string; // 상품 이름
@@ -51,7 +52,10 @@ export const { reducer: productReducer, actions } = createSlice({
             state.status = payload;
         },
         setSelectedCategoryId(state, { payload }) {
-            state.category_id = payload;
+            state.category_id = `${payload}`;
+        },
+        setSeletedIsCompleted(state) {
+            state.isCompleted = false;
         },
     },
     extraReducers: (builder) => {
@@ -82,6 +86,7 @@ export const {
     setSelectedMinAmount,
     setSelectedStatus,
     setSelectedCategoryId,
+    setSeletedIsCompleted,
 } = actions;
 
 export default productReducer;

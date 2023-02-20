@@ -8,12 +8,37 @@ import {
     Link,
     Typography,
 } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { getProducts } from '../../utils/api/getProducts';
 import { Button } from '../UI/Button';
 import { ProductTitle, SubTitle, Title } from './style';
 
 const cards = [1, 2, 3];
 
+interface productsData {
+    id: number;
+    title: string;
+    description: string;
+    productImageUrl: { storedFileName: string[] };
+}
+
 const BestItem = () => {
+    const [products, setProducts] = useState<productsData[]>([
+        {
+            id: 0,
+            title: '',
+            description: '',
+            productImageUrl: { storedFileName: [''] },
+        },
+    ]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getProducts();
+            setProducts(data);
+            console.log(data);
+        })();
+    }, []);
     return (
         <Container>
             <ProductTitle>
@@ -21,8 +46,8 @@ const BestItem = () => {
                 <SubTitle>부여 서와실 농원의 최고 인기상품 입니다.</SubTitle>
             </ProductTitle>
             <Grid container spacing={3}>
-                {cards.map((card) => (
-                    <Grid item key={card} xs={12} sm={6} md={4}>
+                {products.map(({ id, title, description, productImageUrl }) => (
+                    <Grid item key={id} xs={12} sm={6} md={4}>
                         <Card
                             sx={{
                                 height: '100%',
@@ -31,23 +56,20 @@ const BestItem = () => {
                             }}
                         >
                             <Link
-                                href={`product/${card}`}
+                                href={`product/${id}`}
                                 sx={{ textDecoration: 'none', color: 'black' }}
                             >
                                 <CardMedia
                                     component="img"
-                                    image={`${process.env.PUBLIC_URL}/images/문그로우1.jpg`}
-                                    alt="random"
+                                    image={`${process.env.REACT_APP_AWS_URL}${productImageUrl.storedFileName[0]}`}
+                                    alt={title}
                                     height="400px"
                                 />
                                 <CardContent sx={{ flexGrow: 1 }}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        문그로우
+                                        {title}
                                     </Typography>
-                                    <Typography>
-                                        잎은 은청색을 띠어 우아하고 고급스러우며 폭은 넓은 수직
-                                        피라미드 수형으로 자라는 것이 특징이다
-                                    </Typography>
+                                    <Typography>{description}</Typography>
                                 </CardContent>
                             </Link>
                             <CardActions>

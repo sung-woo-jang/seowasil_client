@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProductDetail } from '../../../utils/api/getProductDetail';
 import {
     Card,
     CardWrapper,
@@ -15,36 +17,49 @@ import {
     ProductTitle,
 } from './style';
 
-const images = [
-    {
-        id: 1,
-        url: `${process.env.PUBLIC_URL}/images/문그로우.jpg`,
-    },
-    {
-        id: 2,
-        url: `${process.env.PUBLIC_URL}/images/문그로우1.jpg`,
-    },
-    {
-        id: 3,
-        url: `${process.env.PUBLIC_URL}/images/문그로우2.jpg`,
-    },
-    {
-        id: 4,
-        url: `${process.env.PUBLIC_URL}/images/문그로우3.jpg`,
-    },
-    {
-        id: 6,
-        url: `${process.env.PUBLIC_URL}/images/문그로우5.jpg`,
-    },
-];
+interface productData {
+    id: number;
+    title: string;
+    description: string;
+    sellPrice: number;
+    prevPrice: number;
+    minAmount: number;
+    category: { name: string };
+    productImageUrl: { storedFileName: string[] };
+}
 
 function MainProduct() {
-    const [imageData, setImageData] = useState(images[0]);
+    const [
+        { title, description, sellPrice, prevPrice, minAmount, category, productImageUrl },
+        setImageData,
+    ] = useState<productData>({
+        id: 0,
+        title: '',
+        description: '',
+        sellPrice: 0,
+        prevPrice: 0,
+        minAmount: 0,
+        category: { name: '' },
+        productImageUrl: { storedFileName: [''] },
+    });
+    const params = useParams();
+
+    const [hoverImage, setHoverImage] = useState<string>('');
 
     const handleClick = (index: number) => {
-        const imageSlider = images[index];
-        setImageData(imageSlider);
+        const imageSlider = productImageUrl.storedFileName[index];
+        setHoverImage(imageSlider);
     };
+
+    useEffect(() => {
+        (async () => {
+            if (params.product_id) {
+                const data = await getProductDetail(params.product_id);
+                setImageData(data);
+                setHoverImage(data.productImageUrl.storedFileName[0]);
+            }
+        })();
+    }, []);
 
     return (
         <CardWrapper>
@@ -52,16 +67,19 @@ function MainProduct() {
                 <ProductImages>
                     <ImageDisplay>
                         <ImageShowcase>
-                            <img src={imageData.url} alt="{나무이름} 사진" />
+                            <img
+                                src={`${process.env.REACT_APP_AWS_URL}${hoverImage}`}
+                                alt="{나무이름} 사진"
+                            />
                         </ImageShowcase>
                     </ImageDisplay>
 
                     <ImageSelect>
-                        {images.map(({ id, url }, index: number) => (
-                            <ImageItem key={id}>
+                        {productImageUrl.storedFileName.map((url, index: number) => (
+                            <ImageItem key={index}>
                                 <img
-                                    key={id}
-                                    src={url}
+                                    key={index}
+                                    src={`${process.env.REACT_APP_AWS_URL}${url}`}
                                     alt="{나무이름} 사진"
                                     onMouseEnter={() => {
                                         handleClick(index);
@@ -72,28 +90,25 @@ function MainProduct() {
                     </ImageSelect>
                 </ProductImages>
                 <ProductContent>
-                    <ProductTitle>나무이름</ProductTitle>
+                    <ProductTitle>{title}</ProductTitle>
                     <ProductPrice>
                         <LastPrice>
-                            이전 가격: <span>3000원</span>
+                            이전 가격: <span>{prevPrice}원</span>
                         </LastPrice>
                         <NewPrice>
-                            현재 가격: <span>2000원 (-1000원)</span>
+                            현재 가격:
+                            <span>
+                                {sellPrice}원 (-
+                                {prevPrice - sellPrice}원)
+                            </span>
                         </NewPrice>
                     </ProductPrice>
                     <ProductDetail>
-                        <h2>{`나무이름`}</h2>
-                        <p>{`상품 설명`}</p>
+                        <h2>나무 종류: {category.name}</h2>
+                        <p>{description}</p>
                         <ul>
                             <li>
-                                과명: <span>측백나무과</span>
-                            </li>
-
-                            <li>
-                                학명: <span>Thuja occidentalis</span>
-                            </li>
-                            <li>
-                                영명: <span>Fastigiata</span>
+                                과명: <span>ㅇㅇ나무과</span>
                             </li>
                             <li>
                                 기타: <span>등등</span>
