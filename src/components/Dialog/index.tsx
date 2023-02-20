@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncPostCategoryFetch } from '../../api/productApi';
 import { AppDispatch, RootState } from '../../store';
 import InputField from '../InputField';
 import { Button } from '../UI/Button';
@@ -12,6 +11,8 @@ import {
     Container,
     DialogWrapper,
 } from './style';
+import { postCreateCategory } from '../../utils/api/postCreateCategory';
+import { deleteCategory } from '../../utils/api/deleeteCategory';
 
 interface DialogProps {
     isCategory: string;
@@ -28,9 +29,15 @@ function Dialog({ isCategory, onDialog, onDropdownCloseHandler }: DialogProps) {
         e.preventDefault();
 
         if (inputRef.current && inputRef.current.value.length) {
-            dispatch(asyncPostCategoryFetch(inputRef.current.value));
+            dispatch(postCreateCategory(inputRef.current.value));
             inputRef.current.value = '';
         }
+    };
+
+    const deleteCategoryHandler = (e: React.MouseEvent<HTMLElement>, id: string, index: number) => {
+        e.preventDefault();
+
+        dispatch(deleteCategory({ id, index }));
     };
 
     return (
@@ -55,7 +62,14 @@ function Dialog({ isCategory, onDialog, onDropdownCloseHandler }: DialogProps) {
                                 onDropdownCloseHandler(index);
                             }}
                         >
-                            {name}
+                            <div>{name}</div>
+                            <Button
+                                onClick={(e) => {
+                                    deleteCategoryHandler(e, id, index);
+                                }}
+                            >
+                                삭제
+                            </Button>
                         </CategoryItem>
                     ))}
                 </CategoryList>

@@ -1,9 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { formInstance, instance } from './index';
 
-export const asyncPostProductFetch = createAsyncThunk(
+export const postCreateProduct = createAsyncThunk(
     'product/images',
-    async (formData: {
+    async ({
+        files,
+        category_id,
+        description,
+        minAmount,
+        prevPrice,
+        sellPrice,
+        status,
+        title,
+    }: {
         files: File[];
         category_id: string;
         description: string;
@@ -13,34 +22,19 @@ export const asyncPostProductFetch = createAsyncThunk(
         status: string;
         title: string;
     }) => {
-        const filesResponseData = await uploadProductImage(formData.files);
+        const filesResponseData = await uploadProductImage(files);
         const response = await createProduct({
             productImage_id: `${filesResponseData.id}`,
-            category_id: formData.category_id,
-            description: formData.description,
-            minAmount: formData.minAmount,
-            prevPrice: formData.prevPrice,
-            sellPrice: formData.sellPrice,
-            status: formData.status,
-            title: formData.title,
+            category_id,
+            description,
+            minAmount,
+            prevPrice,
+            sellPrice,
+            status,
+            title,
         });
 
         return response;
-    },
-);
-
-export const asyncGetCategoryFetch = createAsyncThunk('product/categories', async () => {
-    const { data } = await instance.get('categories');
-    return data.data;
-});
-
-export const asyncPostCategoryFetch = createAsyncThunk(
-    'product/category',
-    async (formData: string) => {
-        const { data } = await instance.post('categories', {
-            name: formData,
-        });
-        return data.data;
     },
 );
 

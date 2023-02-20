@@ -1,4 +1,4 @@
-import { signupFormData } from '../store/slice/authSlice';
+import { signupFormData } from '../../store/slice/authSlice';
 import { instance } from './index';
 
 interface loginApiResponseData {

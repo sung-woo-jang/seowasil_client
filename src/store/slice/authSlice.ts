@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as authApi from '../../api/authApi';
+import * as authApi from '../../utils/api/authApi';
 import {
     getUserInfo,
     removeUserData,

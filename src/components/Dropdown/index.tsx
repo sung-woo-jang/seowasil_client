@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncGetCategoryFetch } from '../../api/productApi';
+import { getCategories } from '../../utils/api/getCategories';
 import { AppDispatch, RootState } from '../../store';
 import { Caret, DropDown, Menu, Select } from './style';
 
@@ -23,7 +23,7 @@ function Dropdown({
     const categories = useSelector((state: RootState) => state.product.categories);
 
     useEffect(() => {
-        dispatch(asyncGetCategoryFetch());
+        dispatch(getCategories());
     }, [dispatch]);
 
     return (

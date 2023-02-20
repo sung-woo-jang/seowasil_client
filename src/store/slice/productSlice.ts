@@ -1,5 +1,8 @@
+import { getCategories } from './../../utils/api/getCategories';
+import { postCreateCategory } from './../../utils/api/postCreateCategory';
 import { createSlice } from '@reduxjs/toolkit';
-import * as productApi from '../../api/productApi';
+import { postCreateProduct } from '../../utils/api/postCreateProduct';
+import { deleteCategory } from '../../utils/api/deleeteCategory';
 // 상품등록 관련 slice
 interface postProduct {
     title: string; // 상품 이름
@@ -53,16 +56,20 @@ export const { reducer: productReducer, actions } = createSlice({
     },
     extraReducers: (builder) => {
         // 게시물 등록 성공
-        builder.addCase(productApi.asyncPostProductFetch.fulfilled, (state) => {
+        builder.addCase(postCreateProduct.fulfilled, (state) => {
             state.isCompleted = true;
         });
         // 카테고리 목록 물러오기
-        builder.addCase(productApi.asyncGetCategoryFetch.fulfilled, (state, { payload }) => {
+        builder.addCase(getCategories.fulfilled, (state, { payload }) => {
             state.categories = payload;
         });
         // 카테고리 등록
-        builder.addCase(productApi.asyncPostCategoryFetch.fulfilled, (state, { payload }) => {
+        builder.addCase(postCreateCategory.fulfilled, (state, { payload }) => {
             state.categories.push({ id: payload.id, name: payload.name });
+        });
+        // 카테고리 삭제
+        builder.addCase(deleteCategory.fulfilled, (state, { payload }) => {
+            state.categories.splice(payload, payload + 1);
         });
     },
 });

@@ -44,11 +44,18 @@ export const AddCategory = styled.div`
 export const CategoryList = styled.div`
     border-right: 1px solid gray;
     padding-top: 10px;
+    overflow: scroll;
 `;
 
 export const CategoryItem = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding-top: 5px;
     padding-left: 15px;
+    & button {
+        margin-right: 10px;
+    }
 `;
 
 export const CategoryEditor = styled.div`
