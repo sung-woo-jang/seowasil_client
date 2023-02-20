@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../../store';
 import { logOut } from '../../store/slice/authSlice';
 import { Button } from '../UI/Button';
+import { Flex } from '../UI/Flex';
 import { AppBarWrapper, Right, SNS } from './style';
 
 const AppBar = () => {
@@ -37,20 +38,27 @@ const AppBar = () => {
             </Right>
             <SNS>
                 <Button>
-                    <YouTube sx={{ color: '#fe0000' }} />
-                    <a href="https://www.youtube.com/@user-sl1sq3rt7m" style={{ color: '#000' }}>
-                        유튜브
-                    </a>
+                    <Flex>
+                        <YouTube sx={{ color: '#fe0000' }} />
+                        <a
+                            href="https://www.youtube.com/@user-sl1sq3rt7m"
+                            style={{ color: '#000' }}
+                        >
+                            유튜브
+                        </a>
+                    </Flex>
                 </Button>
                 <Button>
-                    <img
-                        src={`${process.env.PUBLIC_URL}/images/naverBlogLogo.png`}
-                        alt=""
-                        style={{ width: '20px', paddingRight: '4px' }}
-                    />
-                    <a href="https://blog.naver.com/wntlsduf" style={{ color: '#000' }}>
-                        블로그
-                    </a>
+                    <Flex>
+                        <img
+                            src={`${process.env.PUBLIC_URL}/images/naverBlogLogo.png`}
+                            alt=""
+                            style={{ width: '20px', paddingRight: '4px' }}
+                        />
+                        <a href="https://blog.naver.com/wntlsduf" style={{ color: '#000' }}>
+                            블로그
+                        </a>
+                    </Flex>
                 </Button>
             </SNS>
         </AppBarWrapper>

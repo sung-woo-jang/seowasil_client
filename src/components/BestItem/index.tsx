@@ -13,8 +13,6 @@ import { getProducts } from '../../utils/api/getProducts';
 import { Button } from '../UI/Button';
 import { ProductTitle, SubTitle, Title } from './style';
 
-const cards = [1, 2, 3];
-
 interface productsData {
     id: number;
     title: string;
@@ -36,7 +34,6 @@ const BestItem = () => {
         (async () => {
             const data = await getProducts();
             setProducts(data);
-            console.log(data);
         })();
     }, []);
     return (
