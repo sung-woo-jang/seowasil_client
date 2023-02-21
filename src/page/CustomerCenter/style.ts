@@ -19,7 +19,7 @@ export const Details = styled.div`
 export const RecentOrders = styled.div`
     position: relative;
     display: grid;
-    min-height: 400px;
+
     background: ${color.white};
     padding: 20px;
     @media screen and (max-width: 768px) {
@@ -48,7 +48,7 @@ export const QuestionTable = styled.div`
 
 export const QuestionTableTitle = styled.div`
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 3fr 100px;
+    grid-template-columns: 50px 1fr 3fr 100px;
     justify-items: center;
     align-items: center;
     border-bottom: 2px solid #222;
@@ -57,7 +57,7 @@ export const QuestionTableTitle = styled.div`
 
 export const DetailList = styled(Link)`
     display: grid;
-    grid-template-columns: 50px 1fr 1fr 3fr 100px;
+    grid-template-columns: 50px 1fr 3fr 100px;
     justify-items: center;
     align-items: center;
     font-size: 15px;

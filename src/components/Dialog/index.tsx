@@ -48,7 +48,7 @@ function Dialog({ isCategory, onDialog, onDropdownCloseHandler }: DialogProps) {
                     <input type="text" placeholder="카테고리 이름" ref={inputRef} />
                     <div>
                         <Button onClick={onDialog}>취소</Button>
-                        <Button onClick={postCategoryHandler} contained={true}>
+                        <Button onClick={postCategoryHandler} bgColor={'#84868b'} color={'white'}>
                             저장
                         </Button>
                     </div>

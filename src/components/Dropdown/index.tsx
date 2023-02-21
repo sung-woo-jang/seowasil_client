@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../utils/api/getCategories';
 import { AppDispatch, RootState } from '../../store';
 import { Caret, DropDown, Menu, Select } from './style';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 interface DropdownProps {
     isSelected: boolean;
@@ -30,7 +31,9 @@ function Dropdown({
         <DropDown>
             <Select onClick={onSelectToggleHandler} isActive={isSelected}>
                 <span>{isCategory}</span>
-                <Caret isActive={isSelected}></Caret>
+                <Caret isActive={isSelected}>
+                    <ArrowDropDownIcon />
+                </Caret>
             </Select>
             <Menu isActive={isSelected}>
                 {categories.map(({ id, name }, index) => (
@@ -43,7 +46,7 @@ function Dropdown({
                         {name}
                     </li>
                 ))}
-                <li onClick={onDialog}>새 카테고리</li>
+                <li onClick={onDialog}>새 카테고리 +</li>
             </Menu>
         </DropDown>
     );

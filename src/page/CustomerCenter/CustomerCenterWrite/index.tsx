@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TextArea } from '../../components/UI/TextArea';
-import { postCreateContact } from '../../utils/api/postCreateContact';
+import Select from '../../../components/Select';
+import { TextArea } from '../../../components/UI/TextArea';
+import { postCreateContact } from '../../../utils/api/postCreateContact';
 import { Actions, Control, Section } from './style';
 
 function CustomerCenterWrite() {
@@ -21,6 +22,7 @@ function CustomerCenterWrite() {
                 title: titleRef.current.value,
                 description: descriptionRef.current.value,
             });
+            // 성공여부 판단 Demo
             if (typeof result.id === 'number') navigate('/customer_center', { replace: true });
         }
     };
@@ -28,29 +30,33 @@ function CustomerCenterWrite() {
     return (
         <>
             <h1>1:1 친절 상담</h1>
-            <Section>
-                <form onSubmit={formSubmitHandler}>
+            <form onSubmit={formSubmitHandler}>
+                <Section>
                     <Control>
-                        <label htmlFor="name">이름</label>
-                        <input type="text" ref={nameRef} id="name" required />
-                    </Control>
-                    <Control>
-                        <label htmlFor="password">비밀번호</label>
-                        <input type="password" ref={passwordRef} id="password" required />
+                        <Select />
                     </Control>
                     <Control>
                         <label htmlFor="title">제목</label>
                         <input type="text" ref={titleRef} id="title" required />
                     </Control>
                     <Control>
+                        <label htmlFor="name">이름</label>
+                        <input type="text" ref={nameRef} id="name" required />
+                    </Control>
+                    <Control>
                         <label htmlFor="description">문의 내용</label>
                         <TextArea ref={descriptionRef} id="description" />
+                    </Control>
+                    <Control></Control>
+                    <Control>
+                        <label htmlFor="password">비밀번호</label>
+                        <input type="password" ref={passwordRef} id="password" required />
                     </Control>
                     <Actions>
                         <button type="submit">문의하기</button>
                     </Actions>
-                </form>
-            </Section>
+                </Section>
+            </form>
         </>
     );
 }

@@ -1,23 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 type ButtonProps = {
-    contained?: boolean;
+    bgColor?: string;
+    color?: string;
 };
 
 export const Button = styled.button`
-    background: white;
-    color: black;
+    background: ${({ bgColor }: ButtonProps) => bgColor || 'white'};
+    color: ${({ color }: ButtonProps) => color || 'black'};
     border: 1px solid #e2e2e2;
-    width: max-content;
+    min-width: 80px;
     padding: 0 5px;
     height: 30px;
     margin: 5px;
     border-radius: 5px;
     text-align: center;
-    ${({ contained }: ButtonProps) =>
-        contained &&
-        css`
-            background: #287bff;
-            color: white;
-        `}
 `;

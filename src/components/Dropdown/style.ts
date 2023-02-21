@@ -4,36 +4,23 @@ type isActiveProps = {
     isActive: boolean;
 };
 
-export const DropDownWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #bedfe8;
-    flex-wrap: wrap;
-`;
-
 export const DropDown = styled.div`
-    width: 15em;
+    width: max-content;
     position: relative;
     margin: 2em;
 `;
 
 export const Select = styled.div`
-    background: #353535;
-    color: #fff;
+    background: #fff;
+    color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border: 2px #353535 solid;
     border-radius: 0.5em;
-    padding: 1em;
+    padding: 10px;
     cursor: pointer;
     transition: background 0.3s;
-
-    &:hover {
-        background: #323741;
-    }
 
     ${({ isActive }: isActiveProps) =>
         isActive &&
@@ -44,11 +31,6 @@ export const Select = styled.div`
 `;
 
 export const Caret = styled.div`
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid #fff;
     transition: 0.3s;
 
     ${({ isActive }: isActiveProps) =>
@@ -61,11 +43,10 @@ export const Caret = styled.div`
 export const Menu = styled.ul`
     list-style: none;
     padding: 0.2em 0.5em;
-    background: #323741;
-    border: 1px #363a43 solid;
-    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+    background: #fff;
+    border: 1px #000 solid;
     border-radius: 0.5em;
-    color: #9fa5b5;
+    color: black;
     position: relative;
     left: 50%;
     width: 100%;
@@ -82,7 +63,7 @@ export const Menu = styled.ul`
         cursor: pointer;
 
         &:hover {
-            background: #2a2d35;
+            background: #dfdfdf;
         }
     }
 

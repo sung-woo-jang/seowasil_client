@@ -1,9 +1,9 @@
 import { MoreHoriz } from '@mui/icons-material';
-import { Button } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import ImageBox from '../../components/ImageBox';
 import SearchBar from '../../components/SearchBar';
 import Table from '../../components/Table';
+import { Button } from '../../components/UI/Button';
 import {
     CategoryList,
     ContentContainer,
@@ -52,9 +52,9 @@ const ManageProduct = () => {
             <ProductHeader>
                 <HeaderLeft>상품관리</HeaderLeft>
                 <HeaderRight>
-                    <Button variant="contained">
-                        <Link to={`${pathname}/write`}>상품 추가</Link>
-                    </Button>
+                    <Link to={`${pathname}/write`}>
+                        <Button color="black">상품 추가</Button>
+                    </Link>
                 </HeaderRight>
             </ProductHeader>
             <Main>

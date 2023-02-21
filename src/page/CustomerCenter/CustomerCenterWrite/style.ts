@@ -9,14 +9,13 @@ export const Section = styled.section`
     padding: 1rem;
     text-align: center;
 
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
     & h1 {
         text-align: center;
         color: black;
     }
-`;
-
-export const Control = styled.div`
-    margin-bottom: 0.5rem;
 
     & label {
         display: block;
@@ -35,6 +34,13 @@ export const Control = styled.div`
         text-align: left;
         padding: 0.25rem;
     }
+`;
+
+export const Control = styled.div`
+    display: grid;
+    margin-bottom: 0.5rem;
+
+    grid-template-columns: 100px 1fr;
 `;
 
 export const Actions = styled.div`
