@@ -5,10 +5,10 @@ import {
     CardMedia,
     Container,
     Grid,
-    Link,
     Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getProducts } from '../../utils/api/getProducts';
 import { Button } from '../UI/Button';
 import { ProductTitle, SubTitle, Title } from './style';
@@ -52,10 +52,7 @@ const BestItem = () => {
                                 flexDirection: 'column',
                             }}
                         >
-                            <Link
-                                href={`product/${id}`}
-                                sx={{ textDecoration: 'none', color: 'black' }}
-                            >
+                            <Link to={`/product/${id}`}>
                                 <CardMedia
                                     component="img"
                                     image={`${process.env.REACT_APP_AWS_URL}${productImageUrl.storedFileName[0]}`}
@@ -72,13 +69,7 @@ const BestItem = () => {
                             <CardActions>
                                 <Grid container>
                                     <Grid item xs>
-                                        <Link
-                                            href={`product`}
-                                            sx={{
-                                                textDecoration: 'none',
-                                                color: 'black',
-                                            }}
-                                        >
+                                        <Link to={`/product/${id}`}>
                                             <Button>상품 보기</Button>
                                         </Link>
                                     </Grid>

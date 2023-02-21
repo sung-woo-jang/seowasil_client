@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Select from '../../../components/Select';
 import { TextArea } from '../../../components/UI/TextArea';
 import { postCreateContact } from '../../../utils/api/postCreateContact';
 import { Actions, Control, Section } from './style';
@@ -26,6 +25,11 @@ function CustomerCenterWrite() {
             if (typeof result.id === 'number') navigate('/customer_center', { replace: true });
         }
     };
+    const categories = [
+        { id: 1, title: '상품문의' },
+        { id: 2, title: '배송문의' },
+        { id: 3, title: '기타문의' },
+    ];
 
     return (
         <>
@@ -33,7 +37,13 @@ function CustomerCenterWrite() {
             <form onSubmit={formSubmitHandler}>
                 <Section>
                     <Control>
-                        <Select />
+                        <select name="category">
+                            {categories.map(({ id, title }, index) => (
+                                <option value={title} key={id}>
+                                    {title}
+                                </option>
+                            ))}
+                        </select>
                     </Control>
                     <Control>
                         <label htmlFor="title">제목</label>
