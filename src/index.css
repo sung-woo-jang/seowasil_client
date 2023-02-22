@@ -12,6 +12,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none;
     list-style: none;
+    color: black;
 }
 
 code {

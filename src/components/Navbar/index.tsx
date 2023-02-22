@@ -1,9 +1,10 @@
 import { Toolbar } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
 import { getCategories } from '../../utils/api/getCategories';
-import { NavLinks } from './style';
+import { NavItem } from './style';
 
 const Navbar = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -12,6 +13,7 @@ const Navbar = () => {
     useEffect(() => {
         dispatch(getCategories());
     }, [dispatch]);
+
     return (
         <Toolbar
             component="nav"
@@ -19,9 +21,9 @@ const Navbar = () => {
             sx={{ justifyContent: 'space-between', overflowX: 'auto' }}
         >
             {categories.map(({ id, name }) => (
-                <NavLinks key={id} to={`category/${id}`}>
-                    {name}
-                </NavLinks>
+                <Link key={id} to={`/category/${id}`}>
+                    <NavItem>{name}</NavItem>
+                </Link>
             ))}
         </Toolbar>
     );

@@ -1,7 +1,6 @@
-import React from 'react';
 import { CookiesProvider } from 'react-cookie';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
@@ -13,9 +12,9 @@ const root = createRoot(container);
 root.render(
     <Provider store={store}>
         <CookiesProvider>
-            <BrowserRouter>
+            <HashRouter>
                 <App />
-            </BrowserRouter>
+            </HashRouter>
         </CookiesProvider>
     </Provider>,
 );

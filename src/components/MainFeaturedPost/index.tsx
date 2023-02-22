@@ -46,17 +46,8 @@ function MainFeaturedPost() {
                             pr: { md: 0 },
                         }}
                     >
-                        <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                            {post.title}
-                        </Typography>
-                        <Typography
-                            variant="h5"
-                            color="inherit"
-                            paragraph
-                            sx={{ fontSize: '1rem' }}
-                        >
-                            {post.description}
-                        </Typography>
+                        <h1 style={{ color: 'white' }}>{post.title}</h1>
+                        <h3 style={{ color: 'white' }}>{post.description}</h3>
                     </Box>
                 </Grid>
             </Grid>

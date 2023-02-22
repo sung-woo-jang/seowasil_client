@@ -1,6 +1,7 @@
 import { YouTube } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { YouTubeIcon } from '../../icons';
 import { RootState } from '../../store';
 import { logOut } from '../../store/slice/authSlice';
 import { Button } from '../UI/Button';
@@ -39,7 +40,7 @@ const AppBar = () => {
             <SNS>
                 <Button>
                     <Flex>
-                        <YouTube sx={{ color: '#fe0000' }} />
+                        <YouTubeIcon />
                         <a
                             href="https://www.youtube.com/@user-sl1sq3rt7m"
                             style={{ color: '#000' }}
