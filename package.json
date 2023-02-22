@@ -1,6 +1,7 @@
 {
   "name": "seowasil_client",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -16,7 +17,7 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.6.1",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
@@ -25,7 +26,8 @@
     "start": "env-cmd -f .env react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "depoly": "aws s3 sync ./build s3://gyomdyung-bucket --profile=gyomdyung"
   },
   "eslintConfig": {
     "extends": [
