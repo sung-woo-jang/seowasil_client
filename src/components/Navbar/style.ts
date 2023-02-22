@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const NavLinks = styled(Link)`
+export const NavItem = styled.div`
     display: flex;
     color: inherit;
     white-space: nowrap;

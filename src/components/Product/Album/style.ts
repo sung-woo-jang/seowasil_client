@@ -24,6 +24,7 @@ export const ImageSelect = styled.div`
 
 export const ImageItem = styled.div`
     margin: 0.3rem;
+    max-width: 100px;
     &:nth-child(n):not(:last-child) {
         margin-right: 0;
     }
