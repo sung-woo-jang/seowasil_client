@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "depoly": "aws s3 sync ./build s3://gyomdyung-bucket --profile=gyomdyung"
+    "deploy": "aws s3 sync ./build s3://seowasil --profile=gyomdyung"
   },
   "eslintConfig": {
     "extends": [

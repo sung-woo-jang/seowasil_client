@@ -1,7 +1,12 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import http from 'http';
 
-export const instance = axios.create({
+const httpAgent = new http.Agent();
+
+export const instance: AxiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
+    httpAgent,
+    withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
     },

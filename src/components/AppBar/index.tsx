@@ -1,4 +1,3 @@
-import { YouTube } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { YouTubeIcon } from '../../icons';

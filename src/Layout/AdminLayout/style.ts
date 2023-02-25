@@ -119,7 +119,9 @@ export const NavItemLink = styled(NavLink)`
     width: 100%;
     display: flex;
     text-decoration: none;
-    color: ${color.white};
+    & * {
+        color: ${color.white};
+    }
 `;
 
 export const NavIconLine = styled.span`

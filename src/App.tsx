@@ -6,8 +6,6 @@ import { loginCheck } from './store/slice/authSlice';
 import { AppDispatch } from './store';
 import LoadingSpinner from './components/LoadingSpinner';
 
-axios.defaults.withCredentials = true; // refreshToken cookie를 주고받기 위함
-
 const Layout = React.lazy(() => import('./Layout'));
 const Main = React.lazy(() => import('./page/Main'));
 const Login = React.lazy(() => import('./page/Login'));

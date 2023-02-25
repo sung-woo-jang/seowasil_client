@@ -1,4 +1,4 @@
-import { Paper, Typography, Grid, Box } from '@mui/material';
+import { Paper, Grid, Box } from '@mui/material';
 
 const post = {
     title: '부여 서와실농원',
