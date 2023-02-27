@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
 export const LastPrice = styled.p`
-    & span {
-        color: #f64749;
-        text-decoration: line-through;
-    }
+    color: gray;
+    text-decoration: line-through;
 `;
 
 export const NewPrice = styled.p`
-    & span {
-        color: #256eff;
-    }
+    color: #f64749;
+    font-weight: 700;
 `;
 
 export const ProductPrice = styled.div`
@@ -31,22 +28,15 @@ export const ProductContent = styled.div`
 `;
 
 export const ProductTitle = styled.h2`
-    font-size: 3rem;
+    font-size: 2rem;
     text-transform: capitalize;
     position: relative;
     font-weight: 700;
     color: #12263a;
     margin: 1rem 0;
 
-    &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 4px;
-        width: 80px;
-        background: #12263a;
-    }
+    border-bottom: 3px solid black;
+    width: max-content;
 `;
 
 export const ProductDetail = styled.div`

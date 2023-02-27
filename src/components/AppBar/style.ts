@@ -7,6 +7,7 @@ export const AppBarWrapper = styled.div`
     padding: 10px 0;
     border-bottom: solid 1px gray;
     white-space: nowrap;
+    overflow-x: auto;
 `;
 
 export const Right = styled.div`

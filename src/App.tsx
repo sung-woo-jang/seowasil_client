@@ -30,32 +30,30 @@ function App() {
     }, [dispatch]);
 
     return (
-        <div>
-            <Suspense fallback={<LoadingSpinner />}>
-                <Routes>
-                    <Route element={<Layout />}>
-                        <Route path="/" element={<Main />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<SignUp />} />
-                        <Route path="/product/:product_id" element={<Product />} />
-                        <Route path="/category/:category_id" element={<Category />} />
-                        <Route path="/introduction" element={<Introduction />} />
-                        <Route path="/notice" element={<Notice />} />
-                        <Route path="/customer_center" element={<CustomerCenter />} />
-                        <Route path="/customer_center/:id" element={<CustomerCenterDetail />} />
-                        <Route path="/customer_center/write" element={<CustomerCenterWrite />} />
-                    </Route>
+        <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/product/:product_id" element={<Product />} />
+                    <Route path="/category/:category_id" element={<Category />} />
+                    <Route path="/introduction" element={<Introduction />} />
+                    <Route path="/notice" element={<Notice />} />
+                    <Route path="/customer_center" element={<CustomerCenter />} />
+                    <Route path="/customer_center/:id" element={<CustomerCenterDetail />} />
+                    <Route path="/customer_center/write" element={<CustomerCenterWrite />} />
+                </Route>
 
-                    <Route path={`/admin`} element={<AdminLayout />}>
-                        <Route path="" element={<DashBoard />} />
-                        <Route path="product" element={<ManageProduct />} />
-                        <Route path="product/write" element={<Write />} />
-                        <Route path="customer" element={<ManageCustomer />} />
-                    </Route>
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </Suspense>
-        </div>
+                <Route path={`/admin`} element={<AdminLayout />}>
+                    <Route path="" element={<DashBoard />} />
+                    <Route path="product" element={<ManageProduct />} />
+                    <Route path="product/write" element={<Write />} />
+                    <Route path="customer" element={<ManageCustomer />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </Suspense>
     );
 }
 

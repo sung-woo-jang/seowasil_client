@@ -21,19 +21,19 @@ function Content({ title, description, sellPrice, prevPrice, minAmount, category
         <ProductContent>
             <ProductTitle>{title}</ProductTitle>
             <ProductPrice>
-                <LastPrice>
-                    이전 가격: <span>{prevPrice}원</span>
-                </LastPrice>
+                <LastPrice>{prevPrice}원</LastPrice>
                 <NewPrice>
-                    현재 가격:
+                    {sellPrice}원
                     <span>
-                        {sellPrice}원 (-
-                        {prevPrice - sellPrice}원)
+                        (-
+                        {(((prevPrice - sellPrice) / prevPrice) * 100).toFixed()}% 할인)
                     </span>
                 </NewPrice>
             </ProductPrice>
             <ProductDetail>
-                <h2>나무 종류: {category.name}</h2>
+                <span>
+                    나무 종류: <h2>{category.name}</h2>
+                </span>
                 <p>{description}</p>
                 <ul>
                     <li>
