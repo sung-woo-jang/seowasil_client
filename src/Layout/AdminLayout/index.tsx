@@ -1,6 +1,8 @@
 import { Dashboard, Forest, Inventory2, LocalShipping, Menu, People } from '@mui/icons-material';
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
+import { RootState } from '../../store';
 import SearchBar from './../../components/SearchBar';
 import {
     AdminWrapper,
@@ -31,7 +33,9 @@ const AdminLayout = () => {
         setToggle(!toggle);
     };
 
-    return (
+    const { role } = useSelector((state: RootState) => state.auth);
+
+    return role === 'ADMIN' ? (
         <AdminWrapper>
             <Container>
                 <Navigation toggle={toggle}>
@@ -63,6 +67,8 @@ const AdminLayout = () => {
                 </MainWrapper>
             </Container>
         </AdminWrapper>
+    ) : (
+        <Navigate to="/login" />
     );
 };
 
