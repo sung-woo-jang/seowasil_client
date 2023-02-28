@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-type TextAreaProps = {
+interface TextAreaProps {
     isActive?: boolean;
-};
+}
 
 export const TextArea = styled.textarea`
     width: 100%;

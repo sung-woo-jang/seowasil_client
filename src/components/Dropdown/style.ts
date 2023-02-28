@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-type isActiveProps = {
+interface isActiveProps {
     isActive: boolean;
-};
+}
 
 export const DropDown = styled.div`
     width: max-content;

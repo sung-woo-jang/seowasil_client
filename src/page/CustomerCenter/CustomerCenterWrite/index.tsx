@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../../../components/UI/Button';
 import { TextArea } from '../../../components/UI/TextArea';
 import { postCreateContact } from '../../../utils/api/postCreateContact';
 import { Actions, Control, Section } from './style';
@@ -63,7 +64,9 @@ function CustomerCenterWrite() {
                         <input type="password" ref={passwordRef} id="password" required />
                     </Control>
                     <Actions>
-                        <button type="submit">문의하기</button>
+                        <Button border={true} type="submit">
+                            문의하기
+                        </Button>
                     </Actions>
                 </Section>
             </form>

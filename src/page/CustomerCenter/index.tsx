@@ -41,7 +41,7 @@ function CustomerCenter() {
             <RecentOrders>
                 <CardHeader>
                     <CardTitle>문의 내역</CardTitle>
-                    <Button>
+                    <Button border={true}>
                         <Link to="/customer_center/write">글쓰기</Link>
                     </Button>
                 </CardHeader>

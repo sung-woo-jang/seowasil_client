@@ -1,10 +1,10 @@
 import { InputBox, InputFieldWrapper } from './style';
 
-type InputFieldProps = {
+interface InputFieldProps {
     isType?: string;
     text: string;
     isValue: string;
-};
+}
 
 function InputField({ isType, text, isValue }: InputFieldProps) {
     return (

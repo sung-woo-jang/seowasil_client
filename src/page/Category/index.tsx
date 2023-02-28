@@ -65,7 +65,7 @@ const Category = () => {
                                 <Grid container>
                                     <Grid item xs>
                                         <Link to={`/product/${id}`}>
-                                            <Button>상품 보기</Button>
+                                            <Button border={true}>상품 보기</Button>
                                         </Link>
                                     </Grid>
                                 </Grid>

@@ -1,10 +1,10 @@
 import { ImageBoxWrapper } from './style';
 
-type ImageBoxProps = {
+interface ImageBoxProps {
     imageSrc?: string;
     imageAlt?: string;
     text?: string;
-};
+}
 
 function ImageBox({ imageSrc, imageAlt, text }: ImageBoxProps) {
     return (

@@ -9,9 +9,9 @@ const color = {
     black2: '#999',
 };
 
-type toggleProps = {
+interface toggleProps {
     toggle: boolean;
-};
+}
 
 export const AdminWrapper = styled.div`
     height: 100vh;

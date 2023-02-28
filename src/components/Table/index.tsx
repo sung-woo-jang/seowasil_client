@@ -1,8 +1,8 @@
 import { TableWrapper } from './style';
 
-type TableProps = {
+interface TableProps {
     children: React.ReactNode;
-};
+}
 
 function Table({ children }: TableProps) {
     return <TableWrapper>{children}</TableWrapper>;

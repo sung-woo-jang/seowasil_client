@@ -1,8 +1,8 @@
 import { SearchBarWrapper, SearchIcon } from './style';
 
-type SearchBarProps = {
+interface SearchBarProps {
     isPlaceHolder?: string;
-};
+}
 
 function SearchBar({ isPlaceHolder }: SearchBarProps) {
     return (

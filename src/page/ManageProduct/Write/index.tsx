@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postCreateProduct } from '../../../utils/api/postCreateProduct';
 import { setSeletedIsCompleted } from '../../../store/slice/productSlice';
+import { Button } from '../../../components/UI/Button';
 
 const Write = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -53,9 +54,9 @@ const Write = () => {
             <form onSubmit={onSubmitHandler}>
                 <UploadForm onChangeFiles={setFiles} />
                 <ContentContainer />
-                <button style={{ width: '100px' }} type="submit">
+                <Button border={true} type="submit">
                     상품 등록
-                </button>
+                </Button>
             </form>
         </WriteWrapper>
     );

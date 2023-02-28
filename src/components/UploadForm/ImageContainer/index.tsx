@@ -1,9 +1,9 @@
 import { ImageContainerWrapper } from './style';
 
-type ImageContainerProps = {
+interface ImageContainerProps {
     imageUrl: string;
     imageAlt: string;
-};
+}
 
 function ImageContainer({ imageUrl, imageAlt }: ImageContainerProps) {
     return (

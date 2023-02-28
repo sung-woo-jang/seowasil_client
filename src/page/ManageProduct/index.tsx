@@ -53,7 +53,9 @@ const ManageProduct = () => {
                 <HeaderLeft>상품관리</HeaderLeft>
                 <HeaderRight>
                     <Link to={`${pathname}/write`}>
-                        <Button color="black">상품 추가</Button>
+                        <Button border={true} color="black">
+                            상품 추가
+                        </Button>
                     </Link>
                 </HeaderRight>
             </ProductHeader>

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-type ButtonProps = {
+interface ButtonProps {
     bgColor?: string;
     color?: string;
     border?: boolean;
-};
+}
 
 export const Button = styled.button`
     background: ${({ bgColor }: ButtonProps) => bgColor || 'white'};

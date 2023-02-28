@@ -8,9 +8,9 @@ const color = {
     black2: '#999',
 };
 
-type isActiceProps = {
+interface isActiceProps {
     isActive: boolean;
-};
+}
 
 // order details list
 export const Details = styled.div`

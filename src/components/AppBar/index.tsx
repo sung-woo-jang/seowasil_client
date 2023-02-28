@@ -44,7 +44,7 @@ const AppBar = () => {
                 <Link to="/customer_center">고객센터</Link>
             </Right>
             <SNS>
-                <Button>
+                <Button border={true}>
                     <Flex>
                         <YouTubeIcon />
                         <a
@@ -55,7 +55,7 @@ const AppBar = () => {
                         </a>
                     </Flex>
                 </Button>
-                <Button>
+                <Button border={true}>
                     <Flex>
                         <img
                             src={`${process.env.PUBLIC_URL}/images/naverBlogLogo.png`}

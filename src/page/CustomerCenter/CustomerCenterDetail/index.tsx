@@ -40,13 +40,13 @@ function CustomerCenterDetail() {
                 <div>비밀번호</div>
                 <div>
                     <input type="password" />
-                    <span>삭제하려면 비밀번호를 입력하세요</span>
+                    <span> 삭제하려면 비밀번호를 입력하세요</span>
                 </div>
             </GridItem>
             <GridItem style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button>목록</Button>
+                <Button border={true}>목록</Button>
                 <div>
-                    <Button>삭제</Button>
+                    <Button border={true}>삭제</Button>
                     <Button color={'#fff'} bgColor={'#84868B'}>
                         수정
                     </Button>
