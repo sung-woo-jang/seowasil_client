@@ -57,10 +57,7 @@ const AdminLayout = () => {
                         </Toggle>
                         <SearchBar />
                         <User>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/images/optimize.jpeg`}
-                                alt="사진"
-                            />
+                            <img src={`images/optimize.jpeg`} alt="사진" />
                         </User>
                     </TopBar>
                     <Outlet />

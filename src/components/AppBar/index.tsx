@@ -58,7 +58,7 @@ const AppBar = () => {
                 <Button border={true}>
                     <Flex>
                         <img
-                            src={`${process.env.PUBLIC_URL}/images/naverBlogLogo.png`}
+                            src={`images/naverBlogLogo.png`}
                             alt=""
                             style={{ width: '20px', paddingRight: '4px' }}
                         />

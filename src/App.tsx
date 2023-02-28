@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect, Suspense, lazy } from 'react';
 import { loginCheck } from './store/slice/authSlice';
 import { AppDispatch } from './store';
-import LoadingSpinner from './components/LoadingSpinner';
 import { getCategories } from './utils/api/getCategories';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const Layout = lazy(() => import('./Layout'));
 const Main = lazy(() => import('./page/Main'));
