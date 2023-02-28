@@ -77,7 +77,7 @@ export const NavList = styled.li`
     &:hover {
         background: ${color.white};
 
-        & a {
+        & a * {
             color: ${color.blue};
         }
 

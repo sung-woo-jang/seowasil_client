@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../../utils/api/getCategories';
-import { AppDispatch, RootState } from '../../store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import { Caret, DropDown, Menu, Select } from './style';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
@@ -20,12 +18,7 @@ function Dropdown({
     onSelectToggleHandler,
     onDropdownCloseHandler,
 }: DropdownProps) {
-    const dispatch = useDispatch<AppDispatch>();
     const categories = useSelector((state: RootState) => state.product.categories);
-
-    useEffect(() => {
-        dispatch(getCategories());
-    }, [dispatch]);
 
     return (
         <DropDown>

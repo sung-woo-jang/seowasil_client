@@ -1,6 +1,5 @@
 import { MoreHoriz } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
-import ImageBox from '../../components/ImageBox';
 import SearchBar from '../../components/SearchBar';
 import Table from '../../components/Table';
 import { Button } from '../../components/UI/Button';
@@ -17,6 +16,10 @@ import {
     TableUnderRow,
     TopTr,
 } from './style';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useEffect, useState } from 'react';
+import { getProducts } from '../../utils/api/getProducts';
 
 const detailList = [
     {
@@ -45,8 +48,33 @@ const detailList = [
     },
 ];
 
+interface productsData {
+    id: number;
+    title: string;
+    description: string;
+    productImageUrl: { storedFileName: string[] };
+}
+
 const ManageProduct = () => {
     const { pathname } = useLocation();
+    const categories = useSelector((state: RootState) => state.product.categories);
+
+    const [products, setProducts] = useState<productsData[]>([
+        {
+            id: 0,
+            title: '',
+            description: '',
+            productImageUrl: { storedFileName: [''] },
+        },
+    ]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getProducts();
+            setProducts(data);
+        })();
+    }, []);
+
     return (
         <ManageProductWrapper>
             <ProductHeader>
@@ -63,8 +91,9 @@ const ManageProduct = () => {
                 <ManagedContainer>
                     <div>전체 카테고리</div>
                     <CategoryList>
-                        <li>문그로우</li>
-                        <li>파스티기아타</li>
+                        {categories.map(({ name, id }) => (
+                            <li key={id}>{name}</li>
+                        ))}
                     </CategoryList>
                 </ManagedContainer>
                 <ContentContainer>
@@ -91,9 +120,7 @@ const ManageProduct = () => {
                             {detailList.map(({ id, price, name, category, registDate, status }) => (
                                 <TableUnderRow key={id}>
                                     <td>{id}</td>
-                                    <td>
-                                        <ImageBox text={name} />
-                                    </td>
+                                    <td>{name}</td>
                                     <td>{category}</td>
                                     <td>{price}₩</td>
                                     <td>{status}</td>

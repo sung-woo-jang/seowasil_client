@@ -1,32 +1,37 @@
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import React, { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { loginCheck } from './store/slice/authSlice';
 import { AppDispatch } from './store';
 import LoadingSpinner from './components/LoadingSpinner';
+import { getCategories } from './utils/api/getCategories';
 
-const Layout = React.lazy(() => import('./Layout'));
-const Main = React.lazy(() => import('./page/Main'));
-const Login = React.lazy(() => import('./page/Login'));
-const SignUp = React.lazy(() => import('./page/SignUp'));
-const Product = React.lazy(() => import('./page/Product'));
-const Category = React.lazy(() => import('./page/Category'));
-const Introduction = React.lazy(() => import('./page/Introduction'));
-const Notice = React.lazy(() => import('./page/Notice'));
-const CustomerCenter = React.lazy(() => import('./page/CustomerCenter'));
-const NotFound = React.lazy(() => import('./page/NotFound'));
-const AdminLayout = React.lazy(() => import('./Layout/AdminLayout'));
-const DashBoard = React.lazy(() => import('./page/DashBoard'));
-const ManageProduct = React.lazy(() => import('./page/ManageProduct'));
-const Write = React.lazy(() => import('./page/ManageProduct/Write'));
-const ManageCustomer = React.lazy(() => import('./page/ManageCustomer'));
-const CustomerCenterWrite = React.lazy(() => import('./page/CustomerCenter/CustomerCenterWrite'));
-const CustomerCenterDetail = React.lazy(() => import('./page/CustomerCenter/CustomerCenterDetail'));
+const Layout = lazy(() => import('./Layout'));
+const Main = lazy(() => import('./page/Main'));
+const Login = lazy(() => import('./page/Login'));
+const SignUp = lazy(() => import('./page/SignUp'));
+const Product = lazy(() => import('./page/Product'));
+const Category = lazy(() => import('./page/Category'));
+const Introduction = lazy(() => import('./page/Introduction'));
+const Notice = lazy(() => import('./page/Notice'));
+const CustomerCenter = lazy(() => import('./page/CustomerCenter'));
+const NotFound = lazy(() => import('./page/NotFound'));
+const AdminLayout = lazy(() => import('./Layout/AdminLayout'));
+const DashBoard = lazy(() => import('./page/DashBoard'));
+const ManageProduct = lazy(() => import('./page/ManageProduct'));
+const Write = lazy(() => import('./page/ManageProduct/Write'));
+const ManageCustomer = lazy(() => import('./page/ManageCustomer'));
+const CustomerCenterWrite = lazy(() => import('./page/CustomerCenter/CustomerCenterWrite'));
+const CustomerCenterDetail = lazy(() => import('./page/CustomerCenter/CustomerCenterDetail'));
 
 function App() {
     const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         dispatch(loginCheck());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getCategories());
     }, [dispatch]);
 
     return (
