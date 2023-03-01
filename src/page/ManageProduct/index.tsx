@@ -1,4 +1,3 @@
-import { MoreHoriz } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar';
 import Table from '../../components/Table';
@@ -20,39 +19,16 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect, useState } from 'react';
 import { getProducts } from '../../utils/api/getProducts';
-
-const detailList = [
-    {
-        id: 1,
-        price: 1500,
-        name: '문그로우 0년생',
-        category: '문그로우',
-        registDate: '2022-01-12',
-        status: '판매중',
-    },
-    {
-        id: 2,
-        price: 1800,
-        name: '파스티기아타 0년생',
-        category: '파스티기아타',
-        registDate: '2022-12-08',
-        status: '상품 준비중',
-    },
-    {
-        id: 3,
-        price: 30000,
-        name: '블루 애로우 0년생',
-        category: '블루 애로우',
-        registDate: '2022-05-23',
-        status: '숨김',
-    },
-];
+import dayjs from 'dayjs';
+import { ThreeDots } from '../../icons';
 
 interface productsData {
     id: number;
     title: string;
     description: string;
-    productImageUrl: { storedFileName: string[] };
+    sellPrice: number;
+    createdAt: string;
+    category: { name: string };
 }
 
 const ManageProduct = () => {
@@ -64,7 +40,9 @@ const ManageProduct = () => {
             id: 0,
             title: '',
             description: '',
-            productImageUrl: { storedFileName: [''] },
+            category: { name: '' },
+            createdAt: '',
+            sellPrice: 0,
         },
     ]);
 
@@ -111,22 +89,25 @@ const ManageProduct = () => {
                                 <td>상품명</td>
                                 <td>카테고리</td>
                                 <td>판매가</td>
-                                <td>상태</td>
                                 <td>등록일</td>
                                 <td></td>
                             </TopTr>
                         </thead>
                         <tbody>
-                            {detailList.map(({ id, price, name, category, registDate, status }) => (
+                            {products.map(({ category, createdAt, id, sellPrice, title }) => (
                                 <TableUnderRow key={id}>
                                     <td>{id}</td>
-                                    <td>{name}</td>
-                                    <td>{category}</td>
-                                    <td>{price}₩</td>
-                                    <td>{status}</td>
-                                    <td>{registDate}</td>
+                                    <td>{title}</td>
+                                    <td>{category.name}</td>
+                                    <td>{sellPrice}₩</td>
+                                    <td>{dayjs(createdAt).format('YYYY-MM-DD')}</td>
                                     <td>
-                                        <MoreHoriz />
+                                        <ThreeDots
+                                            style={{
+                                                width: '20px',
+                                                height: 'auto',
+                                            }}
+                                        />
                                     </td>
                                 </TableUnderRow>
                             ))}

@@ -11,6 +11,7 @@
     "@mui/material": "^5.11.3",
     "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.2.6",
+    "dayjs": "^1.11.7",
     "env-cmd": "^10.1.0",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
@@ -26,9 +27,11 @@
   "scripts": {
     "start": "env-cmd -f .env vite",
     "build": "env-cmd -f .env.production vite build",
+    "s3": "aws s3 sync ./build s3://seowasil --profile=gyomdyung",
+    "invalidation": "aws cloudfront create-invalidation --distribution-id ERW9Z0HX4HAYO --paths '/*' ",
+    "deploy": "npm-run-all build s3 invalidation",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync ./build s3://seowasil --profile=gyomdyung",
     "react-start": "env-cmd -f .env react-scripts start",
     "react-build": "env-cmd -f .env.production react-scripts build"
   },

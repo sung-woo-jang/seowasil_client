@@ -16,5 +16,7 @@ const defineConfigFn = (mode: any) =>
         define: {
             'process.env': loadEnv(mode, process.cwd(), ''),
         },
+        clearScreen: true,
+        logLevel: 'info',
     });
 export default defineConfigFn;
