@@ -5,6 +5,7 @@ import { loginCheck } from './store/slice/authSlice';
 import { AppDispatch } from './store';
 import { getCategories } from './utils/api/getCategories';
 import LoadingSpinner from './components/LoadingSpinner';
+import CustomerCenterMain from './components/CustomerCenterMain/Index';
 
 const Layout = lazy(() => import('./Layout'));
 const Main = lazy(() => import('./page/Main'));
@@ -45,9 +46,11 @@ function App() {
                     <Route path="/category/:category_id" element={<Category />} />
                     <Route path="/introduction" element={<Introduction />} />
                     <Route path="/notice" element={<Notice />} />
-                    <Route path="/customer_center" element={<CustomerCenter />} />
-                    <Route path="/customer_center/:id" element={<CustomerCenterDetail />} />
-                    <Route path="/customer_center/write" element={<CustomerCenterWrite />} />
+                    <Route path="/customer_center" element={<CustomerCenter />}>
+                        <Route path="" element={<CustomerCenterMain />} />
+                        <Route path=":id" element={<CustomerCenterDetail />} />
+                        <Route path="write" element={<CustomerCenterWrite />} />
+                    </Route>
                 </Route>
 
                 <Route path={`/admin`} element={<AdminLayout />}>

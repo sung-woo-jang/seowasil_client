@@ -21,14 +21,7 @@ interface productsData {
 }
 
 const BestItem = () => {
-    const [products, setProducts] = useState<productsData[]>([
-        {
-            id: 0,
-            title: '',
-            description: '',
-            productImageUrl: { storedFileName: [''] },
-        },
-    ]);
+    const [products, setProducts] = useState<productsData[]>([]);
 
     useEffect(() => {
         (async () => {

@@ -12,14 +12,17 @@ export const AppBarWrapper = styled.div`
 
 export const Right = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
-    & > * {
+    // 마지막 빼고
+    & > *:not(:last-of-type) {
+        padding-right: 2.5rem;
+        border-right: 1px solid #bfbfbf;
     }
 
-    & > *:not(:last-of-type) {
-        padding-right: 1rem;
+    & > *:not(:first-child) {
+        padding-left: 2.5rem;
     }
 `;
 

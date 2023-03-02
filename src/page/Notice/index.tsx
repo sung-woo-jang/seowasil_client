@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '../../components/UI/Button';
 import {
     Accordion,
     CardHeader,
@@ -18,6 +20,9 @@ const Notice = () => {
             <RecentOrders>
                 <CardHeader>
                     <CardTitle>공지 사항</CardTitle>
+                    <Button border={true}>
+                        <Link to="/customer_center/write">글쓰기</Link>
+                    </Button>
                 </CardHeader>
 
                 <QuestionTable>

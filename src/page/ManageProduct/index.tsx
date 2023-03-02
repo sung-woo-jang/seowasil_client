@@ -35,16 +35,7 @@ const ManageProduct = () => {
     const { pathname } = useLocation();
     const categories = useSelector((state: RootState) => state.product.categories);
 
-    const [products, setProducts] = useState<productsData[]>([
-        {
-            id: 0,
-            title: '',
-            description: '',
-            category: { name: '' },
-            createdAt: '',
-            sellPrice: 0,
-        },
-    ]);
+    const [products, setProducts] = useState<productsData[]>([]);
 
     useEffect(() => {
         (async () => {
@@ -98,7 +89,7 @@ const ManageProduct = () => {
                                 <TableUnderRow key={id}>
                                     <td>{id}</td>
                                     <td>{title}</td>
-                                    <td>{category.name}</td>
+                                    <td>{category?.name}</td>
                                     <td>{sellPrice}₩</td>
                                     <td>{dayjs(createdAt).format('YYYY-MM-DD')}</td>
                                     <td>
