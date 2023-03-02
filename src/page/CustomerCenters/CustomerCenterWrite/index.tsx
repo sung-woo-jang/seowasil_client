@@ -58,7 +58,6 @@ function CustomerCenterWrite() {
                         <label htmlFor="description">문의 내용</label>
                         <TextArea ref={descriptionRef} id="description" />
                     </Control>
-                    <Control></Control>
                     <Control>
                         <label htmlFor="password">비밀번호</label>
                         <input type="password" ref={passwordRef} id="password" required />

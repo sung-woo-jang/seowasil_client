@@ -19,7 +19,7 @@ interface contactData {
     category: string;
 }
 
-function CustomerCenterMain() {
+function CustomerCenter() {
     const [contacts, setContacts] = useState<contactData[]>([
         {
             id: 0,
@@ -67,4 +67,4 @@ function CustomerCenterMain() {
     );
 }
 
-export default CustomerCenterMain;
+export default CustomerCenter;

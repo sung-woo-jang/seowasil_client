@@ -2,12 +2,14 @@ import { Outlet } from 'react-router-dom';
 
 import { Details } from './style';
 
-function CustomerCenter() {
+function CustomerCenters() {
     return (
         <Details>
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
         </Details>
     );
 }
 
-export default CustomerCenter;
+export default CustomerCenters;

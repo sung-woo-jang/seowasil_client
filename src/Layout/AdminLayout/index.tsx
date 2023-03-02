@@ -60,7 +60,9 @@ const AdminLayout = () => {
                             <img src={`images/optimize.jpeg`} alt="사진" />
                         </User>
                     </TopBar>
-                    <Outlet />
+                    <main>
+                        <Outlet />
+                    </main>
                 </MainWrapper>
             </Container>
         </AdminWrapper>
