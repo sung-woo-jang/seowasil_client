@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { formInstance, instance } from './index';
+import { formInstance, instance } from '../index';
 
 export const postCreateProduct = createAsyncThunk(
     'product/images',

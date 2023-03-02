@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Album from '../\bAlbum';
-import { getProductDetail } from '../../../utils/api/getProductDetail';
+import { getProductDetail } from '../../../utils/api/Product/getProductDetail';
 import Content from '../Content';
 import { Card, CardWrapper } from './style';
 

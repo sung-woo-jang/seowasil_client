@@ -1,4 +1,4 @@
-import { instance } from './index';
+import { instance } from '../index';
 
 export const getProducts = async () => {
     const { data } = await instance.get(`products`);

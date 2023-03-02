@@ -11,8 +11,8 @@ import {
     Container,
     DialogWrapper,
 } from './style';
-import { postCreateCategory } from '../../utils/api/postCreateCategory';
-import { deleteCategory } from '../../utils/api/deleeteCategory';
+import { postCreateCategory } from '../../utils/api/Category/postCreateCategory';
+import { deleteCategory } from '../../utils/api/Category/deleeteCategory';
 
 interface DialogProps {
     isCategory: string;

@@ -1,24 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getNotices, responseNotices } from '../../utils/api/Notice/getNotices';
 import { Accordion, ContentBox, QuestionTable, Label, Content } from './style';
 
 function Notice() {
-    const [isActive, setIsActice] = useState(false);
+    const [notices, setNotices] = useState<responseNotices[]>([]);
+    const [completedIds, setCompletedIds] = useState<number[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getNotices();
+            setNotices(data);
+        })();
+    }, []);
+
+    const handleToggle = (id: number) => {
+        if (completedIds.includes(id)) {
+            setCompletedIds(completedIds.filter((completedId) => completedId !== id));
+        } else {
+            setCompletedIds([...completedIds, id]);
+        }
+    };
+
     return (
         <QuestionTable>
             <Accordion>
-                <ContentBox
-                    onClick={() => {
-                        setIsActice(!isActive);
-                    }}
-                >
-                    <Label isActive={isActive}>공지사항 제목</Label>
-                    <Content isActive={isActive}>
-                        <p>
-                            공지사항 내용. 대충 뭐 배송 관련, 주문 관련, 상담 관련 등등 이것저것을
-                            써 놓는 공간
-                        </p>
-                    </Content>
-                </ContentBox>
+                {notices.map(({ id, title, description }) => (
+                    <ContentBox
+                        key={id}
+                        onClick={() => {
+                            handleToggle(id);
+                        }}
+                    >
+                        <Label isActive={completedIds.includes(id) ? true : false}>{title}</Label>
+                        <Content isActive={completedIds.includes(id) ? true : false}>
+                            <p>{description}</p>
+                        </Content>
+                    </ContentBox>
+                ))}
             </Accordion>
         </QuestionTable>
     );

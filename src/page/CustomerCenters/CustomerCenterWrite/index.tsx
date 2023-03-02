@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Button';
 import { TextArea } from '../../../components/UI/TextArea';
-import { postCreateContact } from '../../../utils/api/postCreateContact';
+import { postCreateContact } from '../../../utils/api/Contact/postCreateContact';
 import { Actions, Control, Section } from './style';
 
 function CustomerCenterWrite() {

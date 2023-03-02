@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from './index';
+import { instance } from '../index';
 
 export const deleteCategory = createAsyncThunk(
     'product/deleteCategory',

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import { Button } from '../../components/UI/Button';
-import { getProductsByCategoryId } from '../../utils/api/getProductsByCategoryId';
+import { getProductsByCategoryId } from '../../utils/api/Category/getProductsByCategoryId';
 import { CategoryWrapper } from './style';
 
 interface productsData {

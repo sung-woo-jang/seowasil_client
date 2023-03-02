@@ -1,8 +1,8 @@
-import { getCategories } from './../../utils/api/getCategories';
-import { postCreateCategory } from './../../utils/api/postCreateCategory';
+import { postCreateCategory } from '../../utils/api/Category/postCreateCategory';
 import { createSlice } from '@reduxjs/toolkit';
-import { postCreateProduct } from '../../utils/api/postCreateProduct';
-import { deleteCategory } from '../../utils/api/deleeteCategory';
+import { postCreateProduct } from '../../utils/api/Product/postCreateProduct';
+import { deleteCategory } from '../../utils/api/Category/deleeteCategory';
+import { getCategories } from '../../utils/api/Category/getCategories';
 
 // 상품등록 관련 slice
 interface postProduct {

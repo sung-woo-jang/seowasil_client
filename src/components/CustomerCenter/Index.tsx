@@ -8,7 +8,7 @@ import {
 } from './style';
 
 import { useEffect, useState } from 'react';
-import { getContacts } from '../../utils/api/getContatcs';
+import { getContacts } from '../../utils/api/Contact/getContatcs';
 import { Button } from '../UI/Button';
 import { Link } from 'react-router-dom';
 

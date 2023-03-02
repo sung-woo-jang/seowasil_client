@@ -10,6 +10,7 @@ export const instance: AxiosInstance = axios.create({
 
 export const formInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
+    withCredentials: true,
     headers: {
         'Content-Type': 'multipart/form-data',
     },

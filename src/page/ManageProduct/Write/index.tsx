@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postCreateProduct } from '../../../utils/api/postCreateProduct';
+import { postCreateProduct } from '../../../utils/api/Product/postCreateProduct';
 import { setSeletedIsCompleted } from '../../../store/slice/productSlice';
 import { Button } from '../../../components/UI/Button';
 

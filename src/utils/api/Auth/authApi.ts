@@ -1,5 +1,5 @@
-import { signupFormData } from '../../store/slice/authSlice';
-import { instance } from './index';
+import { signupFormData } from '../../../store/slice/authSlice';
+import { instance } from '../index';
 
 interface loginApiResponseData {
     accessToken: string;
