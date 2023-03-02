@@ -47,10 +47,10 @@ function Dialog({ isCategory, onDialog, onDropdownCloseHandler }: DialogProps) {
                     <div>+ 새 카테고리</div>
                     <input type="text" placeholder="카테고리 이름" ref={inputRef} />
                     <div>
-                        <Button border={true} onClick={onDialog}>
-                            취소
+                        <Button border={true} onClick={postCategoryHandler}>
+                            추가
                         </Button>
-                        <Button onClick={postCategoryHandler} bgColor={'#000'} color={'white'}>
+                        <Button onClick={onDialog} bgColor={'#000'} color={'white'}>
                             저장
                         </Button>
                     </div>

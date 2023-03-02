@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getProducts } from '../../utils/api/getProducts';
+import { getProducts } from '../../utils/api/Product/getProducts';
 import { Button } from '../UI/Button';
 import { ProductTitle, SubTitle, Title } from './style';
 

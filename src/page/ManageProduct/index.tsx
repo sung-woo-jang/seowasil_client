@@ -18,7 +18,7 @@ import {
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useEffect, useState } from 'react';
-import { getProducts } from '../../utils/api/getProducts';
+import { getProducts } from '../../utils/api/Product/getProducts';
 import dayjs from 'dayjs';
 import { ThreeDots } from '../../icons';
 

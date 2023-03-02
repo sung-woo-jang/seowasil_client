@@ -73,7 +73,7 @@ export const { reducer: productReducer, actions } = createSlice({
         });
         // 카테고리 삭제
         builder.addCase(deleteCategory.fulfilled, (state, { payload }) => {
-            state.categories.splice(payload, payload + 1);
+            state.categories.splice(payload, 1);
         });
     },
 });

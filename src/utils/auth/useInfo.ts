@@ -34,8 +34,7 @@ export const setUserInfo = (user: {
 };
 
 export const getUserInfo = () => {
-    // @ts-ignore
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const userInfo = JSON.parse(localStorage.getItem('userInfo') as string);
     return userInfo;
 };
 
