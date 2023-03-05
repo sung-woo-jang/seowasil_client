@@ -15,6 +15,7 @@ export const AdminLayout = lazy(() => import('./../../Layout/AdminLayout'));
 export const DashBoard = lazy(() => import('./../../page/DashBoard'));
 export const ManageProduct = lazy(() => import('./../../page/ManageProduct'));
 export const Write = lazy(() => import('./../../page/ManageProduct/Write'));
+export const Cart = lazy(() => import('./../../page/Cart'));
 export const ManageCustomer = lazy(() => import('./../../page/ManageCustomer'));
 export const CustomerCenterWrite = lazy(
     () => import('./../../page/CustomerCenters/CustomerCenterWrite'),

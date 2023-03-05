@@ -29,7 +29,7 @@ const AppBar = () => {
                 </Button>
                 <Button>
                     {isLogin ? (
-                        <Link to="/users">마이페이지</Link>
+                        <Link to="/cart">장바구니</Link>
                     ) : (
                         <Link to="/signup">회원가입</Link>
                     )}

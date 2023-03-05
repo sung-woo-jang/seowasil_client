@@ -30,8 +30,10 @@ function App() {
                     <Route path="/product/:product_id" element={<L.Product />} />
                     <Route path="/category/:category_id" element={<L.Category />} />
                     <Route path="/introduction" element={<L.Introduction />} />
+                    {/* 장바구니 */}
+                    <Route path="/cart" element={<L.Cart />} />
+                    {/* 주문페이지 */}
                     <Route path="/orders/:product_id/checkout" element={<L.Order />} />
-
                     {/* 공지사항 */}
                     <Route path="/notice" element={<L.Notices />}>
                         <Route path="" element={<Notice />} />
