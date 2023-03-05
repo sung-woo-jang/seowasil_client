@@ -4,7 +4,18 @@ import { instance } from '../index';
 interface loginApiResponseData {
     accessToken: string;
     refreshToken: string;
-    user: { id: number; name: string; phoneNumber: string; role: string };
+    user: {
+        id: number;
+        name: string;
+        phoneNumber: string;
+        role: string;
+        address: {
+            id: number;
+            address1: string;
+            address2: string;
+            address3: string;
+        };
+    };
 }
 
 export const login = async (formData: {

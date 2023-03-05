@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-interface isActiceProps {
+interface isActiveProps {
     isActive: boolean;
 }
 
@@ -36,7 +36,7 @@ export const Label = styled.div`
         transform: translateY(-50%);
         font-size: 1.5em;
 
-        ${({ isActive }: isActiceProps) =>
+        ${({ isActive }: isActiveProps) =>
             isActive &&
             css`
                 content: '-';
@@ -52,7 +52,7 @@ export const Content = styled.div`
     transition: 0.5s;
     overflow-y: auto;
     background: #f5f5f5;
-    ${({ isActive }: isActiceProps) =>
+    ${({ isActive }: isActiveProps) =>
         isActive &&
         css`
             height: max-content;

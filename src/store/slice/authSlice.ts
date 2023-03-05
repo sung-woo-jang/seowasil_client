@@ -15,6 +15,12 @@ interface userInfo {
     role: string;
     isLogin: boolean; // 로그인 여부
     isRegistCompleted: boolean; // 회원가입 성공 여부
+    address?: {
+        id: number;
+        address1: string;
+        address2: string;
+        address3: string;
+    } | null;
 }
 
 const initialState: userInfo = {
@@ -22,6 +28,7 @@ const initialState: userInfo = {
     name: '',
     phoneNumber: '',
     role: '',
+    address: null,
     isRegistCompleted: false,
     isLogin: false,
 };
@@ -69,6 +76,7 @@ export const { reducer: authReducer, actions } = createSlice({
                 state.name = userInfo.name;
                 state.phoneNumber = userInfo.phoneNumber;
                 state.role = userInfo.role;
+                state.address = userInfo.address;
             }
         },
         logOut(state) {
@@ -86,8 +94,11 @@ export const { reducer: authReducer, actions } = createSlice({
             state.isLogin = true;
             state.id = payload.id;
             state.name = payload.name;
-            state.phoneNumber = payload.phoneNumber;
+            state.phoneNumber = payload.phoneNumber
+                .replace(/-/g, '')
+                .replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
             state.role = payload.role;
+            state.address = payload.address;
         });
         // 회원가입 성공
         builder.addCase(asyncSignUpFetch.fulfilled, (state) => {

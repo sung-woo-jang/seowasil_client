@@ -1,4 +1,4 @@
-import { Check, XSymbol } from '../../icons';
+import { XSymbol } from '../../icons';
 
 function Cart() {
     return (
@@ -8,10 +8,7 @@ function Cart() {
                     <ul>
                         <li>
                             <div>
-                                <input type="checkbox" /* checked="useState사용" */ value="" />
-                                <span>
-                                    <Check />
-                                </span>
+                                <input type="checkbox" /* checked="useState사용" value=""*/ />
                             </div>
                             <a href="/productions/663177/selling">
                                 <div>

@@ -1,6 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { formInstance, instance } from '../index';
 
+interface postCreateProductData {
+    files: File[];
+    category_id: string;
+    description: string;
+    minAmount: string;
+    prevPrice: string;
+    sellPrice: string;
+    status: string;
+    title: string;
+}
+
 export const postCreateProduct = createAsyncThunk(
     'product/images',
     async ({
@@ -12,16 +23,7 @@ export const postCreateProduct = createAsyncThunk(
         sellPrice,
         status,
         title,
-    }: {
-        files: File[];
-        category_id: string;
-        description: string;
-        minAmount: string;
-        prevPrice: string;
-        sellPrice: string;
-        status: string;
-        title: string;
-    }) => {
+    }: postCreateProductData) => {
         const filesResponseData = await uploadProductImage(files);
         const response = await createProduct({
             productImage_id: `${filesResponseData.id}`,

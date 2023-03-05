@@ -1,50 +1,45 @@
+import { useParams } from 'react-router-dom';
+import { useProductData } from '../../hooks/useProductData';
+import { Flex } from '../UI/Flex';
+import { OrderSummaryWrapper } from './style';
+
 function OrderSummary() {
+    const params = useParams<{ product_id?: string }>();
+    const { title, category, sellPrice, productImageUrl } = useProductData(params.product_id);
+
     return (
-        <section>
+        <OrderSummaryWrapper>
             <section>
-                <div>주문상품</div>
-                <div>$건</div>
-                <div>
-                    <svg
-                        className="icon"
-                        fill="none"
-                        viewBox="0 0 16 10"
-                        preserveAspectRatio="xMidYMid meet"
-                        width="1em"
-                        height="1em"
-                        style={{ color: 'white', background: 'black' }}
-                    >
-                        <path
-                            fill="currentColor"
-                            d="M1.75.833L8 6.873l6.25-6.04L15.5 1.98 8 9.167.5 1.98 1.75.833z"
-                        ></path>
-                    </svg>
-                </div>
+                <Flex>
+                    <div>주문상품</div>
+                    <div>$건</div>
+                </Flex>
             </section>
             <div className="open expanded">
                 <section>
-                    <div>
+                    <Flex>
                         <picture>
                             <img
-                                src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/164023278275776992.jpg?w=72&amp;h=72&amp;c=c"
-                                alt="{상품명}"
+                                src={`${process.env.REACT_APP_AWS_URL}${productImageUrl.storedFileName[0]}`}
+                                alt={title}
+                                style={{ width: '80px', height: '80px' }}
                             />
                         </picture>
                         <div>
-                            <div>문그로우</div>
+                            <div>{category.name}</div>
                             <ul>
-                                <li>문그로우 n년생</li>
+                                <li>{title}</li>
                             </ul>
-                            <div>
-                                <span>00,000원</span>
+                            <Flex>
+                                <span>{sellPrice * 1}원</span>
                                 <div>{/* | 넣는 용도 */}</div>
                                 <span>00개</span>
-                            </div>
+                            </Flex>
                         </div>
-                    </div>
+                    </Flex>
                 </section>
             </div>
-        </section>
+        </OrderSummaryWrapper>
     );
 }
 

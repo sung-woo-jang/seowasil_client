@@ -48,12 +48,12 @@ function Content({ title, description, sellPrice, prevPrice, minAmount, category
                     </li>
                 </ul>
             </ProductDetail>
-            <Button bgColor={Colors.Black} color={Colors.White} border={true}>
-                <Link to={`/orders/${params.product_id}/checkout`} style={{ color: 'white' }}>
+            <Link to={`/orders/${params.product_id}/checkout`} style={{ color: 'white' }}>
+                <Button bgColor={Colors.Black} color={Colors.White} border={true}>
                     주문하기
-                </Link>
-            </Button>
-            <Button border={true}>장바구니</Button>
+                </Button>
+            </Link>
+            <Button border={true}>장바구니 추가</Button>
         </ProductContent>
     );
 }

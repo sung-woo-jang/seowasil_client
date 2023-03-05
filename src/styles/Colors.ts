@@ -1,5 +1,6 @@
 enum Colors {
     Blue = '#0055FB',
+    SkyBlue = '#35c5f0',
     LightRed = '#EE6762',
     Red = '#FB0000',
     DarkRed = '#AB342E',
@@ -9,12 +10,13 @@ enum Colors {
     Green2 = '#3BA55D',
     Black = '#222222',
     Gray1 = '#4F5660',
-    Gray2 = '#D3D7DB',
-    Gray3 = '#EBEDEF',
+    Gray2 = '#616061',
+    Gray3 = '#D3D7DB',
     Gray4 = '#E3E5E8',
-    Gray5 = '#F8F8F8',
-    Gray6 = '#F2F3F5',
-    Gray7 = '#616061',
+    Gray5 = '#EBEDEF',
+    Gray6 = '#EAEBEF',
+    Gray7 = '#F2F3F5',
+    Gray8 = '#F8F8F8',
     White = '#FFFFFF',
 }
 

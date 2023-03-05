@@ -199,7 +199,9 @@ export default function SignUp() {
                     />
                 </Control>
                 <Actions>
-                    <Button type="submit">회원가입</Button>
+                    <Button type="submit" border={true}>
+                        회원가입
+                    </Button>
                 </Actions>
             </form>
         </Section>
