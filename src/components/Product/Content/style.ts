@@ -3,20 +3,25 @@ import styled from 'styled-components';
 export const LastPrice = styled.p`
     color: gray;
     text-decoration: line-through;
+    font-weight: bold;
 `;
 
 export const NewPrice = styled.p`
     color: #f64749;
-    font-weight: 700;
+    font-weight: bold;
+    font-size: 24px;
 `;
 
 export const ProductPrice = styled.div`
+    display: flex;
+    justify-content: space-between;
     margin: 1rem 0;
     font-size: 1rem;
     font-weight: 700;
 
     & span {
         font-weight: 400;
+        color: #6b90dc;
     }
 `;
 
@@ -27,19 +32,27 @@ export const ProductContent = styled.div`
     }
 `;
 
-export const ProductTitle = styled.h2`
-    font-size: 2rem;
+export const ProductTitle = styled.h3`
     text-transform: capitalize;
     position: relative;
     font-weight: 700;
     color: #12263a;
     margin: 1rem 0;
+    font-size: 2rem;
+    border-bottom: 1px solid #000;
 
-    border-bottom: 3px solid black;
     width: max-content;
 `;
 
 export const ProductDetail = styled.div`
+    & > span {
+        display: flex;
+        font-weight: 800;
+        & h2 {
+            font-weight: normal;
+        }
+    }
+
     & h2 {
         text-transform: capitalize;
         color: #12263a;
@@ -64,8 +77,7 @@ export const ProductDetail = styled.div`
             background-size: 18px;
             padding-left: 1.7rem;
             margin: 0.4rem 0;
-            font-weight: 600;
-            opacity: 0.9;
+            font-weight: 800;
 
             & span {
                 font-weight: 400;

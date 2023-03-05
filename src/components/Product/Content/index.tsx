@@ -1,3 +1,6 @@
+import { Link, useParams } from 'react-router-dom';
+import Colors from '../../../styles/Colors';
+import { Button } from '../../UI/Button';
 import {
     LastPrice,
     NewPrice,
@@ -17,22 +20,20 @@ interface ContentProps {
 }
 
 function Content({ title, description, sellPrice, prevPrice, minAmount, category }: ContentProps) {
+    const params = useParams();
     return (
         <ProductContent>
             <ProductTitle>{title}</ProductTitle>
             <ProductPrice>
-                <LastPrice>{prevPrice}원</LastPrice>
-                <NewPrice>
-                    {sellPrice}원
-                    <span>
-                        (-
-                        {(((prevPrice - sellPrice) / prevPrice) * 100).toFixed()}% 할인)
-                    </span>
-                </NewPrice>
+                <span>{(((prevPrice - sellPrice) / prevPrice) * 100).toFixed()}%</span>
+                <div>
+                    <LastPrice>{prevPrice}원</LastPrice>
+                    <NewPrice>{sellPrice}원</NewPrice>
+                </div>
             </ProductPrice>
             <ProductDetail>
                 <span>
-                    나무 종류: <h2>{category.name}</h2>
+                    카테고리:&nbsp;<h2>{category.name}</h2>
                 </span>
                 <p>{description}</p>
                 <ul>
@@ -47,6 +48,12 @@ function Content({ title, description, sellPrice, prevPrice, minAmount, category
                     </li>
                 </ul>
             </ProductDetail>
+            <Button bgColor={Colors.Black} color={Colors.White} border={true}>
+                <Link to={`/orders/${params.product_id}/checkout`} style={{ color: 'white' }}>
+                    주문하기
+                </Link>
+            </Button>
+            <Button border={true}>장바구니</Button>
         </ProductContent>
     );
 }

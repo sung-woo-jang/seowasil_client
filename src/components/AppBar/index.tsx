@@ -28,7 +28,11 @@ const AppBar = () => {
                     )}
                 </Button>
                 <Button>
-                    <Link to="/signup">회원가입</Link>
+                    {isLogin ? (
+                        <Link to="/users">마이페이지</Link>
+                    ) : (
+                        <Link to="/signup">회원가입</Link>
+                    )}
                 </Button>
                 {role === 'ADMIN' ? (
                     <Button>
