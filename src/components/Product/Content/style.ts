@@ -1,47 +1,49 @@
 import styled from 'styled-components';
+import Colors from '../../../styles/Colors';
 
-export const LastPrice = styled.p`
-    color: gray;
-    text-decoration: line-through;
-    font-weight: bold;
+export const ProductContent = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(max-content, min-content);
+    row-gap: 15px;
 `;
 
-export const NewPrice = styled.p`
-    color: #f64749;
-    font-weight: bold;
-    font-size: 24px;
+export const ProductTitle = styled.h3`
+    text-transform: capitalize;
+    position: relative;
+    font-weight: 400;
+    color: #12263a;
+    margin: 1rem 0;
+    font-size: 2rem;
+
+    width: max-content;
 `;
 
 export const ProductPrice = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    flex-direction: column;
     margin: 1rem 0;
     font-size: 1rem;
     font-weight: 700;
 
     & span {
         font-weight: 400;
-        color: #6b90dc;
+        color: ${Colors.Black};
     }
 `;
 
-export const ProductContent = styled.div`
-    padding: 2rem 1rem;
-    @media screen and (min-width: 992px) {
-        padding-top: 0;
-    }
+export const PrevPrice = styled.p`
+    color: ${Colors.Gray3};
+    text-decoration: line-through;
+    font-weight: bold;
 `;
 
-export const ProductTitle = styled.h3`
-    text-transform: capitalize;
-    position: relative;
-    font-weight: 700;
-    color: #12263a;
-    margin: 1rem 0;
-    font-size: 2rem;
-    border-bottom: 1px solid #000;
-
-    width: max-content;
+export const SellPrice = styled.div`
+    color: ${Colors.Black};
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1.3;
 `;
 
 export const ProductDetail = styled.div`

@@ -1,33 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Album from '../\bAlbum';
-import { useProductData } from '../../../hooks/useProductData';
+import { getProductDetail } from '../../../utils/api/Product/getProductDetail';
 import Content from '../Content';
 import { Card, CardWrapper } from './style';
 
 function MainProduct() {
     const params = useParams<{ product_id?: string }>();
-    const { title, description, category, minAmount, prevPrice, sellPrice, productImageUrl } =
-        useProductData(params.product_id);
+    const [productData, setProductData] = useState<ProductData>({
+        id: 0,
+        title: '',
+        description: '',
+        sellPrice: 0,
+        prevPrice: 0,
+        minAmount: 0,
+        category: { name: '' },
+        productImageUrl: { storedFileName: [''] },
+    });
 
     const [hoverImage, setHoverImage] = useState<string>('');
+    useEffect(() => {
+        (async () => {
+            if (params.product_id) {
+                const data = await getProductDetail(params.product_id);
+                setProductData(data);
+                setHoverImage(data.productImageUrl.storedFileName[0]);
+            }
+        })();
+    }, [params]);
 
     return (
         <CardWrapper>
             <Card>
                 <Album
                     hoverImage={hoverImage}
-                    productImageUrl={productImageUrl}
+                    productImageUrl={productData.productImageUrl}
                     setHoverImage={setHoverImage}
                 />
-                <Content
-                    title={title}
-                    description={description}
-                    sellPrice={sellPrice}
-                    prevPrice={prevPrice}
-                    minAmount={minAmount}
-                    category={category}
-                />
+                <Content productData={productData} />
             </Card>
         </CardWrapper>
     );

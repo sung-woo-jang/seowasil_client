@@ -1,17 +1,35 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useProductData } from '../../hooks/useProductData';
+import { getProductDetail } from '../../utils/api/Product/getProductDetail';
+import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
 import { Flex } from '../UI/Flex';
 import { OrderSummaryWrapper } from './style';
 
 function OrderSummary() {
     const params = useParams<{ product_id?: string }>();
-    const { title, category, sellPrice, productImageUrl, minAmount } = useProductData(
-        params.product_id,
-    );
+    const [{ title, category, sellPrice, productImageUrl, minAmount }, setProductData] =
+        useState<ProductData>({
+            id: 0,
+            title: '',
+            description: '',
+            sellPrice: 0,
+            prevPrice: 0,
+            minAmount: 0,
+            category: { name: '' },
+            productImageUrl: { storedFileName: [''] },
+        });
+
+    useEffect(() => {
+        (async () => {
+            if (params.product_id) {
+                const data = await getProductDetail(params.product_id);
+                setProductData(data);
+            }
+        })();
+    }, [params.product_id]);
 
     // dispatch를 사용해서 minAmount 변경하기
-    const [amount, setAmount] = useState<number | string>();
+    const [amount, setAmount] = useState<number | string>(0);
     useEffect(() => {
         setAmount(minAmount);
     }, [minAmount]);
@@ -53,9 +71,7 @@ function OrderSummary() {
                                 <li>{title}</li>
                             </ul>
                             <Flex>
-                                <span>{sellPrice * 1}원</span>
-                                <div>{/* | 넣는 용도 */}</div>
-                                <span>00개</span>
+                                <span>{numberWithCommas(sellPrice * Number(amount))}원</span>
                             </Flex>
                         </div>
                     </Flex>

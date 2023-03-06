@@ -11,7 +11,7 @@ enum Colors {
     Black = '#222222',
     Gray1 = '#4F5660',
     Gray2 = '#616061',
-    Gray3 = '#D3D7DB',
+    Gray3 = '#BDBDBD',
     Gray4 = '#E3E5E8',
     Gray5 = '#EBEDEF',
     Gray6 = '#EAEBEF',

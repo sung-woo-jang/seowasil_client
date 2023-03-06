@@ -4,8 +4,8 @@ interface getProductResponseData {
     id: number;
     title: string;
     description: string;
-    sellPrice: number;
     prevPrice: number;
+    sellPrice: number;
     minAmount: number;
     category: { name: string };
     productImageUrl: { storedFileName: string[] };

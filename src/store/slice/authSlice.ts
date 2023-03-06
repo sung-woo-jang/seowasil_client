@@ -15,7 +15,7 @@ interface userInfo {
     role: string;
     isLogin: boolean; // 로그인 여부
     isRegistCompleted: boolean; // 회원가입 성공 여부
-    address?: {
+    address: {
         id: number;
         address1: string;
         address2: string;
@@ -44,17 +44,6 @@ export const asyncLoginFetch = createAsyncThunk(
         return user;
     },
 );
-
-export interface signupFormData {
-    account: string;
-    password: string;
-    name: string;
-    phoneNumber: string;
-    email: string;
-    address1: string;
-    address2: string;
-    address3: string;
-}
 
 export const asyncSignUpFetch = createAsyncThunk(
     'auth/signup',

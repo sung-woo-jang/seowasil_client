@@ -2,7 +2,7 @@ import { getCartByUserAsyncThunk } from './../../utils/api/Cart/getCartByUser';
 import { createSlice } from '@reduxjs/toolkit';
 
 // 상품등록 관련 slice
-export interface CartsState {
+interface CartsState {
     id: number; // cart Id
     product_id: number; // 상품 id
     amount: number; // 구매수량
