@@ -1,5 +1,7 @@
+import { Fragment } from 'react';
+
 const Introduction = () => {
-    return <></>;
+    return <Fragment></Fragment>;
 };
 
 export default Introduction;

@@ -4,6 +4,7 @@ import {
     RemoveRedEyeOutlined,
     ShoppingCartOutlined,
 } from '@mui/icons-material';
+import { Fragment } from 'react';
 import {
     Card,
     CardBox,
@@ -124,7 +125,7 @@ const customers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const DashBoard = () => {
     return (
-        <>
+        <Fragment>
             <CardBox>
                 {cardInfo.map(({ id, cardName, icon, number }) => (
                     <Card key={id}>
@@ -190,7 +191,7 @@ const DashBoard = () => {
                     </table>
                 </RecentCustomers>
             </Details>
-        </>
+        </Fragment>
     );
 };
 

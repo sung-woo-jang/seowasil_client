@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Button';
 import { TextArea } from '../../../components/UI/TextArea';
@@ -33,7 +33,7 @@ function CustomerCenterWrite() {
     ];
 
     return (
-        <>
+        <Fragment>
             <h1>1:1 친절 상담</h1>
             <form onSubmit={formSubmitHandler}>
                 <Section>
@@ -69,7 +69,7 @@ function CustomerCenterWrite() {
                     </Actions>
                 </Section>
             </form>
-        </>
+        </Fragment>
     );
 }
 

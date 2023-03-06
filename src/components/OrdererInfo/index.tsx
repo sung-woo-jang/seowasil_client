@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Flex } from '../UI/Flex';
@@ -34,9 +34,9 @@ function OrdererInfo() {
                         <div>주문자</div>
                         <div>
                             {toggle ? null : (
-                                <>
+                                <Fragment>
                                     {name} <span>{phoneNumber}</span>
-                                </>
+                                </Fragment>
                             )}
                             <span>&nbsp;&nbsp;&nbsp;{toggle ? '-' : '+'}</span>
                         </div>

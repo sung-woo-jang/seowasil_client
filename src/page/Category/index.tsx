@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import { Button } from '../../components/UI/Button';
@@ -35,7 +35,7 @@ const Category = () => {
     // 해당 id에 맞는 컨텐츠들을 가져와서 뿌려준다.
 
     return (
-        <>
+        <Fragment>
             <Navbar />
             <CategoryWrapper>
                 {products[0]?.product.map(({ id, title, description, productImageUrl }) => (
@@ -74,7 +74,7 @@ const Category = () => {
                     </Grid>
                 ))}
             </CategoryWrapper>
-        </>
+        </Fragment>
     );
 };
 
