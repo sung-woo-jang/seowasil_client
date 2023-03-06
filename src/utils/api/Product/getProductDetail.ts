@@ -1,6 +1,6 @@
 import { instance } from '../index';
 
-interface productData {
+interface getProductResponseData {
     id: number;
     title: string;
     description: string;
@@ -11,7 +11,7 @@ interface productData {
     productImageUrl: { storedFileName: string[] };
 }
 
-export const getProductDetail = async (id: string): Promise<productData> => {
+export const getProductDetail = async (id: string): Promise<getProductResponseData> => {
     const { data } = await instance.get(`products/${id}`);
     return data.data;
 };
