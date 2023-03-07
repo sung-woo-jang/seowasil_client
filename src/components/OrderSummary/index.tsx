@@ -29,13 +29,13 @@ function OrderSummary() {
     }, [params.product_id]);
 
     // dispatch를 사용해서 minAmount 변경하기
-    const [amount, setAmount] = useState<number | string>(0);
+    const [amount, setSelectedAmount] = useState<number | string>(0);
     useEffect(() => {
-        setAmount(minAmount);
+        setSelectedAmount(minAmount);
     }, [minAmount]);
 
     const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(e.target.value);
+        setSelectedAmount(e.target.value);
     };
     return (
         <OrderSummaryWrapper>

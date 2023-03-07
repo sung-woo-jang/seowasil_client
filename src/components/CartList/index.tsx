@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { XSymbol } from '../../icons';
 import { AppDispatch } from '../../store';
-import { CartsState, setAmount } from '../../store/slice/cartSlice';
+import { CartsState, setSelectedAmount } from '../../store/slice/cartSlice';
 import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
 import { Button } from '../UI/Button';
 import { Flex } from '../UI/Flex';
@@ -18,7 +18,7 @@ function CartList({ carts }: CartListProps) {
 
     const amountChangehandler = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
         const value = event.target.value;
-        dispatch(setAmount({ value, index }));
+        dispatch(setSelectedAmount({ value, index }));
     };
 
     return (

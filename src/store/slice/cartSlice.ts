@@ -32,7 +32,7 @@ export const { reducer: cartReducer, actions } = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        setAmount: (state, { payload }) => {
+        setSelectedAmount: (state, { payload }) => {
             const { value, index } = payload;
             state[index].amount = +value;
         },
@@ -42,6 +42,6 @@ export const { reducer: cartReducer, actions } = createSlice({
     },
 });
 
-export const { setAmount } = actions;
+export const { setSelectedAmount } = actions;
 
 export default cartReducer;

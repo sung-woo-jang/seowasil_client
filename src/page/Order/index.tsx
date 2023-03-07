@@ -6,8 +6,17 @@ import Colors from '../../styles/Colors';
 import { OrderWrapper } from './style';
 
 function Order() {
-    /*  
+    /* 초기 세팅
+    Todo
+    1. 주문 관련 정보 가져오기
+    2. 주문 정보 변경하는 dispatch들 생성
+    3. 
+*/
+    /*  주문 넣기
     Todo 1
+        데이터 보내기 전에 유효성 검사하기
+
+    Todo 2
         api/orders에 데이터 보내기
         address1: 우편번호
         address2: 우편번호
@@ -15,7 +24,7 @@ function Order() {
         delivery_request: 배송 요청사항
         user_id: 사용자 id
 
-    Todo 2
+    Todo 3
         api/order-details에 데이터 보내기
         amount: 주문 수량
         price: 가격 (주문 수량 * 제품 가격)

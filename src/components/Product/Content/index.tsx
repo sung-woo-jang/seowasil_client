@@ -1,5 +1,8 @@
 import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AppDispatch, RootState } from '../../../store';
+import { setSelectedOrder } from '../../../store/slice/orderSlice';
 import Colors from '../../../styles/Colors';
 import { numberWithCommas } from '../../../utils/fomatter/numberWithCommas';
 import { Button } from '../../UI/Button';
@@ -20,15 +23,25 @@ interface ContentProps {
 function Content({ productData }: ContentProps) {
     const params = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+    // const {a} = useSelector((state:RootState)=>state.auth.address)
+
     const { category, description, minAmount, prevPrice, sellPrice, title } = productData;
 
     const amountRef = useRef<HTMLInputElement>(null);
 
     const navigateToOrderPageHandler = () => {
-        if (Number(amountRef.current?.value) >= minAmount)
+        if (Number(amountRef.current?.value) >= minAmount) {
+            // dispatch(setSelectedOrder());
             navigate(`/orders/${params.product_id}/checkout`);
-        else alert(`최소 ${minAmount}개부터 구매가 가능합니다.`);
+        } else alert(`최소 ${minAmount}개부터 구매가 가능합니다.`);
     };
+    /* 
+    Todo
+        1. 주문에 필요한 정보 관리하는 dispatch 생성
+        2. dispatch함수에 정보 입력
+        3. 정보 입력 후 상품페이지로 이동
+    */
 
     return (
         <ProductContent>

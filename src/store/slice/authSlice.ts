@@ -8,6 +8,13 @@ import {
     setUserInfo,
 } from '../../utils/auth/useInfo';
 
+interface userAddress {
+    id: number;
+    address1: string;
+    address2: string;
+    address3: string;
+}
+
 interface userInfo {
     id: number;
     name: string;
@@ -15,12 +22,7 @@ interface userInfo {
     role: string;
     isLogin: boolean; // 로그인 여부
     isRegistCompleted: boolean; // 회원가입 성공 여부
-    address: {
-        id: number;
-        address1: string;
-        address2: string;
-        address3: string;
-    } | null;
+    address: userAddress;
 }
 
 const initialState: userInfo = {
@@ -28,7 +30,12 @@ const initialState: userInfo = {
     name: '',
     phoneNumber: '',
     role: '',
-    address: null,
+    address: {
+        id: 0,
+        address1: '',
+        address2: '',
+        address3: '',
+    },
     isRegistCompleted: false,
     isLogin: false,
 };
