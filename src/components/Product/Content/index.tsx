@@ -1,12 +1,9 @@
 import { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../../../store';
-import { setSelectedOrder } from '../../../store/slice/orderSlice';
 import Colors from '../../../styles/Colors';
 import { numberWithCommas } from '../../../utils/fomatter/numberWithCommas';
 import { Button } from '../../UI/Button';
-import { Flex } from '../../UI/Flex';
+import { StartFlex } from '../../UI/Flex';
 import {
     PrevPrice,
     SellPrice,
@@ -23,8 +20,6 @@ interface ContentProps {
 function Content({ productData }: ContentProps) {
     const params = useParams();
     const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();
-    // const {a} = useSelector((state:RootState)=>state.auth.address)
 
     const { category, description, minAmount, prevPrice, sellPrice, title } = productData;
 
@@ -32,7 +27,6 @@ function Content({ productData }: ContentProps) {
 
     const navigateToOrderPageHandler = () => {
         if (Number(amountRef.current?.value) >= minAmount) {
-            // dispatch(setSelectedOrder());
             navigate(`/orders/${params.product_id}/checkout`);
         } else alert(`최소 ${minAmount}개부터 구매가 가능합니다.`);
     };
@@ -47,12 +41,12 @@ function Content({ productData }: ContentProps) {
         <ProductContent>
             <ProductTitle>{title}</ProductTitle>
             <ProductPrice>
-                <Flex style={{ flexDirection: 'row', justifyContent: 'start' }}>
+                <StartFlex style={{ flexDirection: 'row' }}>
                     <span style={{ color: Colors.Gray1 }}>
                         {(((prevPrice - sellPrice) / prevPrice) * 100).toFixed()}%
                     </span>
                     <PrevPrice>{prevPrice}원</PrevPrice>
-                </Flex>
+                </StartFlex>
                 <SellPrice>
                     {numberWithCommas(sellPrice)}
                     <span> 원</span>

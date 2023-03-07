@@ -6,7 +6,7 @@ import { AppDispatch } from '../../store';
 import { CartsState, setSelectedAmount } from '../../store/slice/cartSlice';
 import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
 import { Button } from '../UI/Button';
-import { Flex } from '../UI/Flex';
+import { BetweenFlex } from '../UI/Flex';
 import { CartsList } from './style';
 
 interface CartListProps {
@@ -29,9 +29,9 @@ function CartList({ carts }: CartListProps) {
                     index,
                 ) => (
                     <CartsList key={id}>
-                        <Flex style={{ padding: '10px' }}>
+                        <BetweenFlex style={{ padding: '10px' }}>
                             <Link to={`product/${product_id}`}>
-                                <Flex>
+                                <BetweenFlex>
                                     <div>
                                         <img
                                             alt={title}
@@ -43,16 +43,16 @@ function CartList({ carts }: CartListProps) {
                                         <h1>{category}</h1>
                                         <p>배송비 40,000원 착불&nbsp;|&nbsp;업체직접배송</p>
                                     </div>
-                                </Flex>
+                                </BetweenFlex>
                             </Link>
                             <Button type="button" aria-label="삭제">
                                 {/* Todo delete api 연결 */}
                                 <XSymbol />
                             </Button>
-                        </Flex>
+                        </BetweenFlex>
                         <div>
                             <h2>{title}</h2>
-                            <Flex>
+                            <BetweenFlex>
                                 <div>
                                     <input
                                         type="number"
@@ -63,7 +63,7 @@ function CartList({ carts }: CartListProps) {
                                 <p>
                                     <span>{numberWithCommas(sell_price * amount)}</span>원
                                 </p>
-                            </Flex>
+                            </BetweenFlex>
                         </div>
 
                         <footer>

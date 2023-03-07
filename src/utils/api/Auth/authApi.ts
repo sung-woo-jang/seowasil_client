@@ -8,12 +8,6 @@ interface loginApiResponseData {
         name: string;
         phoneNumber: string;
         role: string;
-        address: {
-            id: number;
-            address1: string;
-            address2: string;
-            address3: string;
-        };
     };
 }
 

@@ -1,73 +1,75 @@
+import { KeyboardArrowUp } from '@mui/icons-material';
 import { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { Flex } from '../UI/Flex';
-import { Content, ExtendBox, Label, OrdererInfoWrapper } from './style';
+import Colors from '../../styles/Colors';
+import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
+import AccordionBody from '../Accordion/AccordionBody';
+import AccordionHeader from '../Accordion/AccordionHeader';
+import { BetweenFlex, StartFlex } from '../UI/Flex';
+import { FontStyle } from '../UI/FontStyle';
+import { RotateIcon } from '../UI/RotateIcon';
+import { StyledInput } from '../UI/StyledInput';
+import { Label, OrdererInfoWrapper } from './style';
 
 function OrdererInfo() {
     const userInfo = useSelector((state: RootState) => state.auth);
     const [name, setName] = useState(userInfo.name);
-    const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber);
+    const [phoneNumber, setPhoneNumber] = useState(formatPhoneNumber(userInfo.phoneNumber));
     const [toggle, setToggle] = useState(false);
+    const toggleHandler = () => {
+        setToggle(!toggle);
+    };
 
     const userNameChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
 
     const phoneNumberChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const formattedPhoneNumber = event.target.value
-            .replace(/-/g, '')
-            .replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
-
-        setPhoneNumber(formattedPhoneNumber);
-    };
-
-    const extendContentToggleHandler = () => {
-        setToggle(!toggle);
+        const phoneNumber = formatPhoneNumber(event.target.value);
+        setPhoneNumber(phoneNumber);
     };
 
     return (
         <OrdererInfoWrapper>
-            <ExtendBox className="open expanded" onClick={extendContentToggleHandler}>
+            <AccordionHeader onClick={toggleHandler}>
                 <Label>
-                    <Flex>
-                        <div>주문자</div>
-                        <div>
+                    <BetweenFlex>
+                        <FontStyle>주문자</FontStyle>
+                        <StartFlex>
                             {toggle ? null : (
                                 <Fragment>
-                                    {name} <span>{phoneNumber}</span>
+                                    {name}&nbsp;&nbsp;&nbsp;<span>{phoneNumber}</span>
                                 </Fragment>
                             )}
-                            <span>&nbsp;&nbsp;&nbsp;{toggle ? '-' : '+'}</span>
-                        </div>
-                    </Flex>
+                            <RotateIcon isActive={toggle}>
+                                &nbsp;&nbsp; <KeyboardArrowUp />
+                            </RotateIcon>
+                        </StartFlex>
+                    </BetweenFlex>
                 </Label>
-            </ExtendBox>
-            <Content isActive={toggle}>
-                <Flex>
-                    <div>이름</div>
-                    <div>
-                        <input
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={userNameChangehandler}
-                        />
-                    </div>
-                </Flex>
-                <Flex>
-                    <div>휴대전화</div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="입력해주세요"
-                            maxLength={13}
-                            value={phoneNumber}
-                            onChange={phoneNumberChangehandler}
-                        />
-                    </div>
-                </Flex>
-            </Content>
+            </AccordionHeader>
+            <AccordionBody isActive={toggle}>
+                <BetweenFlex>
+                    <div style={{ width: '100px', color: Colors.Gray2 }}>이름</div>
+                    <StyledInput
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={userNameChangehandler}
+                    />
+                </BetweenFlex>
+                <BetweenFlex>
+                    <div style={{ width: '100px', color: Colors.Gray2 }}>휴대전화</div>
+                    <StyledInput
+                        type="text"
+                        placeholder="입력해주세요"
+                        maxLength={13}
+                        value={phoneNumber}
+                        onChange={phoneNumberChangehandler}
+                    />
+                </BetweenFlex>
+            </AccordionBody>
         </OrdererInfoWrapper>
     );
 }

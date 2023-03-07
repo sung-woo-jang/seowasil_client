@@ -7,7 +7,7 @@ export const OrderWrapper = styled.main`
     grid-gap: 10px;
     background: ${Colors.Gray6};
     & > section {
-        padding: 20px 0;
+        padding: 5px 20px;
         background: ${Colors.White};
     }
 `;

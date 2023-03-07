@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// 상품등록 관련 slice
 interface OrderState {
     address1: string; //  우편번호
     address2: string; //  주소

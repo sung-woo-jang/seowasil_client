@@ -8,13 +8,6 @@ import {
     setUserInfo,
 } from '../../utils/auth/useInfo';
 
-interface userAddress {
-    id: number;
-    address1: string;
-    address2: string;
-    address3: string;
-}
-
 interface userInfo {
     id: number;
     name: string;
@@ -22,7 +15,6 @@ interface userInfo {
     role: string;
     isLogin: boolean; // 로그인 여부
     isRegistCompleted: boolean; // 회원가입 성공 여부
-    address: userAddress;
 }
 
 const initialState: userInfo = {
@@ -30,12 +22,6 @@ const initialState: userInfo = {
     name: '',
     phoneNumber: '',
     role: '',
-    address: {
-        id: 0,
-        address1: '',
-        address2: '',
-        address3: '',
-    },
     isRegistCompleted: false,
     isLogin: false,
 };
@@ -68,20 +54,24 @@ export const { reducer: authReducer, actions } = createSlice({
             const userInfo = getUserInfo();
             if (userInfo) {
                 state.isLogin = true;
+                state.isRegistCompleted = false;
                 state.id = userInfo.id;
                 state.name = userInfo.name;
                 state.phoneNumber = userInfo.phoneNumber;
                 state.role = userInfo.role;
-                state.address = userInfo.address;
             }
         },
         logOut(state) {
             removeUserData();
             state.isLogin = false;
+            state.isRegistCompleted = false;
             state.id = 0;
             state.name = '';
             state.phoneNumber = '';
             state.role = '';
+        },
+        setSelectedIsRegistCompleted(state) {
+            state.isRegistCompleted = false;
         },
     },
     extraReducers: (builder) => {
@@ -94,15 +84,15 @@ export const { reducer: authReducer, actions } = createSlice({
                 .replace(/-/g, '')
                 .replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
             state.role = payload.role;
-            state.address = payload.address;
         });
         // 회원가입 성공
-        builder.addCase(asyncSignUpFetch.fulfilled, (state) => {
+        builder.addCase(asyncSignUpFetch.fulfilled, (state, { payload }) => {
+            state.id = payload.id;
             state.isRegistCompleted = true;
         });
     },
 });
 
-export const { loginCheck, logOut } = actions;
+export const { loginCheck, logOut, setSelectedIsRegistCompleted } = actions;
 
 export default authReducer;

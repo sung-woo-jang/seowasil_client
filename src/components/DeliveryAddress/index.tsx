@@ -1,39 +1,61 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { DeliveryAddressWrapper } from './style';
+import Colors from '../../styles/Colors';
+import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
+import { Button } from '../UI/Button';
+import { BetweenFlex, StartFlex } from '../UI/Flex';
+import { FontStyle } from '../UI/FontStyle';
+import { StyledTextArea } from '../UI/StyledInput';
+import { AddressDetail, DefaultDelivery, DeliveryAddressWrapper } from './style';
 
 function DeliveryAddress() {
-    const { name, address, phoneNumber } = useSelector((state: RootState) => state.auth);
+    const { name, phoneNumber } = useSelector((state: RootState) => state.auth);
     return (
         <DeliveryAddressWrapper>
-            <div style={{ display: 'flex' }}>
-                <div>배송지</div>
+            <BetweenFlex>
+                <FontStyle>배송지</FontStyle>
                 <div></div>
-                <button type="button">변경</button>
-            </div>
+                <Button
+                    color={Colors.SkyBlue}
+                    style={{ fontSize: '16px', lineHeight: '19px', fontWeight: 'bold' }}
+                >
+                    변경
+                </Button>
+            </BetweenFlex>
             <div>
-                <div>
-                    <div>{name}</div>
+                <StartFlex>
+                    <FontStyle>{name}</FontStyle>
+                    <DefaultDelivery>기본 배송지</DefaultDelivery>
+                </StartFlex>
+                <AddressDetail>
+                    {' '}
+                    address2: 인천 미추홀구 숙골로 43번길 59, address3: 402호{' '}
+                </AddressDetail>
+                <StartFlex>
+                    <FontStyle style={{ color: Colors.Gray2, fontWeight: '400', fontSize: '15px' }}>
+                        {name}
+                    </FontStyle>
+                    <FontStyle
+                        style={{
+                            color: Colors.Gray2,
+                            fontWeight: '400',
+                            fontSize: '15px',
+                            marginLeft: '8px',
+                        }}
+                    >
+                        {formatPhoneNumber(phoneNumber)}
+                    </FontStyle>
+                </StartFlex>
+                <div style={{ margin: '20px 0' }}>
+                    <input
+                        type="checkbox"
+                        id="save-default-address-input"
+                        name="isChangeDefaultAddress"
+                    />
+                    &nbsp;&nbsp;&nbsp;기본 배송지로 저장
                 </div>
                 <div>
-                    {address?.address2} {address?.address3}
-                </div>
-                <div>
-                    <div className="name">{name}</div>
-                    <div className="phone">{phoneNumber}</div>
-                </div>
-                <label htmlFor="save-default-address-input">
-                    <div>
-                        <input
-                            type="checkbox"
-                            id="save-default-address-input"
-                            name="isChangeDefaultAddress"
-                        />
-                    </div>
-                    기본 배송지로 저장
-                </label>
-                <div>
-                    <input type="text" placeholder="배송 요청사항을 입력해주세요" />
+                    <StyledTextArea placeholder="배송 요청사항을 입력해주세요" />
                 </div>
             </div>
         </DeliveryAddressWrapper>

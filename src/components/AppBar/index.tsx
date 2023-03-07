@@ -4,7 +4,7 @@ import { YouTubeIcon } from '../../icons';
 import { RootState } from '../../store';
 import { logOut } from '../../store/slice/authSlice';
 import { Button } from '../UI/Button';
-import { Flex } from '../UI/Flex';
+import { BetweenFlex } from '../UI/Flex';
 import { AppBarWrapper, Right, SNS } from './style';
 
 const AppBar = () => {
@@ -47,7 +47,7 @@ const AppBar = () => {
             </Right>
             <SNS>
                 <Button border={true}>
-                    <Flex>
+                    <BetweenFlex>
                         <YouTubeIcon />
                         <a
                             href="https://www.youtube.com/@user-sl1sq3rt7m"
@@ -55,10 +55,10 @@ const AppBar = () => {
                         >
                             유튜브
                         </a>
-                    </Flex>
+                    </BetweenFlex>
                 </Button>
                 <Button border={true}>
-                    <Flex>
+                    <BetweenFlex>
                         <img
                             src={`images/naverBlogLogo.png`}
                             alt=""
@@ -67,7 +67,7 @@ const AppBar = () => {
                         <a href="https://blog.naver.com/wntlsduf" style={{ color: '#000' }}>
                             블로그
                         </a>
-                    </Flex>
+                    </BetweenFlex>
                 </Button>
             </SNS>
         </AppBarWrapper>

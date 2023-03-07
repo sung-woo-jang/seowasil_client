@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Colors from '../../styles/Colors';
 import { getProductDetail } from '../../utils/api/Product/getProductDetail';
 import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
-import { Flex } from '../UI/Flex';
+import AccordionBody from '../Accordion/AccordionBody';
+import AccordionHeader from '../Accordion/AccordionHeader';
+import { BetweenFlex, StartFlex } from '../UI/Flex';
 import { OrderSummaryWrapper } from './style';
+import { KeyboardArrowUp } from '@mui/icons-material';
+import { RotateIcon } from '../UI/RotateIcon';
+import { FontStyle } from '../UI/FontStyle';
 
 function OrderSummary() {
     const params = useParams<{ product_id?: string }>();
@@ -34,49 +40,83 @@ function OrderSummary() {
         setSelectedAmount(minAmount);
     }, [minAmount]);
 
-    const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedAmount(e.target.value);
+    const [toggle, setToggle] = useState(false);
+    const toggleHandler = () => {
+        setToggle(!toggle);
     };
+
     return (
         <OrderSummaryWrapper>
-            <section>
-                <Flex>
+            <AccordionHeader onClick={toggleHandler}>
+                <BetweenFlex>
                     <div>주문상품</div>
-                    <div>
-                        <input
-                            type="number"
-                            name="amount"
-                            id="amount"
-                            placeholder="구매수량"
-                            value={amount}
-                            onChange={amountHandler}
-                        />{' '}
-                        개
-                    </div>
-                </Flex>
-            </section>
-            <div className="open expanded">
-                <section>
-                    <Flex>
+                    <RotateIcon isActive={toggle}>
+                        <KeyboardArrowUp />
+                    </RotateIcon>
+                </BetweenFlex>
+            </AccordionHeader>
+            <AccordionBody isActive={toggle}>
+                <section
+                    style={{
+                        border: `1px solid ${Colors.Gray3}`,
+                        padding: '10px',
+                        borderRadius: '5px',
+                    }}
+                >
+                    <StartFlex>
                         <picture>
                             <img
                                 src={`${process.env.REACT_APP_AWS_URL}${productImageUrl.storedFileName[0]}`}
                                 alt={title}
-                                style={{ width: '80px', height: '80px' }}
+                                style={{
+                                    width: '80px',
+                                    height: '80px',
+                                    margin: '5px  10px 5px 5px',
+                                }}
                             />
                         </picture>
                         <div>
-                            <div>{category.name}</div>
+                            <div style={{ marginBottom: '8px' }}>{category.name}</div>
                             <ul>
-                                <li>{title}</li>
+                                <li>
+                                    <FontStyle
+                                        style={{
+                                            color: Colors.Gray2,
+                                            fontWeight: '400',
+                                            fontSize: '15px',
+                                        }}
+                                    >
+                                        {title}
+                                    </FontStyle>
+                                </li>
                             </ul>
-                            <Flex>
-                                <span>{numberWithCommas(sellPrice * Number(amount))}원</span>
-                            </Flex>
+                            <StartFlex style={{ marginTop: '11px' }}>
+                                <FontStyle>
+                                    {numberWithCommas(sellPrice * Number(amount))}원
+                                </FontStyle>
+                                <FontStyle
+                                    style={{
+                                        color: Colors.Gray3,
+                                        fontWeight: '400',
+                                        fontSize: '15px',
+                                    }}
+                                >
+                                    &nbsp;|&nbsp;
+                                </FontStyle>
+                                <FontStyle
+                                    style={{
+                                        color: Colors.Gray2,
+                                        fontWeight: '400',
+                                        fontSize: '15px',
+                                    }}
+                                >
+                                    {amount}개
+                                </FontStyle>
+                            </StartFlex>
                         </div>
-                    </Flex>
+                    </StartFlex>
                 </section>
-            </div>
+            </AccordionBody>
         </OrderSummaryWrapper>
     );
 }

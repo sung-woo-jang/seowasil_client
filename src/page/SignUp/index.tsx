@@ -1,11 +1,11 @@
 import { Actions, Control, Section } from './style';
-import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
+// import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 import { useEffect, useState } from 'react';
 import { Button } from '../../components/UI/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
-import { asyncSignUpFetch } from '../../store/slice/authSlice';
+import { asyncSignUpFetch, setSelectedIsRegistCompleted } from '../../store/slice/authSlice';
 
 export default function SignUp() {
     const [userInfo, setUserInfo] = useState({
@@ -14,15 +14,18 @@ export default function SignUp() {
         name: '', // 이름
         phoneNumber: '', // 전화번호
         email: '', // 이메일
-        address1: '', // 우편번호
-        address2: '', // 주소
-        address3: '', // 상세주소
     });
 
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
-    const open = useDaumPostcodePopup();
+    /*
+    const [addressInfo, setAddressInfo] = useState({
+        address1: '', // 우편번호
+        address2: '', // 주소
+        address3: '', // 상세주소
+    });
+        const open = useDaumPostcodePopup();
 
     const handleComplete = (data: Address) => {
         let address2 = data.address;
@@ -37,20 +40,20 @@ export default function SignUp() {
             }
             address2 += extraAddress !== '' ? ` (${extraAddress})` : '';
         }
-        setUserInfo((prevState) => {
+        setAddressInfo((prevState) => {
             return { ...prevState, address1: data.zonecode, address2 };
         });
     };
 
-    const handleClick = () => {
+    const searchAddressHandler = () => {
         open({ onComplete: handleComplete });
-    };
+    }; */
 
     // 회원가입 관련 State
     const { isLogin, isRegistCompleted } = useSelector((state: RootState) => state.auth);
 
     const {
-        addressDetailInputHandler,
+        // addressDetailInputHandler,
         accountInputHandler,
         emailInputHandler,
         nameInputHandler,
@@ -91,12 +94,12 @@ export default function SignUp() {
             });
         },
 
-        // 상세주소
+        /* // 상세주소
         addressDetailInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => {
-            setUserInfo((prevState) => {
+            setAddressInfo((prevState) => {
                 return { ...prevState, address3: e.target.value };
             });
-        },
+        }, */
     };
 
     const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -104,12 +107,13 @@ export default function SignUp() {
         dispatch(asyncSignUpFetch(userInfo));
     };
 
-    // 로그인이 되어있으면 회원가입 페이지에서 나가라
+    // 로그인이 되어있거나 회원가입 완료 했으면 나가라
     useEffect(() => {
         if (isLogin || isRegistCompleted) {
+            dispatch(setSelectedIsRegistCompleted());
             navigate('/', { replace: true });
         }
-    }, [isLogin, isRegistCompleted, navigate]);
+    }, [isLogin, isRegistCompleted, navigate, dispatch]);
 
     return (
         <Section>
@@ -169,8 +173,8 @@ export default function SignUp() {
                         onChange={emailInputHandler}
                     />
                 </Control>
-                <Control>
-                    <button type="button" onClick={handleClick}>
+                {/*    <Control>
+                    <button type="button" onClick={searchAddressHandler}>
                         주소 검색하기
                     </button>
                 </Control>
@@ -181,12 +185,18 @@ export default function SignUp() {
                         id="addressZoneCode"
                         required
                         readOnly
-                        value={userInfo.address1}
+                        value={addressInfo.address1}
                     />
                 </Control>
                 <Control>
                     <label htmlFor="address">주소</label>
-                    <input type="text" id="address" required readOnly value={userInfo.address2} />
+                    <input
+                        type="text"
+                        id="address"
+                        required
+                        readOnly
+                        value={addressInfo.address2}
+                    />
                 </Control>
                 <Control>
                     <label htmlFor="addressDetail">상세주소</label>
@@ -195,9 +205,10 @@ export default function SignUp() {
                         id="addressDetail"
                         required
                         onChange={addressDetailInputHandler}
-                        value={userInfo.address3}
+                        value={addressInfo.address3}
                     />
                 </Control>
+                */}
                 <Actions>
                     <Button type="submit" border={true}>
                         회원가입
