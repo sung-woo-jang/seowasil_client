@@ -16,12 +16,12 @@ interface OrderState {
 const initialState: OrderState = {
     name: '',
     phoneNumber: '',
-    delivery_request: '',
-    address1: '',
-    address2: '',
-    address3: '',
-    amount: 0,
-    price: 0,
+    delivery_request: '', // 배송 요청사항
+    address1: '', // 우편번호
+    address2: '', // 주소
+    address3: '', // 상세 주소
+    amount: 0, // 주문 수량
+    price: 0, // 최종 결제액
     user_id: 0,
     product_id: 0,
 };
@@ -30,7 +30,13 @@ export const { reducer: orderReducer, actions } = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        setSelectedOrder: (_, { payload }) => payload,
+        setSelectedOrder: (state: any, { payload }) => {
+            for (const key in state) {
+                if (payload.hasOwnProperty(key)) {
+                    state[key] = payload[key];
+                }
+            }
+        },
         setSelectedAddress: (state, { payload }) => {
             state.address1 = payload.address1;
             state.address2 = payload.address2;

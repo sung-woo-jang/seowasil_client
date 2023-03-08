@@ -14,9 +14,9 @@ import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
 
 function OrderSummary() {
-    const params = useParams<{ product_id?: string }>();
-    const [{ title, category, sellPrice, productImageUrl, minAmount }, setProductData] =
-        useState<ProductData>({
+    const { product_id } = useParams<{ product_id?: string }>();
+    const [{ title, category, sellPrice, productImageUrl }, setProductData] = useState<ProductData>(
+        {
             id: 0,
             title: '',
             description: '',
@@ -25,22 +25,23 @@ function OrderSummary() {
             minAmount: 0,
             category: { name: '' },
             productImageUrl: { storedFileName: [''] },
-        });
+        },
+    );
 
     const { amount } = useSelector((state: RootState) => state.order);
 
     useEffect(() => {
         (async () => {
-            if (params.product_id) {
-                const data = await getProductDetail(params.product_id);
+            if (product_id) {
+                const data = await getProductDetail(product_id);
                 setProductData(data);
             }
         })();
-    }, [params.product_id]);
+    }, [product_id]);
 
     // dispatch를 사용해서 minAmount 변경하기
 
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
     const toggleHandler = () => {
         setToggle(!toggle);
     };

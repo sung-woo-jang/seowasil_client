@@ -6,16 +6,11 @@ import OrderSummary from '../../components/OrderSummary';
 import { Button } from '../../components/UI/Button';
 import Colors from '../../styles/Colors';
 import { OrderWrapper } from './style';
+import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Order() {
-    // const disaptch = useDispatch<AppDispatch>();
-
-    /* 초기 세팅
-    Todo
-    1. 주문 관련 정보 가져오기
-    2. 주문 정보 변경하는 dispatch들 생성
-    3. 
-*/
     const { price } = useSelector((state: RootState) => state.order);
     /*  주문 넣기
     Todo 1
@@ -36,6 +31,10 @@ function Order() {
         product_id: 상품번호
         order_id: 주문번호
     */
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (price === 0) navigate('/');
+    });
 
     return (
         <OrderWrapper>
@@ -65,7 +64,7 @@ function Order() {
                     textAlign: 'center',
                 }}
             >
-                {price}원 주문하기
+                {numberWithCommas(price)}원 주문하기
             </Button>
         </OrderWrapper>
     );

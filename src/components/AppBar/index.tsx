@@ -38,7 +38,11 @@ const AppBar = () => {
                     <Button>
                         <Link to="/admin">관리자 페이지</Link>
                     </Button>
-                ) : null}
+                ) : (
+                    <Button>
+                        <Link to={`/users/${1}`}>마이 페이지</Link>
+                    </Button>
+                )}
             </div>
             <Right>
                 <Link to="/introduction">농장소개</Link>
