@@ -1,4 +1,4 @@
-import UploadForm from '../../../components/UploadForm';
+import ProductImageUploadForm from '../../../components/UploadForm/ProductImageUploadForm';
 import ContentContainer from '../../../components/ContentContainer';
 import { WriteWrapper } from './style';
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,7 +52,7 @@ const Write = () => {
     return (
         <WriteWrapper>
             <form onSubmit={onSubmitHandler}>
-                <UploadForm onChangeFiles={setFiles} />
+                <ProductImageUploadForm onChangeFiles={setFiles} />
                 <ContentContainer />
                 <Button border={true} type="submit">
                     상품 등록

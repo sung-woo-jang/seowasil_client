@@ -45,7 +45,7 @@ function Content({ productData }: ContentProps) {
                     <span style={{ color: Colors.Gray1 }}>
                         {(((prevPrice - sellPrice) / prevPrice) * 100).toFixed()}%
                     </span>
-                    <PrevPrice>{prevPrice}원</PrevPrice>
+                    <PrevPrice>&nbsp;&nbsp;{prevPrice}원</PrevPrice>
                 </StartFlex>
                 <SellPrice>
                     {numberWithCommas(sellPrice)}

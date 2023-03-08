@@ -1,13 +1,13 @@
 import { UploadFile } from '@mui/icons-material';
 import { useRef, useState } from 'react';
-import ImageContainer from './ImageContainer';
+import ImageContainer from '../ImageContainer';
 import { Error, ImageDisplay, UploadButton, UploadFormWrapper, UploadLabel } from './style';
 
 interface UploadFormProps {
     onChangeFiles: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
-function UploadForm({ onChangeFiles }: UploadFormProps) {
+function ProductDetailImageUploadForm({ onChangeFiles }: UploadFormProps) {
     const [isActive, setIsActive] = useState(false);
     const [errorMessage, setErrorMessage] = useState(true);
     const [imageDataArray, setImageDataArray] = useState<any>([]);
@@ -107,4 +107,4 @@ function UploadForm({ onChangeFiles }: UploadFormProps) {
     );
 }
 
-export default UploadForm;
+export default ProductDetailImageUploadForm;
