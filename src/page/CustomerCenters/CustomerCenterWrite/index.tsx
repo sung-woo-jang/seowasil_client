@@ -1,7 +1,9 @@
-import { Fragment, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../components/UI/Button';
 import { TextArea } from '../../../components/UI/TextArea';
+import { RootState } from '../../../store';
 import { postCreateContact } from '../../../utils/api/Contact/postCreateContact';
 import { Actions, Control, Section } from './style';
 
@@ -12,6 +14,11 @@ function CustomerCenterWrite() {
     const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
     const navigate = useNavigate();
+
+    const { isLogin, name } = useSelector((state: RootState) => state.auth);
+    useEffect(() => {
+        if (isLogin && nameRef.current) nameRef.current.value = name;
+    }, [isLogin, name]);
 
     const formSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

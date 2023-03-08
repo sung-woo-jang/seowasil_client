@@ -1,5 +1,6 @@
 import { getCartByUserAsyncThunk } from './../../utils/api/Cart/getCartByUser';
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchCreateCartThunk } from '../../utils/api/Cart/postCreateCart';
 
 // 상품등록 관련 slice
 export interface CartsState {
@@ -38,7 +39,12 @@ export const { reducer: cartReducer, actions } = createSlice({
         },
     },
     extraReducers: (builder) => {
+        // 사용자별 장바구니 목록 가져오기
         builder.addCase(getCartByUserAsyncThunk.fulfilled, (_, { payload }) => payload);
+        // 사용자별 장바구니 등록 완료
+        builder.addCase(fetchCreateCartThunk.fulfilled, (state, { payload }) => {
+            alert('장바구니에 상품 추가가 완료되었습니다.');
+        });
     },
 });
 

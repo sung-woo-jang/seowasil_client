@@ -1,6 +1,9 @@
-import { useRef } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { AppDispatch, RootState } from '../../../store';
 import Colors from '../../../styles/Colors';
+import { fetchCreateCartThunk } from '../../../utils/api/Cart/postCreateCart';
 import { numberWithCommas } from '../../../utils/fomatter/numberWithCommas';
 import { Button } from '../../UI/Button';
 import { StartFlex } from '../../UI/Flex';
@@ -18,24 +21,31 @@ interface ContentProps {
 }
 
 function Content({ productData }: ContentProps) {
-    const params = useParams();
+    const { product_id } = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+    const { id } = useSelector((state: RootState) => state.auth);
 
     const { category, description, minAmount, prevPrice, sellPrice, title } = productData;
 
-    const amountRef = useRef<HTMLInputElement>(null);
+    const [amount, setAmount] = useState<number | string>(0);
+    const amountChangeHandler: inputOnChangeHandler = (e) => {
+        setAmount(e.target.value);
+    };
 
+    // 주문하기
     const navigateToOrderPageHandler = () => {
-        if (Number(amountRef.current?.value) >= minAmount) {
-            navigate(`/orders/${params.product_id}/checkout`);
+        if (amount >= minAmount) {
+            navigate(`/orders/${product_id}/checkout`);
         } else alert(`최소 ${minAmount}개부터 구매가 가능합니다.`);
     };
-    /* 
-    Todo
-        1. 주문에 필요한 정보 관리하는 dispatch 생성
-        2. dispatch함수에 정보 입력
-        3. 정보 입력 후 상품페이지로 이동
-    */
+
+    // 장바구니 추가
+    const addCartItemHandler = () => {
+        if (amount < minAmount) alert(`최소 ${minAmount}개부터 구매가 가능합니다.`);
+
+        if (product_id) dispatch(fetchCreateCartThunk({ amount, product_id, user_id: id }));
+    };
 
     return (
         <ProductContent>
@@ -70,7 +80,7 @@ function Content({ productData }: ContentProps) {
                 </ul>
             </ProductDetail>
             <div>
-                <input type="number" ref={amountRef} defaultValue={1} />
+                <input type="number" value={amount} onChange={amountChangeHandler} />
             </div>
             <div>
                 <Button
@@ -79,11 +89,11 @@ function Content({ productData }: ContentProps) {
                     border={true}
                     onClick={navigateToOrderPageHandler}
                 >
-                    {/* <Link to={`/orders/${params.product_id}/checkout`} style={{ color: 'white' }}> */}
                     주문하기
-                    {/* </Link> */}
                 </Button>
-                <Button border={true}>장바구니 추가</Button>
+                <Button border={true} onClick={addCartItemHandler}>
+                    장바구니 추가
+                </Button>
             </div>
         </ProductContent>
     );

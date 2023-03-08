@@ -1,1 +1,1 @@
-type inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
+type inputOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => void;
