@@ -37,7 +37,7 @@ function Content({ productData }: ContentProps) {
         setAmount(minAmount);
     }, [minAmount]);
 
-    const amountChangeHandler: inputOnChangeHandler = (e) => {
+    const amountChangeHandler: InputOnChangeHandler = (e) => {
         setAmount(e.target.value);
     };
 

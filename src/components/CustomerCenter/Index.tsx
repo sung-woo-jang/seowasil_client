@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { getContacts } from '../../utils/api/Contact/getContatcs';
 import { Button } from '../UI/Button';
 import { Link } from 'react-router-dom';
+import PasswordProtected from '../PasswordProtected';
 
 interface contactData {
     id: number;
@@ -36,6 +37,18 @@ function CustomerCenter() {
         })();
     }, []);
 
+    const [password, setPassword] = useState<string>('');
+    const passwordChangeHandler: InputOnChangeHandler = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const [toggle, setToggle] = useState(false);
+    const [contactId, setContactId] = useState(0);
+    const toggleHandler = (id: number) => {
+        setContactId(id);
+        setToggle(!toggle);
+    };
+
     return (
         <RecentOrders>
             <CardHeader>
@@ -44,25 +57,34 @@ function CustomerCenter() {
                     <Link to="/customer_center/write">글쓰기</Link>
                 </Button>
             </CardHeader>
-
-            <QuestionTable>
-                <QuestionTableTitle>
-                    <span>번호</span>
-                    <span>카테고리</span>
-                    <span>제목</span>
-                    <span>글쓴이</span>
-                </QuestionTableTitle>
-                <div>
+            {toggle ? (
+                <PasswordProtected
+                    contactId={contactId}
+                    password={password}
+                    passwordChangeHandler={passwordChangeHandler}
+                />
+            ) : (
+                <QuestionTable>
+                    <QuestionTableTitle>
+                        <span>번호</span>
+                        <span>카테고리</span>
+                        <span>제목</span>
+                        <span>글쓴이</span>
+                    </QuestionTableTitle>
                     {contacts.map(({ id, category, name, title }) => (
-                        <DetailList to={`/customer_center/${id}`} key={id}>
+                        <DetailList
+                            // to={`/customer_center/${id}`}
+                            key={id}
+                            onClick={() => toggleHandler(id)}
+                        >
                             <span>{id}</span>
                             <span>{category}</span>
                             <span>{title}</span>
                             <span>{name}</span>
                         </DetailList>
                     ))}
-                </div>
-            </QuestionTable>
+                </QuestionTable>
+            )}
         </RecentOrders>
     );
 }

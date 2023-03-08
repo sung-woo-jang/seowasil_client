@@ -1,16 +1,19 @@
 import { Button } from '../../../components/UI/Button';
+import { FontStyle } from '../../../components/UI/FontStyle';
 import { CustomerCenterDetailWrapper, GridItem } from './style';
 
 function CustomerCenterDetail() {
     return (
         <CustomerCenterDetailWrapper>
-            <GridItem isSingle={true}>상품 문의</GridItem>
+            <GridItem isSingle={true}>
+                <FontStyle>상품 문의</FontStyle>
+            </GridItem>
             <GridItem>
-                <div>제목</div>
+                <FontStyle>제목</FontStyle>
                 <div>ㅇㅇ관련 질문드립니다</div>
             </GridItem>
             <GridItem>
-                <div>작성자</div>
+                <FontStyle>작성자</FontStyle>
                 <div>장성우</div>
             </GridItem>
             <GridItem isSingle={true}>

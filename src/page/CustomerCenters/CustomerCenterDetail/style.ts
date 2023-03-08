@@ -18,9 +18,9 @@ export const GridItem = styled.div`
     padding: 15px;
     grid-template-columns: 100px 1fr;
     align-items: center;
-    font-family: 'Do Hyeon';
     line-height: 25px;
     font-size: 1.1rem;
+    font-weight: 400;
     border-bottom: 2px solid gray;
     ${({ isSingle }: ItemProps) =>
         isSingle &&

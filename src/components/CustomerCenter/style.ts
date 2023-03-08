@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const color = {
@@ -55,7 +54,7 @@ export const QuestionTableTitle = styled.div`
     padding: 10px 0;
 `;
 
-export const DetailList = styled(Link)`
+export const DetailList = styled.div`
     display: grid;
     grid-template-columns: 50px 1fr 3fr 100px;
     justify-items: center;
@@ -63,6 +62,7 @@ export const DetailList = styled(Link)`
     font-size: 15px;
     border-bottom: 1px solid #222;
     padding: 5px 0;
+    cursor: pointer;
     &:hover {
         background: #999;
     }
