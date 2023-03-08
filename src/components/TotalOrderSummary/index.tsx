@@ -8,59 +8,44 @@ interface TotalOrderSummaryProps {
 function TotalOrderSummary({ carts }: TotalOrderSummaryProps) {
     return (
         <div>
-            <div>
-                <dt>총 상품금액</dt>
-                <dd>
-                    <span>
-                        {/* prevPrice * amount */}
-                        {numberWithCommas(
-                            carts.reduce(
-                                (acc, { prev_price, amount }) => acc + prev_price * amount,
-                                0,
-                            ),
-                        )}
-                    </span>
-                    원
-                </dd>
-            </div>
-            <div>
-                <dt>총 배송비</dt>
-                <dd>
-                    + <span>0</span>원
-                </dd>
-            </div>
-            <div>
-                <dt>총 할인금액</dt>
-                <dd>
-                    -{' '}
-                    <span>
-                        {/* (prevPrice - sellPrice) * amount */}
-                        {numberWithCommas(
-                            carts.reduce(
-                                (acc, { prev_price, sell_price, amount }) =>
-                                    acc + (prev_price - sell_price) * amount,
-                                0,
-                            ),
-                        )}
-                    </span>
-                    원
-                </dd>
-            </div>
-            <div>
-                <dt>결제금액</dt>
-                <dd>
-                    <span>
-                        {/* sellPrice * amount */}
-                        {numberWithCommas(
-                            carts.reduce(
-                                (acc, { sell_price, amount }) => acc + sell_price * amount,
-                                0,
-                            ),
-                        )}
-                    </span>
-                    원
-                </dd>
-            </div>
+            <div>총 상품금액</div>
+            <span>
+                {/* prevPrice * amount */}
+                {numberWithCommas(
+                    carts.reduce(
+                        (acc, { prev_price, amount, is_selected }) =>
+                            is_selected ? acc + prev_price * amount : acc,
+                        0,
+                    ),
+                )}
+                원
+            </span>
+            <div>총 배송비</div>
+            <span>+ 0 원</span>
+            <div>총 할인금액</div>
+            <span>
+                -
+                {numberWithCommas(
+                    carts.reduce(
+                        (acc, { prev_price, sell_price, amount, is_selected }) =>
+                            is_selected ? acc + (prev_price - sell_price) * amount : acc,
+                        0,
+                    ),
+                )}
+                원
+            </span>
+            <div>결제금액</div>
+            <span>
+                {/* sellPrice * amount */}
+                {numberWithCommas(
+                    carts.reduce(
+                        (acc, { sell_price, amount, is_selected }) =>
+                            is_selected ? acc + sell_price * amount : acc,
+                        0,
+                    ),
+                )}
+                원
+            </span>
         </div>
     );
 }

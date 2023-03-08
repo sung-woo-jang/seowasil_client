@@ -1,6 +1,7 @@
 import { getCartByUserAsyncThunk } from './../../utils/api/Cart/getCartByUser';
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCreateCartThunk } from '../../utils/api/Cart/postCreateCart';
+import { fetchDeleteCartThunk } from '../../utils/api/Cart/deleteCart';
 
 // 상품등록 관련 slice
 export interface CartsState {
@@ -12,7 +13,7 @@ export interface CartsState {
     sell_price: number; // 판매 가격
     category: string; // 카테고리명
     stored_file_name: string[];
-    // total_price: number;
+    is_selected: boolean; // 구매 선택 여부
 }
 
 const initialState: CartsState[] = [
@@ -25,7 +26,7 @@ const initialState: CartsState[] = [
         sell_price: 0,
         category: '',
         stored_file_name: [''],
-        // total_price: 0,
+        is_selected: true,
     },
 ];
 
@@ -37,6 +38,9 @@ export const { reducer: cartReducer, actions } = createSlice({
             const { value, index } = payload;
             state[index].amount = +value;
         },
+        setIsSelected: (state, { payload }) => {
+            state[payload].is_selected = !state[payload].is_selected;
+        },
     },
     extraReducers: (builder) => {
         // 사용자별 장바구니 목록 가져오기
@@ -45,9 +49,15 @@ export const { reducer: cartReducer, actions } = createSlice({
         builder.addCase(fetchCreateCartThunk.fulfilled, (state, { payload }) => {
             alert('장바구니에 상품 추가가 완료되었습니다.');
         });
+        // 장바구니 목록 삭제
+        builder.addCase(fetchDeleteCartThunk.fulfilled, (state, { payload }) => {
+            if (payload.affected === 1) {
+                console.log('장바구니에 상품 삭제가 완료되었습니다.');
+            }
+        });
     },
 });
 
-export const { setSelectedAmount } = actions;
+export const { setSelectedAmount, setIsSelected } = actions;
 
 export default cartReducer;
