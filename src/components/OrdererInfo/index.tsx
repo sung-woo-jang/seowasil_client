@@ -1,7 +1,8 @@
 import { KeyboardArrowUp } from '@mui/icons-material';
 import { Fragment, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { setSelectedOrderName, setSelectedPhoneNumber } from '../../store/slice/orderSlice';
 import Colors from '../../styles/Colors';
 import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
 import AccordionBody from '../Accordion/AccordionBody';
@@ -14,6 +15,7 @@ import { Label, OrdererInfoWrapper } from './style';
 
 // 주문자 정보
 function OrdererInfo() {
+    const dispatch = useDispatch<AppDispatch>();
     const userInfo = useSelector((state: RootState) => state.auth);
     const [name, setName] = useState(userInfo.name);
     const [phoneNumber, setPhoneNumber] = useState(formatPhoneNumber(userInfo.phoneNumber));
@@ -24,11 +26,13 @@ function OrdererInfo() {
 
     const userNameChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
+        dispatch(setSelectedOrderName(event.target.value));
     };
 
     const phoneNumberChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const phoneNumber = formatPhoneNumber(event.target.value);
-        setPhoneNumber(phoneNumber);
+        const result = formatPhoneNumber(event.target.value);
+        setPhoneNumber(result);
+        dispatch(setSelectedPhoneNumber(result));
     };
 
     return (
@@ -40,7 +44,8 @@ function OrdererInfo() {
                         <StartFlex>
                             {toggle ? null : (
                                 <Fragment>
-                                    {name}&nbsp;&nbsp;&nbsp;<span>{phoneNumber}</span>
+                                    {name}&nbsp;&nbsp;&nbsp;
+                                    <span>{phoneNumber}</span>
                                 </Fragment>
                             )}
                             <RotateIcon isActive={toggle}>

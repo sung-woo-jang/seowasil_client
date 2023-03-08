@@ -14,9 +14,11 @@ function DeliveryAddress() {
     const dispatch = useDispatch<AppDispatch>();
     const { name, phoneNumber, isLogin, id } = useSelector((state: RootState) => state.auth);
     const { address2, address3 } = useSelector((state: RootState) => state.deliverAddress);
+
     useEffect(() => {
         if (isLogin) dispatch(getDefaultAddressesByUserId(id));
     }, [isLogin, id, dispatch]);
+
     return (
         <DeliveryAddressWrapper>
             <BetweenFlex>
