@@ -1,13 +1,14 @@
 import { UploadFile } from '@mui/icons-material';
 import { useRef, useState } from 'react';
-import ImageContainer from '../ImageContainer';
+import ImageContainer from './ImageContainer';
 import { Error, ImageDisplay, UploadButton, UploadFormWrapper, UploadLabel } from './style';
 
 interface UploadFormProps {
     onChangeFiles: React.Dispatch<React.SetStateAction<File[]>>;
+    buttonId: string; // 업로드 폼이  따로 작동하기 위한 id
 }
 
-function ProductDetailImageUploadForm({ onChangeFiles }: UploadFormProps) {
+function UploadForm({ onChangeFiles, buttonId }: UploadFormProps) {
     const [isActive, setIsActive] = useState(false);
     const [errorMessage, setErrorMessage] = useState(true);
     const [imageDataArray, setImageDataArray] = useState<any>([]);
@@ -82,13 +83,13 @@ function ProductDetailImageUploadForm({ onChangeFiles }: UploadFormProps) {
         >
             <UploadButton
                 type="file"
-                id="upload-button"
+                id={buttonId}
                 multiple
                 accept="image/*"
                 ref={inputEl}
                 onChange={imageDataOnChangeHandler}
             />
-            <UploadLabel htmlFor="upload-button">
+            <UploadLabel htmlFor={buttonId}>
                 <UploadFile />
                 사진을 선택하거나 드래그 해주세요.
             </UploadLabel>
@@ -107,4 +108,4 @@ function ProductDetailImageUploadForm({ onChangeFiles }: UploadFormProps) {
     );
 }
 
-export default ProductDetailImageUploadForm;
+export default UploadForm;

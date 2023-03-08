@@ -1,4 +1,4 @@
-import ProductImageUploadForm from '../../../components/UploadForm/ProductImageUploadForm';
+import UploadForm from '../../../components/UploadForm';
 import ContentContainer from '../../../components/ContentContainer';
 import { WriteWrapper } from './style';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,8 @@ import { Button } from '../../../components/UI/Button';
 const Write = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const [files, setFiles] = useState<File[]>([]);
+    const [productFiles, setProductFiles] = useState<File[]>([]);
+    // const [productDetailFiles, setProductDetailFiles] = useState<File[]>([]);
     const {
         category_id,
         description,
@@ -29,7 +30,7 @@ const Write = () => {
 
         dispatch(
             postCreateProduct({
-                files,
+                files: productFiles,
                 category_id,
                 description,
                 minAmount,
@@ -52,7 +53,11 @@ const Write = () => {
     return (
         <WriteWrapper>
             <form onSubmit={onSubmitHandler}>
-                <ProductImageUploadForm onChangeFiles={setFiles} />
+                <UploadForm onChangeFiles={setProductFiles} buttonId="product-images" />
+                {/* <UploadForm
+                    onChangeFiles={setProductDetailFiles}
+                    buttonId="product-detail-imagwes"
+                /> */}
                 <ContentContainer />
                 <Button border={true} type="submit">
                     상품 등록
