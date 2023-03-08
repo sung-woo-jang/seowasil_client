@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import DeliveryAddress from '../../components/DeliveryAddress';
 import OrdererInfo from '../../components/OrdererInfo';
 import OrderSummary from '../../components/OrderSummary';
@@ -6,12 +8,15 @@ import Colors from '../../styles/Colors';
 import { OrderWrapper } from './style';
 
 function Order() {
+    // const disaptch = useDispatch<AppDispatch>();
+
     /* 초기 세팅
     Todo
     1. 주문 관련 정보 가져오기
     2. 주문 정보 변경하는 dispatch들 생성
     3. 
 */
+    const { price } = useSelector((state: RootState) => state.order);
     /*  주문 넣기
     Todo 1
         데이터 보내기 전에 유효성 검사하기
@@ -31,6 +36,7 @@ function Order() {
         product_id: 상품번호
         order_id: 주문번호
     */
+
     return (
         <OrderWrapper>
             <h1
@@ -43,11 +49,23 @@ function Order() {
             >
                 주문 / 결제
             </h1>
+            {/* 배송지 */}
             <DeliveryAddress />
+            {/* 주문자 정보 */}
             <OrdererInfo />
+            {/* 주문 상품 정보 요약 */}
             <OrderSummary />
-            <Button border={true} color={Colors.White} bgColor={Colors.SkyBlue}>
-                00,000원 주문하기
+            <Button
+                border={true}
+                color={Colors.White}
+                bgColor={Colors.SkyBlue}
+                style={{
+                    fontSize: '17px',
+                    fontWeight: '800',
+                    textAlign: 'center',
+                }}
+            >
+                {price}원 주문하기
             </Button>
         </OrderWrapper>
     );

@@ -12,6 +12,7 @@ import { RotateIcon } from '../UI/RotateIcon';
 import { StyledInput } from '../UI/StyledInput';
 import { Label, OrdererInfoWrapper } from './style';
 
+// 주문자 정보
 function OrdererInfo() {
     const userInfo = useSelector((state: RootState) => state.auth);
     const [name, setName] = useState(userInfo.name);

@@ -12,7 +12,7 @@ import {
 } from '../../store/slice/productSlice';
 import Dialog from '../Dialog';
 import Dropdown from '../Dropdown';
-import { TextArea } from '../UI/TextArea';
+import { StyledTextArea } from '../UI/StyledInput';
 import { ContentWrapper, InputBox, Left, Rigth, TextAreaBox } from './style';
 
 function ContentContainer() {
@@ -63,12 +63,12 @@ function ContentContainer() {
                 </InputBox>
                 <TextAreaBox>
                     <div>상품 설명란</div>
-                    <TextArea
+                    <StyledTextArea
                         placeholder="내용을 입력해주세요."
                         id="content-description"
                         onFocus={isActiveHandler}
                         onBlur={isActiveHandler}
-                        isActive={isActive}
+                        // isActive={isActive}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             dispatch(setSelectedDescription(e.target.value));
                         }}

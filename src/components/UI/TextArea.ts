@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+/* import styled, { css } from 'styled-components';
 
 interface TextAreaProps {
     isActive?: boolean;
@@ -19,3 +19,6 @@ export const TextArea = styled.textarea`
             border-color: black;
         `}
 `;
+ */
+
+export const asd = 123;

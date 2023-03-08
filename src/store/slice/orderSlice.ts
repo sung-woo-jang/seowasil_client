@@ -27,10 +27,20 @@ export const { reducer: orderReducer, actions } = createSlice({
     initialState,
     reducers: {
         setSelectedOrder: (_, { payload }) => payload,
+        setSelecteddeliveryRequest: (state, { payload }) => {
+            state.delivery_request = payload;
+        },
+        setSelectedAmount: (state, { payload }) => {
+            state.amount = payload;
+        },
+        setSelectedPrice: (state, { payload }) => {
+            state.price = payload;
+        },
     },
     extraReducers: (builder) => {},
 });
 
-export const { setSelectedOrder } = actions;
+export const { setSelectedOrder, setSelecteddeliveryRequest, setSelectedAmount, setSelectedPrice } =
+    actions;
 
 export default orderReducer;

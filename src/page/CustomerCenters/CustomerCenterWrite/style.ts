@@ -24,23 +24,6 @@ export const Section = styled.section`
         margin-bottom: 0.5rem;
         float: left;
     }
-
-    & input,
-    & textarea {
-        font: inherit;
-        border-radius: 4px;
-        border: 1px solid black;
-        width: 100%;
-        text-align: left;
-        padding: 0.25rem;
-    }
-`;
-
-export const Control = styled.div`
-    display: grid;
-    margin-bottom: 0.5rem;
-
-    grid-template-columns: 100px 1fr;
 `;
 
 export const Actions = styled.div`

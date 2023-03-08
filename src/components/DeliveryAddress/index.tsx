@@ -1,6 +1,8 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
 import Colors from '../../styles/Colors';
+import { getDefaultAddressesByUserId } from '../../utils/api/DeliverAddress/getDefaultAddressesByUserId';
 import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
 import { Button } from '../UI/Button';
 import { BetweenFlex, StartFlex } from '../UI/Flex';
@@ -9,7 +11,12 @@ import { StyledTextArea } from '../UI/StyledInput';
 import { AddressDetail, DefaultDelivery, DeliveryAddressWrapper } from './style';
 
 function DeliveryAddress() {
-    const { name, phoneNumber } = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch<AppDispatch>();
+    const { name, phoneNumber, isLogin, id } = useSelector((state: RootState) => state.auth);
+    const { address2, address3 } = useSelector((state: RootState) => state.deliverAddress);
+    useEffect(() => {
+        if (isLogin) dispatch(getDefaultAddressesByUserId(id));
+    }, [isLogin, id, dispatch]);
     return (
         <DeliveryAddressWrapper>
             <BetweenFlex>
@@ -28,8 +35,9 @@ function DeliveryAddress() {
                     <DefaultDelivery>기본 배송지</DefaultDelivery>
                 </StartFlex>
                 <AddressDetail>
-                    {' '}
-                    address2: 인천 미추홀구 숙골로 43번길 59, address3: 402호{' '}
+                    {address2}
+                    {', '}
+                    {address3}
                 </AddressDetail>
                 <StartFlex>
                     <FontStyle style={{ color: Colors.Gray2, fontWeight: '400', fontSize: '15px' }}>

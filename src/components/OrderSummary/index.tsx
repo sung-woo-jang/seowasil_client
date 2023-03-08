@@ -10,6 +10,8 @@ import { OrderSummaryWrapper } from './style';
 import { KeyboardArrowUp } from '@mui/icons-material';
 import { RotateIcon } from '../UI/RotateIcon';
 import { FontStyle } from '../UI/FontStyle';
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
 
 function OrderSummary() {
     const params = useParams<{ product_id?: string }>();
@@ -25,6 +27,8 @@ function OrderSummary() {
             productImageUrl: { storedFileName: [''] },
         });
 
+    const { amount } = useSelector((state: RootState) => state.order);
+
     useEffect(() => {
         (async () => {
             if (params.product_id) {
@@ -35,10 +39,6 @@ function OrderSummary() {
     }, [params.product_id]);
 
     // dispatch를 사용해서 minAmount 변경하기
-    const [amount, setSelectedAmount] = useState<number | string>(0);
-    useEffect(() => {
-        setSelectedAmount(minAmount);
-    }, [minAmount]);
 
     const [toggle, setToggle] = useState(false);
     const toggleHandler = () => {

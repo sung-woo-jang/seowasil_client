@@ -10,4 +10,8 @@ export const OrderWrapper = styled.main`
         padding: 5px 20px;
         background: ${Colors.White};
     }
+
+    & > *:last-child {
+        grid-gap: 0;
+    }
 `;

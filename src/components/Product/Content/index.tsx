@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../../store';
+import { setSelectedOrder } from '../../../store/slice/orderSlice';
 import Colors from '../../../styles/Colors';
 import { fetchCreateCartThunk } from '../../../utils/api/Cart/postCreateCart';
 import { numberWithCommas } from '../../../utils/fomatter/numberWithCommas';
@@ -25,10 +26,17 @@ function Content({ productData }: ContentProps) {
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const { id } = useSelector((state: RootState) => state.auth);
+    const { address1, address2, address3, user_id } = useSelector(
+        (state: RootState) => state.deliverAddress,
+    );
 
     const { category, description, minAmount, prevPrice, sellPrice, title } = productData;
 
     const [amount, setAmount] = useState<number | string>(0);
+    useEffect(() => {
+        setAmount(minAmount);
+    }, [minAmount]);
+
     const amountChangeHandler: inputOnChangeHandler = (e) => {
         setAmount(e.target.value);
     };
@@ -36,6 +44,17 @@ function Content({ productData }: ContentProps) {
     // 주문하기
     const navigateToOrderPageHandler = () => {
         if (amount >= minAmount) {
+            dispatch(
+                setSelectedOrder({
+                    address1,
+                    address2,
+                    address3,
+                    amount,
+                    price: +amount * sellPrice,
+                    user_id,
+                    product_id,
+                }),
+            );
             navigate(`/orders/${product_id}/checkout`);
         } else alert(`최소 ${minAmount}개부터 구매가 가능합니다.`);
     };

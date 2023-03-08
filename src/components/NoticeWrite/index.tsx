@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { postCreateNotice } from '../../utils/api/Notice/postCreateNotice';
 import { Button } from '../UI/Button';
-import { TextArea } from '../UI/TextArea';
+import { StyledTextArea } from '../UI/StyledInput';
 import { Actions, Control, Section } from './style';
 
 function NoticeWrite() {
@@ -33,7 +33,7 @@ function NoticeWrite() {
 
                 <Control>
                     <label htmlFor="description">공지 내용</label>
-                    <TextArea ref={descriptionRef} id="description" />
+                    <StyledTextArea ref={descriptionRef} id="description" />
                 </Control>
 
                 <Actions>
