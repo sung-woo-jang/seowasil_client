@@ -1,6 +1,15 @@
 import { instance } from '../index';
 
-export const getContactDetail = async (id: number, password: string) => {
-    const { data } = await instance.get(`contacts/detail?id=${id}&password=${password}`);
+export interface responseContactDetail {
+    id: number;
+    title: string;
+    description: string;
+    name: string;
+    password: string;
+    category: string;
+}
+
+export const getContactDetail = async (id: number | string): Promise<responseContactDetail> => {
+    const { data } = await instance.get(`contacts/${id}`);
     return data.data;
 };

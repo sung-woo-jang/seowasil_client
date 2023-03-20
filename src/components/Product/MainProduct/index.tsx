@@ -19,7 +19,6 @@ function MainProduct() {
         productImageUrl: { storedFileName: [''] },
         productDetailImagesUrl: { storedFileName: [''] },
     });
-    console.log(productData);
 
     const [hoverImage, setHoverImage] = useState<string>('');
     useEffect(() => {
