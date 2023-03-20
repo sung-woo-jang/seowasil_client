@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Album from '../\bAlbum';
 import { getProductDetail } from '../../../utils/api/Product/getProductDetail';
+import { CenterFlex } from '../../UI/Flex';
 import Content from '../Content';
 import { Card, CardWrapper } from './style';
 
@@ -16,7 +17,9 @@ function MainProduct() {
         minAmount: 0,
         category: { name: '' },
         productImageUrl: { storedFileName: [''] },
+        productDetailImagesUrl: { storedFileName: [''] },
     });
+    console.log(productData);
 
     const [hoverImage, setHoverImage] = useState<string>('');
     useEffect(() => {
@@ -38,6 +41,15 @@ function MainProduct() {
                     setHoverImage={setHoverImage}
                 />
                 <Content productData={productData} />
+                <CenterFlex>
+                    {productData.productDetailImagesUrl.storedFileName.map((url, index) => (
+                        <img
+                            key={index}
+                            src={`${process.env.REACT_APP_AWS_URL}${url}`}
+                            alt="{나무이름} 사진"
+                        />
+                    ))}
+                </CenterFlex>
             </Card>
         </CardWrapper>
     );

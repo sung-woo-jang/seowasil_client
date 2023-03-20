@@ -2,7 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { formInstance, instance } from '../index';
 
 interface postCreateProductData {
-    files: File[];
+    productFiles: File[];
+    productDetailFiles: File[];
     category_id: string;
     description: string;
     minAmount: string;
@@ -15,7 +16,8 @@ interface postCreateProductData {
 export const postCreateProduct = createAsyncThunk(
     'product/images',
     async ({
-        files,
+        productFiles,
+        productDetailFiles,
         category_id,
         description,
         minAmount,
@@ -24,9 +26,11 @@ export const postCreateProduct = createAsyncThunk(
         status,
         title,
     }: postCreateProductData) => {
-        const filesResponseData = await uploadProductImage(files);
+        const filesResponseData = await uploadProductImage(productFiles);
+        const detailFilesResponseData = await uploadProductDatailImage(productDetailFiles);
         const response = await createProduct({
             productImage_id: `${filesResponseData.id}`,
+            productDetailImage_id: `${detailFilesResponseData.id}`,
             category_id,
             description,
             minAmount,
@@ -51,6 +55,7 @@ export const createProduct = async (formData: {
     status: string; // 판매여부 (ex: 판매중, 임시 판매 중단)
     category_id: string; // 카테고리 항목 id (ex: 문그로우 카테고리의 id)
     productImage_id: string;
+    productDetailImage_id: string;
 }) => {
     const { data } = await instance.post('products', {
         ...formData,
@@ -63,6 +68,15 @@ export const uploadProductImage = async (formData: File[]) => {
     formData.forEach((file: File) => files.append('files', file));
 
     const { data } = await formInstance.post('product-images', files);
+
+    return data.data;
+};
+
+export const uploadProductDatailImage = async (formData: File[]) => {
+    const files = new FormData();
+    formData.forEach((file: File) => files.append('files', file));
+
+    const { data } = await formInstance.post('product-detail-images', files);
 
     return data.data;
 };

@@ -7,4 +7,5 @@ interface ProductData {
     minAmount: number;
     category: { name: string };
     productImageUrl: { storedFileName: string[] };
+    productDetailImagesUrl: { storedFileName: string[] };
 }

@@ -6,9 +6,10 @@ import { Error, ImageDisplay, UploadButton, UploadFormWrapper, UploadLabel } fro
 interface UploadFormProps {
     onChangeFiles: React.Dispatch<React.SetStateAction<File[]>>;
     buttonId: string; // 업로드 폼이  따로 작동하기 위한 id
+    infoMessage: string; // 버튼 텍스트
 }
 
-function UploadForm({ onChangeFiles, buttonId }: UploadFormProps) {
+function UploadForm({ onChangeFiles, buttonId, infoMessage }: UploadFormProps) {
     const [isActive, setIsActive] = useState(false);
     const [errorMessage, setErrorMessage] = useState(true);
     const [imageDataArray, setImageDataArray] = useState<any>([]);
@@ -91,7 +92,7 @@ function UploadForm({ onChangeFiles, buttonId }: UploadFormProps) {
             />
             <UploadLabel htmlFor={buttonId}>
                 <UploadFile />
-                사진을 선택하거나 드래그 해주세요.
+                {infoMessage}
             </UploadLabel>
             {errorMessage ? <Error /> : <Error>사진 파일만 업로드 해주세요.</Error>}
             <ImageDisplay>

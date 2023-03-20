@@ -13,7 +13,7 @@ const Write = () => {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const [productFiles, setProductFiles] = useState<File[]>([]);
-    // const [productDetailFiles, setProductDetailFiles] = useState<File[]>([]);
+    const [productDetailFiles, setProductDetailFiles] = useState<File[]>([]);
     const {
         category_id,
         description,
@@ -30,7 +30,8 @@ const Write = () => {
 
         dispatch(
             postCreateProduct({
-                files: productFiles,
+                productFiles,
+                productDetailFiles,
                 category_id,
                 description,
                 minAmount,
@@ -53,11 +54,16 @@ const Write = () => {
     return (
         <WriteWrapper>
             <form onSubmit={onSubmitHandler}>
-                <UploadForm onChangeFiles={setProductFiles} buttonId="product-images" />
-                {/* <UploadForm
+                <UploadForm
+                    onChangeFiles={setProductFiles}
+                    buttonId="product-images"
+                    infoMessage="상품 사진 업로드 폼."
+                />
+                <UploadForm
                     onChangeFiles={setProductDetailFiles}
                     buttonId="product-detail-imagwes"
-                /> */}
+                    infoMessage="상품 설명용 사진 업로드 폼."
+                />
                 <ContentContainer />
                 <Button border={true} type="submit">
                     상품 등록

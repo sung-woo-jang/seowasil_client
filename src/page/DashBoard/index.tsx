@@ -5,13 +5,13 @@ import {
     ShoppingCartOutlined,
 } from '@mui/icons-material';
 import { Fragment } from 'react';
+import { Button } from '../../components/UI/Button';
 import {
     Card,
     CardBox,
     CardHeader,
     CardName,
     CardTitle,
-    DetailButton,
     Details,
     IconBox,
     Numbers,
@@ -141,8 +141,8 @@ const DashBoard = () => {
                 {/* order details list */}
                 <RecentOrders>
                     <CardHeader className="CardHeader">
-                        <CardTitle>최근 주문 내역</CardTitle>
-                        <DetailButton to="/">전부 보기</DetailButton>
+                        <CardTitle>최근 주문 내역(임시)</CardTitle>
+                        <Button border={true}>전부 보기</Button>
                     </CardHeader>
                     <OrderTable>
                         <thead>
@@ -168,7 +168,7 @@ const DashBoard = () => {
                 {/* New Customers */}
                 <RecentCustomers>
                     <CardHeader>
-                        <CardTitle>최근 주문자들</CardTitle>
+                        <CardTitle>최근 주문자들(임시)</CardTitle>
                     </CardHeader>
                     <table
                         style={{

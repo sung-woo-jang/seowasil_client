@@ -1,6 +1,6 @@
 import { Search as MuiSearch } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Colors from '../../styles/Colors';
 
 const color = {
     blue: '#287bff',
@@ -104,7 +104,7 @@ export const Card = styled.div`
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 
     &:hover {
-        background: ${color.blue};
+        background: ${Colors.SkyBlue};
         & * {
             color: ${color.white};
         }
@@ -113,7 +113,7 @@ export const Card = styled.div`
 export const Numbers = styled.div`
     position: relative;
     font-size: 2.5em;
-    color: ${color.blue};
+    color: ${Colors.SkyBlue};
 `;
 export const CardName = styled.div`
     color: ${color.black2};
@@ -157,18 +157,12 @@ export const CardHeader = styled.div`
     align-items: flex-start;
 `;
 export const CardTitle = styled.h2`
-    color: ${color.blue};
+    color: ${Colors.Black};
+    font-weight: 900;
+    font-size: 25px;
     @media screen and (max-width: 480px) {
         font-size: 20px;
     }
-`;
-export const DetailButton = styled(Link)`
-    position: relative;
-    padding: 5px 10px;
-    background: ${color.blue};
-    text-decoration: none;
-    color: ${color.white};
-    border-radius: 6px;
 `;
 
 export const OrderTable = styled.table`
@@ -200,7 +194,7 @@ export const TableUnderRow = styled.tr`
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
     &:hover {
-        background: ${color.blue};
+        background: ${Colors.SkyBlue};
         color: ${color.white};
     }
 `;
@@ -229,7 +223,7 @@ export const RecentCustomersTableRow = styled.tr`
     }
 
     &:hover {
-        background-color: ${color.blue};
+        background-color: ${Colors.SkyBlue};
         color: ${color.white};
 
         & td h4 span {
