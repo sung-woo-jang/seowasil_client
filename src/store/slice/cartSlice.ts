@@ -52,7 +52,7 @@ export const { reducer: cartReducer, actions } = createSlice({
         // 장바구니 목록 삭제
         builder.addCase(fetchDeleteCartThunk.fulfilled, (state, { payload }) => {
             if (payload.affected === 1) {
-                console.log('장바구니에 상품 삭제가 완료되었습니다.');
+                alert('장바구니에 상품 삭제가 완료되었습니다.');
             }
         });
     },

@@ -30,7 +30,6 @@ function CartList({ carts }: CartListProps) {
     };
 
     const isSelectedHandler = (index: number) => {
-        console.log(index);
         dispatch(setIsSelected(index));
     };
 

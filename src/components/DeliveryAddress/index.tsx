@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { Dialog } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import Colors from '../../styles/Colors';
@@ -8,6 +9,7 @@ import { Button } from '../UI/Button';
 import { BetweenFlex, StartFlex } from '../UI/Flex';
 import { FontStyle } from '../UI/FontStyle';
 import { StyledTextArea } from '../UI/StyledInput';
+import AddressChangeModal from './AddressChangeModal';
 import { AddressDetail, DefaultDelivery, DeliveryAddressWrapper } from './style';
 
 function DeliveryAddress() {
@@ -19,14 +21,29 @@ function DeliveryAddress() {
         if (isLogin) dispatch(getDefaultAddressesByUserId(id));
     }, [isLogin, id, dispatch]);
 
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <DeliveryAddressWrapper>
             <BetweenFlex>
                 <FontStyle>배송지</FontStyle>
-                <div></div>
+                <div className="dialog">
+                    <Dialog open={open} onClose={handleClose}>
+                        <AddressChangeModal handleClose={handleClose} />
+                    </Dialog>
+                </div>
                 <Button
                     color={Colors.SkyBlue}
                     style={{ fontSize: '16px', lineHeight: '19px', fontWeight: 'bold' }}
+                    onClick={handleClickOpen}
                 >
                     변경
                 </Button>
@@ -36,11 +53,7 @@ function DeliveryAddress() {
                     <FontStyle>{name}</FontStyle>
                     <DefaultDelivery>기본 배송지</DefaultDelivery>
                 </StartFlex>
-                <AddressDetail>
-                    {address2}
-                    {', '}
-                    {address3}
-                </AddressDetail>
+                <AddressDetail>{`${address2}, ${address3}`}</AddressDetail>
                 <StartFlex>
                     <FontStyle style={{ color: Colors.Gray2, fontWeight: '400', fontSize: '15px' }}>
                         {name}
@@ -56,15 +69,15 @@ function DeliveryAddress() {
                         {formatPhoneNumber(phoneNumber)}
                     </FontStyle>
                 </StartFlex>
-                <div style={{ margin: '20px 0' }}>
+                {/*  <div style={{ margin: '20px 0' }}>
                     <input
                         type="checkbox"
                         id="save-default-address-input"
                         name="isChangeDefaultAddress"
                     />
                     &nbsp;&nbsp;&nbsp;기본 배송지로 저장
-                </div>
-                <div>
+                </div> */}
+                <div style={{ margin: '20px 0' }}>
                     <StyledTextArea placeholder="배송 요청사항을 입력해주세요" />
                 </div>
             </div>

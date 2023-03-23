@@ -40,7 +40,7 @@ function MainProduct() {
                     setHoverImage={setHoverImage}
                 />
                 <Content productData={productData} />
-                <CenterFlex>
+                <CenterFlex style={{ gridColumn: '1 / -1' }}>
                     {productData.productDetailImagesUrl.storedFileName.map((url, index) => (
                         <img
                             key={index}

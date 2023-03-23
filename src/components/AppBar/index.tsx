@@ -10,7 +10,7 @@ import { AppBarWrapper, Right, SNS } from './style';
 const AppBar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { isLogin, role } = useSelector((state: RootState) => state.auth);
+    const { isLogin, role, id } = useSelector((state: RootState) => state.auth);
 
     const logoutHandler = () => {
         dispatch(logOut());
@@ -34,14 +34,18 @@ const AppBar = () => {
                         <Link to="/signup">회원가입</Link>
                     )}
                 </Button>
-                {role === 'ADMIN' ? (
-                    <Button>
-                        <Link to="/admin">관리자 페이지</Link>
-                    </Button>
+                {isLogin ? (
+                    role === 'ADMIN' ? (
+                        <Button>
+                            <Link to="/admin">관리자 페이지</Link>
+                        </Button>
+                    ) : (
+                        <Button>
+                            <Link to={`/users/${id}`}>마이 페이지</Link>
+                        </Button>
+                    )
                 ) : (
-                    <Button>
-                        <Link to={`/users/${1}`}>마이 페이지</Link>
-                    </Button>
+                    ''
                 )}
             </div>
             <Right>

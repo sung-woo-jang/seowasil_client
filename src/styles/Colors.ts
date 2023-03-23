@@ -13,10 +13,11 @@ enum Colors {
     Gray2 = '#616061',
     Gray3 = '#BDBDBD',
     Gray4 = '#E3E5E8',
-    Gray5 = '#EBEDEF',
-    Gray6 = '#EAEBEF',
-    Gray7 = '#F2F3F5',
-    Gray8 = '#F8F8F8',
+    Gray5 = '#E3E5E8',
+    Gray6 = '#EBEDEF',
+    Gray7 = '#EAEBEF',
+    Gray8 = '#F2F3F5',
+    Gray9 = '#F8F8F8',
     White = '#FFFFFF',
 }
 

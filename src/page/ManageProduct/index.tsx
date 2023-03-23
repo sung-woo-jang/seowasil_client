@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react';
 import { getProducts } from '../../utils/api/Product/getProducts';
 import dayjs from 'dayjs';
 import { ThreeDots } from '../../icons';
+import Colors from '../../styles/Colors';
 
 interface productsData {
     id: number;
@@ -43,6 +44,18 @@ const ManageProduct = () => {
             setProducts(data);
         })();
     }, []);
+
+    /* 
+    const [completedIds, setCompletedIds] = useState<number[]>([]);
+
+    const handleToggle = (id: number) => {
+        if (completedIds.includes(id)) {
+            setCompletedIds(completedIds.filter((completedId) => completedId !== id));
+        } else {
+            setCompletedIds([...completedIds, id]);
+        }
+    };
+    */
 
     return (
         <ManageProductWrapper>
@@ -92,13 +105,29 @@ const ManageProduct = () => {
                                     <td>{category?.name}</td>
                                     <td>{sellPrice}₩</td>
                                     <td>{dayjs(createdAt).format('YYYY-MM-DD')}</td>
-                                    <td>
+                                    <td style={{ position: 'relative' }}>
                                         <ThreeDots
                                             style={{
                                                 width: '20px',
                                                 height: 'auto',
                                             }}
                                         />
+                                        <div
+                                            style={{
+                                                width: '150px',
+                                                height: '150px',
+                                                background: Colors.Gray8,
+                                                position: 'absolute',
+                                                right: '50%',
+                                                top: '50%',
+                                                display: 'none',
+                                            }}
+                                        >
+                                            <div style={{ marginTop: '10px' }}>
+                                                <div>인기 상품 등록</div>
+                                                <div>상품 삭제</div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </TableUnderRow>
                             ))}
