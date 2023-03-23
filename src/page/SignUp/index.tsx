@@ -1,11 +1,12 @@
 import { Actions, Control, Section } from './style';
-// import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
+import { Address, useDaumPostcodePopup } from 'react-daum-postcode';
 import { useEffect, useState } from 'react';
 import { Button } from '../../components/UI/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
 import { asyncSignUpFetch, setSelectedIsRegistCompleted } from '../../store/slice/authSlice';
+import Colors from '../../styles/Colors';
 
 export default function SignUp() {
     const [userInfo, setUserInfo] = useState({
@@ -19,13 +20,12 @@ export default function SignUp() {
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
-    /*
     const [addressInfo, setAddressInfo] = useState({
         address1: '', // 우편번호
         address2: '', // 주소
         address3: '', // 상세주소
     });
-        const open = useDaumPostcodePopup();
+    const open = useDaumPostcodePopup();
 
     const handleComplete = (data: Address) => {
         let address2 = data.address;
@@ -47,13 +47,13 @@ export default function SignUp() {
 
     const searchAddressHandler = () => {
         open({ onComplete: handleComplete });
-    }; */
+    };
 
     // 회원가입 관련 State
     const { isLogin, isRegistCompleted } = useSelector((state: RootState) => state.auth);
 
     const {
-        // addressDetailInputHandler,
+        addressDetailInputHandler,
         accountInputHandler,
         emailInputHandler,
         nameInputHandler,
@@ -94,17 +94,18 @@ export default function SignUp() {
             });
         },
 
-        /* // 상세주소
+        // 상세주소
         addressDetailInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => {
             setAddressInfo((prevState) => {
                 return { ...prevState, address3: e.target.value };
             });
-        }, */
+        },
     };
 
     const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        const { address1, address2, address3 } = addressInfo;
         e.preventDefault();
-        dispatch(asyncSignUpFetch(userInfo));
+        dispatch(asyncSignUpFetch({ ...userInfo, address1, address2, address3 }));
     };
 
     // 로그인이 되어있거나 회원가입 완료 했으면 나가라
@@ -173,10 +174,19 @@ export default function SignUp() {
                         onChange={emailInputHandler}
                     />
                 </Control>
-                {/*    <Control>
-                    <button type="button" onClick={searchAddressHandler}>
+                <Control>
+                    <Button
+                        border={true}
+                        color={Colors.SkyBlue}
+                        style={{
+                            border: `1px solid ${Colors.SkyBlue}`,
+                            fontWeight: 'bold',
+                            fontSize: '15px',
+                        }}
+                        onClick={searchAddressHandler}
+                    >
                         주소 검색하기
-                    </button>
+                    </Button>
                 </Control>
                 <Control>
                     <label htmlFor="addressZoneCode">우편번호</label>
@@ -208,9 +218,18 @@ export default function SignUp() {
                         value={addressInfo.address3}
                     />
                 </Control>
-                */}
+
                 <Actions>
-                    <Button type="submit" border={true}>
+                    <Button
+                        style={{
+                            color: `${Colors.White}`,
+                            fontSize: '15px',
+                            fontWeight: 'bold',
+                            width: '100%',
+                        }}
+                        bgColor={Colors.SkyBlue}
+                        type="submit"
+                    >
                         회원가입
                     </Button>
                 </Actions>
