@@ -11,7 +11,7 @@ export const AccordionBodyWrapper = styled.div`
     ${({ isActive }: isActiveProps) =>
         isActive &&
         css`
-            max-height: 200px;
+            max-height: 100%;
         `}
     & > div {
         padding-bottom: 1rem;

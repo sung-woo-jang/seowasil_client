@@ -12,6 +12,7 @@ import { RotateIcon } from '../UI/RotateIcon';
 import { FontStyle } from '../UI/FontStyle';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
+import { StyledInput } from '../UI/StyledInput';
 
 function OrderSummary() {
     const { product_id } = useParams<{ product_id?: string }>();
@@ -50,7 +51,7 @@ function OrderSummary() {
         <OrderSummaryWrapper>
             <AccordionHeader onClick={toggleHandler}>
                 <BetweenFlex>
-                    <div>주문상품</div>
+                    <FontStyle>주문 정보</FontStyle>
                     <RotateIcon isActive={toggle}>
                         <KeyboardArrowUp />
                     </RotateIcon>
@@ -116,6 +117,23 @@ function OrderSummary() {
                             </StartFlex>
                         </div>
                     </StartFlex>
+                </section>
+                <section>
+                    <BetweenFlex style={{ margin: '20px' }}>
+                        <div style={{ width: '100px', color: Colors.Gray2 }}>계좌번호</div>
+                        <StyledInput
+                            type="text"
+                            name="name"
+                            value="농협 352-0654-1560-03 서와실농원 주민창"
+                        />
+                    </BetweenFlex>
+                    <FontStyle style={{ color: Colors.Red }}>
+                        입금자분과 주문자분의 성함이 다를 시 꼭 전화(010-6711-7892)로 알려주세요.
+                        <br />
+                        성함이 달라 입금확인이 안될 시 배송이 어려울 수도 있습니다.
+                        <br />
+                        주문하기 버튼을 눌러주시면 입금 정보가 입력하신 번호로 문자가 전송됩니다.
+                    </FontStyle>
                 </section>
             </AccordionBody>
         </OrderSummaryWrapper>

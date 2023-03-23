@@ -7,11 +7,22 @@ import { Button } from '../../components/UI/Button';
 import Colors from '../../styles/Colors';
 import { OrderWrapper } from './style';
 import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function Order() {
-    const { price } = useSelector((state: RootState) => state.order);
+    const { price, name, phoneNumber, amount, delivery_request } = useSelector(
+        (state: RootState) => state.order,
+    );
+    const { product_id } = useParams<{ product_id?: string }>();
+    const { id: user_id } = useSelector((state: RootState) => state.auth);
+
+    const { address1, address2, address3 } = useSelector(
+        (state: RootState) => state.deliverAddress,
+    );
+    console.log(product_id, user_id);
+
+    const postOrderHandler = () => {};
     /*  주문 넣기
     Todo 1
         데이터 보내기 전에 유효성 검사하기

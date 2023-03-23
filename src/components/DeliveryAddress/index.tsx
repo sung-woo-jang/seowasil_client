@@ -2,6 +2,7 @@ import { Dialog } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
+import { setSelecteddeliveryRequest } from '../../store/slice/orderSlice';
 import Colors from '../../styles/Colors';
 import { getDefaultAddressesByUserId } from '../../utils/api/DeliverAddress/getDefaultAddressesByUserId';
 import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
@@ -16,6 +17,7 @@ function DeliveryAddress() {
     const dispatch = useDispatch<AppDispatch>();
     const { name, phoneNumber, isLogin, id } = useSelector((state: RootState) => state.auth);
     const { address2, address3 } = useSelector((state: RootState) => state.deliverAddress);
+    const { delivery_request } = useSelector((state: RootState) => state.order);
 
     useEffect(() => {
         if (isLogin) dispatch(getDefaultAddressesByUserId(id));
@@ -78,7 +80,13 @@ function DeliveryAddress() {
                     &nbsp;&nbsp;&nbsp;기본 배송지로 저장
                 </div> */}
                 <div style={{ margin: '20px 0' }}>
-                    <StyledTextArea placeholder="배송 요청사항을 입력해주세요" />
+                    <StyledTextArea
+                        placeholder="배송 요청사항을 입력해주세요"
+                        value={delivery_request}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                            dispatch(setSelecteddeliveryRequest(e.target.value));
+                        }}
+                    />
                 </div>
             </div>
         </DeliveryAddressWrapper>

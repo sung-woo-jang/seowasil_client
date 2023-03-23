@@ -44,7 +44,6 @@ function AddressChangeModal({ handleClose }: AddressChangeModalpProps) {
         dispatch(setSelectedPhoneNumber(result));
     };
 
-    // 주소지 변경하는 곳에서는 필요 없어보임
     const open = useDaumPostcodePopup();
 
     const handleComplete = (data: Address) => {
