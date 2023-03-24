@@ -125,6 +125,7 @@ function OrderSummary() {
                             type="text"
                             name="name"
                             value="농협 352-0654-1560-03 서와실농원 주민창"
+                            readOnly
                         />
                     </BetweenFlex>
                     <FontStyle style={{ color: Colors.Red }}>

@@ -1,10 +1,10 @@
 import { KeyboardArrowUp } from '@mui/icons-material';
 import { Fragment, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { setSelectedOrderName, setSelectedPhoneNumber } from '../../store/slice/orderSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { AppDispatch, RootState } from '../../store';
+// import { setSelectedOrderName, setSelectedPhoneNumber } from '../../store/slice/orderSlice';
 import Colors from '../../styles/Colors';
-import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
+// import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
 import AccordionBody from '../Accordion/AccordionBody';
 import AccordionHeader from '../Accordion/AccordionHeader';
 import { BetweenFlex, StartFlex } from '../UI/Flex';
@@ -13,26 +13,23 @@ import { RotateIcon } from '../UI/RotateIcon';
 import { StyledInput } from '../UI/StyledInput';
 import { Label, OrdererInfoWrapper } from './style';
 
+interface OrdererInfoProps {
+    onUserNameChangehandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onPhoneNumberChangehandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name: string;
+    phoneNumber: string;
+}
+
 // 주문자 정보
-function OrdererInfo() {
-    const dispatch = useDispatch<AppDispatch>();
-    const userInfo = useSelector((state: RootState) => state.auth);
-    const [name, setName] = useState(userInfo.name);
-    const [phoneNumber, setPhoneNumber] = useState(formatPhoneNumber(userInfo.phoneNumber));
+function OrdererInfo({
+    onUserNameChangehandler,
+    onPhoneNumberChangehandler,
+    name,
+    phoneNumber,
+}: OrdererInfoProps) {
     const [toggle, setToggle] = useState(false);
     const toggleHandler = () => {
         setToggle(!toggle);
-    };
-
-    const userNameChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
-        dispatch(setSelectedOrderName(event.target.value));
-    };
-
-    const phoneNumberChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const result = formatPhoneNumber(event.target.value);
-        setPhoneNumber(result);
-        dispatch(setSelectedPhoneNumber(result));
     };
 
     return (
@@ -62,7 +59,7 @@ function OrdererInfo() {
                         type="text"
                         name="name"
                         value={name}
-                        onChange={userNameChangehandler}
+                        onChange={onUserNameChangehandler}
                     />
                 </BetweenFlex>
                 <BetweenFlex>
@@ -72,7 +69,7 @@ function OrdererInfo() {
                         placeholder="입력해주세요"
                         maxLength={13}
                         value={phoneNumber}
-                        onChange={phoneNumberChangehandler}
+                        onChange={onPhoneNumberChangehandler}
                     />
                 </BetweenFlex>
             </AccordionBody>

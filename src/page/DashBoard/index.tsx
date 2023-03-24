@@ -54,9 +54,7 @@ const DashBoard = () => {
             const data = await getOrderList();
             setOrderList(data);
         })();
-    });
-
-    console.log(orderList);
+    }, []);
 
     return (
         <Fragment>

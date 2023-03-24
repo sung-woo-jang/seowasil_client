@@ -1,3 +1,4 @@
+import { postCreateOrder } from './../../utils/api/Order/postCreateOrder';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface OrderState {
@@ -11,6 +12,7 @@ interface OrderState {
     price: number; // 주문 가격
     // user_id: number;
     // product_id: number;
+    orderSuccess: boolean;
 }
 
 const initialState: OrderState = {
@@ -24,6 +26,7 @@ const initialState: OrderState = {
     price: 0, // 최종 결제액
     // user_id: 0,
     // product_id: 0,
+    orderSuccess: false,
 };
 
 export const { reducer: orderReducer, actions } = createSlice({
@@ -63,8 +66,16 @@ export const { reducer: orderReducer, actions } = createSlice({
         // setSelectedOrderProduct: (state, { payload }) => {
         //     state.product_id = payload;
         // },
+        setSelectedOrderSuccess: (state, { payload }) => {
+            state.orderSuccess = payload;
+        },
     },
-    extraReducers: (builder) => {},
+    extraReducers: (builder) => {
+        // 주문 성공
+        builder.addCase(postCreateOrder.fulfilled, (state, { payload }) => {
+            state.orderSuccess = true;
+        });
+    },
 });
 
 export const {
@@ -77,6 +88,7 @@ export const {
     // setSelectedOrderUser,
     setSelectedPhoneNumber,
     setSelectedOrderName,
+    setSelectedOrderSuccess,
 } = actions;
 
 export default orderReducer;

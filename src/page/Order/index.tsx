@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
 import DeliveryAddress from '../../components/DeliveryAddress';
 import OrdererInfo from '../../components/OrdererInfo';
 import OrderSummary from '../../components/OrderSummary';
@@ -8,21 +8,73 @@ import Colors from '../../styles/Colors';
 import { OrderWrapper } from './style';
 import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
+import { postCreateOrder } from '../../utils/api/Order/postCreateOrder';
+import { setSelectedOrderSuccess } from '../../store/slice/orderSlice';
+import { reformatPhoneNumber } from '../../utils/fomatter/reformatPhoneNumber';
 
 function Order() {
-    const { price, name, phoneNumber, amount, delivery_request } = useSelector(
+    const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+    const { price, amount, delivery_request, orderSuccess } = useSelector(
         (state: RootState) => state.order,
     );
     const { product_id } = useParams<{ product_id?: string }>();
-    const { id: user_id } = useSelector((state: RootState) => state.auth);
+    const userInfo = useSelector((state: RootState) => state.auth);
+
+    const [name, setName] = useState(userInfo.name);
+    const [phoneNumber, setPhoneNumber] = useState(formatPhoneNumber(userInfo.phoneNumber));
 
     const { address1, address2, address3 } = useSelector(
         (state: RootState) => state.deliverAddress,
     );
-    console.log(product_id, user_id);
 
-    const postOrderHandler = () => {};
+    const userNameChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
+    };
+
+    const phoneNumberChangehandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const result = formatPhoneNumber(event.target.value);
+        setPhoneNumber(result);
+    };
+
+    useEffect(() => {
+        if (orderSuccess) {
+            alert('상품 주문이 완료되었습니다.');
+            dispatch(setSelectedOrderSuccess(false));
+            navigate('/', { replace: true });
+        }
+    }, [orderSuccess, dispatch, navigate]);
+
+    // 'price',
+    // 'name',
+    // 'phoneNumber',
+    // 'amount':number,
+    // 'deliveryRequest',
+    // 'address1',
+    // 'address2',
+    // 'address3',
+    // 'user_id: number;'
+    // 'product_id: number;'
+    const postOrderHandler = () => {
+        console.log(reformatPhoneNumber(phoneNumber));
+        dispatch(
+            postCreateOrder({
+                price,
+                name,
+                phoneNumber: reformatPhoneNumber(phoneNumber),
+                amount,
+                delivery_request,
+                address1,
+                address2,
+                address3,
+                user_id: userInfo.id,
+                product_id,
+            }),
+        );
+    };
+
     /*  주문 넣기
     Todo 1
         데이터 보내기 전에 유효성 검사하기
@@ -42,10 +94,6 @@ function Order() {
         product_id: 상품번호
         order_id: 주문번호
     */
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (price === 0) navigate('/');
-    });
 
     return (
         <OrderWrapper>
@@ -62,7 +110,12 @@ function Order() {
             {/* 배송지 */}
             <DeliveryAddress />
             {/* 주문자 정보 */}
-            <OrdererInfo />
+            <OrdererInfo
+                name={name}
+                phoneNumber={phoneNumber}
+                onUserNameChangehandler={userNameChangehandler}
+                onPhoneNumberChangehandler={phoneNumberChangehandler}
+            />
             {/* 주문 상품 정보 요약 */}
             <OrderSummary />
             <Button
@@ -74,6 +127,7 @@ function Order() {
                     fontWeight: '800',
                     textAlign: 'center',
                 }}
+                onClick={postOrderHandler}
             >
                 {numberWithCommas(price)}원 주문하기
             </Button>
