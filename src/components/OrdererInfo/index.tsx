@@ -1,10 +1,6 @@
 import { KeyboardArrowUp } from '@mui/icons-material';
 import { Fragment, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { AppDispatch, RootState } from '../../store';
-// import { setSelectedOrderName, setSelectedPhoneNumber } from '../../store/slice/orderSlice';
 import Colors from '../../styles/Colors';
-// import { formatPhoneNumber } from '../../utils/fomatter/formatPhoneNumber';
 import AccordionBody from '../Accordion/AccordionBody';
 import AccordionHeader from '../Accordion/AccordionHeader';
 import { BetweenFlex, StartFlex } from '../UI/Flex';

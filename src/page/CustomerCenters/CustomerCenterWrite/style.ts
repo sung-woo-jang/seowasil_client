@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Section = styled.section`
     margin: 3rem auto;
     width: 100%;
-    /* max-width: 25rem; */
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     padding: 1rem;

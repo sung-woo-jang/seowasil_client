@@ -44,8 +44,6 @@ export const postCreateProduct = createAsyncThunk(
     },
 );
 
-/* ********************************** */
-
 export const createProduct = async (formData: {
     title: string; // 상품 이름
     description: string; // 상품 설명

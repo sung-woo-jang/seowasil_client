@@ -26,7 +26,7 @@ function UploadForm({ onChangeFiles, buttonId, infoMessage }: UploadFormProps) {
         // 이미지를 DataURL로 만드는 메서드
         reader.readAsDataURL(file);
         reader.onloadend = () => {
-            //image and file name
+            // image and file name
 
             setImageDataArray((prevState: any) => [
                 ...prevState,

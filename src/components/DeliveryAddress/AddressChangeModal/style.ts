@@ -8,7 +8,6 @@ export const AddressChangeModalWrapper = styled.div`
 `;
 
 export const AddressList = styled.div`
-    /* margin: 20px; */
     border-radius: 8px;
     padding: 25px 20px 20px 20px;
 `;

@@ -72,11 +72,7 @@ function CustomerCenter() {
                         <span>글쓴이</span>
                     </QuestionTableTitle>
                     {contacts.map(({ id, category, name, title }) => (
-                        <DetailList
-                            // to={`/customer_center/${id}`}
-                            key={id}
-                            onClick={() => toggleHandler(id)}
-                        >
+                        <DetailList key={id} onClick={() => toggleHandler(id)}>
                             <span>{id}</span>
                             <span>{category}</span>
                             <span>{title}</span>

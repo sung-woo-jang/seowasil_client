@@ -10,8 +10,6 @@ interface OrderState {
     address3: string; //  상세주소
     amount: number; // 주문 수량
     price: number; // 주문 가격
-    // user_id: number;
-    // product_id: number;
     orderSuccess: boolean;
 }
 
@@ -24,8 +22,6 @@ const initialState: OrderState = {
     address3: '', // 상세 주소
     amount: 0, // 주문 수량
     price: 0, // 최종 결제액
-    // user_id: 0,
-    // product_id: 0,
     orderSuccess: false,
 };
 
@@ -60,12 +56,7 @@ export const { reducer: orderReducer, actions } = createSlice({
         setSelectedPrice: (state, { payload }) => {
             state.price = payload;
         },
-        // setSelectedOrderUser: (state, { payload }) => {
-        //     state.user_id = payload;
-        // },
-        // setSelectedOrderProduct: (state, { payload }) => {
-        //     state.product_id = payload;
-        // },
+
         setSelectedOrderSuccess: (state, { payload }) => {
             state.orderSuccess = payload;
         },
@@ -84,8 +75,6 @@ export const {
     setSelectedAmount,
     setSelectedPrice,
     setSelectedAddress,
-    // setSelectedOrderProduct,
-    // setSelectedOrderUser,
     setSelectedPhoneNumber,
     setSelectedOrderName,
     setSelectedOrderSuccess,

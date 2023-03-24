@@ -68,7 +68,6 @@ function ContentContainer() {
                         id="content-description"
                         onFocus={isActiveHandler}
                         onBlur={isActiveHandler}
-                        // isActive={isActive}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             dispatch(setSelectedDescription(e.target.value));
                         }}

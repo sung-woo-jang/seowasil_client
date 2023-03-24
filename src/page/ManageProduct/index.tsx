@@ -45,18 +45,6 @@ const ManageProduct = () => {
         })();
     }, []);
 
-    /* 
-    const [completedIds, setCompletedIds] = useState<number[]>([]);
-
-    const handleToggle = (id: number) => {
-        if (completedIds.includes(id)) {
-            setCompletedIds(completedIds.filter((completedId) => completedId !== id));
-        } else {
-            setCompletedIds([...completedIds, id]);
-        }
-    };
-    */
-
     return (
         <ManageProductWrapper>
             <ProductHeader>

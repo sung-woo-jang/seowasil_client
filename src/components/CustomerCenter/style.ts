@@ -8,7 +8,6 @@ const color = {
     black2: '#999',
 };
 
-// order details list
 export const Details = styled.div`
     position: relative;
     width: 100%;

@@ -47,16 +47,6 @@ function Order() {
         }
     }, [orderSuccess, dispatch, navigate]);
 
-    // 'price',
-    // 'name',
-    // 'phoneNumber',
-    // 'amount':number,
-    // 'deliveryRequest',
-    // 'address1',
-    // 'address2',
-    // 'address3',
-    // 'user_id: number;'
-    // 'product_id: number;'
     const postOrderHandler = () => {
         console.log(reformatPhoneNumber(phoneNumber));
         dispatch(

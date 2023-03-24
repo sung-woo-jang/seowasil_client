@@ -71,14 +71,6 @@ function DeliveryAddress() {
                         {formatPhoneNumber(phoneNumber)}
                     </FontStyle>
                 </StartFlex>
-                {/*  <div style={{ margin: '20px 0' }}>
-                    <input
-                        type="checkbox"
-                        id="save-default-address-input"
-                        name="isChangeDefaultAddress"
-                    />
-                    &nbsp;&nbsp;&nbsp;기본 배송지로 저장
-                </div> */}
                 <div style={{ margin: '20px 0' }}>
                     <StyledTextArea
                         placeholder="배송 요청사항을 입력해주세요"
