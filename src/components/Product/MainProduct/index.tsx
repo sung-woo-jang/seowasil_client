@@ -41,7 +41,7 @@ function MainProduct() {
                 />
                 <Content productData={productData} />
                 <CenterFlex style={{ gridColumn: '1 / -1' }}>
-                    {productData.productDetailImagesUrl.storedFileName.map((url, index) => (
+                    {productData.productDetailImagesUrl?.storedFileName.map((url, index) => (
                         <img
                             key={index}
                             src={`${process.env.REACT_APP_AWS_URL}${url}`}

@@ -6,6 +6,12 @@ export const BetweenFlex = styled.div`
     align-items: center;
 `;
 
+export const AroundFlex = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+`;
+
 export const StartFlex = styled.div`
     display: flex;
     justify-content: start;

@@ -130,27 +130,22 @@ export const IconBox = styled.div`
 // order details list
 export const Details = styled.div`
     position: relative;
-    width: 100%;
-    padding: 20px;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 20px;
+    padding: 20px;
+    background: ${color.white};
     grid-gap: 30px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    min-height: 500px;
+    overflow-x: auto;
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
     }
 `;
-export const RecentOrders = styled.div`
-    position: relative;
-    display: grid;
-    min-height: 500px;
-    background: ${color.white};
-    padding: 20px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
-    @media screen and (max-width: 768px) {
-        overflow-x: auto;
-    }
-`;
+
 export const CardHeader = styled.div`
     display: flex;
     justify-content: space-between;
@@ -162,73 +157,6 @@ export const CardTitle = styled.h2`
     font-size: 25px;
     @media screen and (max-width: 480px) {
         font-size: 20px;
-    }
-`;
-
-export const OrderTable = styled.table`
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-
-    & tr:last-child {
-        border-bottom: none;
-    }
-
-    & tr td {
-        padding: 10px;
-
-        &:last-child {
-            text-align: end;
-        }
-        &:nth-child(2) {
-            text-align: center;
-        }
-        &:nth-child(3) {
-            text-align: center;
-        }
-    }
-`;
-
-export const TableUnderRow = styled.tr`
-    color: ${color.black1};
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-    &:hover {
-        background: ${Colors.SkyBlue};
-        color: ${color.white};
-    }
-`;
-
-export const RecentCustomers = styled.div`
-    position: relative;
-    display: grid;
-    min-height: 500px;
-    padding: 20px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-    border-radius: 20px;
-    background: ${color.white};
-`;
-
-export const RecentCustomersTableRow = styled.tr`
-    & td {
-        padding: 12px 10px;
-        & h4 {
-            font-size: 16px;
-            line-height: 1.2em;
-            & span {
-                font-size: 14px;
-                color: ${color.black2};
-            }
-        }
-    }
-
-    &:hover {
-        background-color: ${Colors.SkyBlue};
-        color: ${color.white};
-
-        & td h4 span {
-            color: ${color.white};
-        }
     }
 `;
 
@@ -246,4 +174,9 @@ export const CustomerImageBox = styled.div`
         height: 100%;
         object-fit: cover;
     }
+`;
+
+export const TableContents = styled.div`
+    width: 100%;
+    text-align: center;
 `;
