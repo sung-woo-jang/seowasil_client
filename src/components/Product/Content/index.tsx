@@ -88,14 +88,14 @@ function Content({ productData }: ContentProps) {
                 <p>{description}</p>
                 <ul>
                     <li>
+                        최소 주문 수량: <span>{minAmount}개</span>
+                    </li>
+                    {/* <li>
                         과명: <span>ㅇㅇ나무과</span>
                     </li>
                     <li>
-                        최소 주문 수량: <span>{minAmount}개</span>
-                    </li>
-                    <li>
                         기타: <span>등등</span>
-                    </li>
+                    </li> */}
                 </ul>
             </ProductDetail>
             <div>

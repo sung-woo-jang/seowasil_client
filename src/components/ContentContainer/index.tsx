@@ -40,6 +40,7 @@ function ContentContainer() {
     const [category, setCategory] = useState('카테고리 선택');
 
     const dropdownCloseHandler = (index: number) => {
+        if (categories === null) return;
         setCategory(categories[index].name);
         dispatch(setSelectedCategoryId(categories[index].id));
         setSelect(false);
@@ -105,7 +106,7 @@ function ContentContainer() {
                     <input
                         type="number"
                         id="sellPrice"
-                        defaultValue={minAmount}
+                        defaultValue={sellPrice}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             dispatch(setSelectedSellPrice(e.target.value));
                         }}
@@ -116,7 +117,7 @@ function ContentContainer() {
                     <input
                         type="number"
                         id="minAmount"
-                        defaultValue={sellPrice}
+                        defaultValue={minAmount}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             dispatch(setSelectedMinAmount(e.target.value));
                         }}

@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getProducts } from '../../utils/api/Product/getProducts';
+import { truncateString } from '../../utils/fomatter/truncateString';
 import { Button } from '../UI/Button';
 import { ProductTitle, SubTitle, Title } from './style';
 
@@ -18,6 +19,7 @@ interface productsData {
     title: string;
     description: string;
     productImageUrl: { storedFileName: string[] };
+    category: { name: string };
 }
 
 const BestItem = () => {
@@ -26,6 +28,7 @@ const BestItem = () => {
     useEffect(() => {
         (async () => {
             const data = await getProducts();
+            data.map((el: any) => (el.description = truncateString(el.description, 55)));
             setProducts(data);
         })();
     }, []);

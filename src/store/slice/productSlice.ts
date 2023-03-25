@@ -12,20 +12,20 @@ interface postProduct {
     sellPrice: string; // 판매 가격
     minAmount: string; // 최소 주문 수량
     status: string; // 판매여부 (ex: 판매중, 임시 판매 중단)
-    categories: [{ id: string; name: string }];
-    category_id: string; // 카테고리 항목 id (ex: 문그로우 카테고리의 id)
-    isCompleted: boolean; // 게시물 생성 성공 여부
+    categories: null | [{ id: string; name: string }];
+    category_id: null | string; // 카테고리 항목 id (ex: 문그로우 카테고리의 id)
+    isCompleted: null | boolean; // 게시물 생성 성공 여부
 }
 
 const initialState: postProduct = {
     title: '',
     description: '',
-    prevPrice: '0',
-    sellPrice: '0',
-    minAmount: '0',
+    prevPrice: '',
+    sellPrice: '',
+    minAmount: '1',
     status: '판매중',
-    category_id: '',
-    categories: [{ id: '', name: '' }],
+    category_id: null,
+    categories: null,
     isCompleted: false,
 };
 
@@ -69,11 +69,11 @@ export const { reducer: productReducer, actions } = createSlice({
         });
         // 카테고리 등록
         builder.addCase(postCreateCategory.fulfilled, (state, { payload }) => {
-            state.categories.push({ id: payload.id, name: payload.name });
+            if (state.categories) state.categories.push({ id: payload.id, name: payload.name });
         });
         // 카테고리 삭제
         builder.addCase(deleteCategory.fulfilled, (state, { payload }) => {
-            state.categories.splice(payload, 1);
+            if (state.categories) state.categories.splice(payload, 1);
         });
     },
 });
