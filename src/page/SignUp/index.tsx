@@ -105,6 +105,30 @@ export default function SignUp() {
     const formSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
         const { address1, address2, address3 } = addressInfo;
         e.preventDefault();
+
+        // 하나 이상의 입력 필드가 비어있으면 alert을 띄우고 회원가입을 시도하지 않음
+        if (
+            !userInfo.account ||
+            !userInfo.password ||
+            !userInfo.name ||
+            !userInfo.phoneNumber ||
+            !userInfo.email ||
+            !address1 ||
+            !address2 ||
+            !address3
+        ) {
+            let message = '다음 필드를 입력해주세요:\n';
+            if (!userInfo.account) message += '계정\n';
+            if (!userInfo.password) message += '비밀번호\n';
+            if (!userInfo.name) message += '이름\n';
+            if (!userInfo.phoneNumber) message += '전화번호\n';
+            if (!address1) message += '우편번호\n';
+            if (!address2) message += '주소\n';
+            if (!address3) message += '상세주소\n';
+            alert(message);
+            return;
+        }
+
         dispatch(asyncSignUpFetch({ ...userInfo, address1, address2, address3 }));
     };
 
@@ -169,7 +193,7 @@ export default function SignUp() {
                     <input
                         type="text"
                         id="email"
-                        placeholder=""
+                        placeholder="필수 입력 조건이 아닙니다"
                         value={userInfo.email}
                         onChange={emailInputHandler}
                     />
