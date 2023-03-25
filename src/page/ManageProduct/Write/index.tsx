@@ -27,6 +27,16 @@ const Write = () => {
 
     const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (productFiles.length === 0 && productDetailFiles.length === 0)
+            return alert('사진 파일을 올려주세요');
+
+        if (category_id === null) return alert('카테고리를 반드시 설정해야 합니다.');
+        if (description.length === 0) return alert('상품 설명글을 입력하여 주세요.');
+        if (minAmount.length === 0) return alert('최소 주문 수량을 입력해주세요');
+        if (sellPrice.length === 0 && prevPrice.length === 0)
+            return alert('금액 설정을 해주셔야 합니다.');
+        if (prevPrice <= sellPrice) return alert('판매 가격은 상품가격보다 낮아야 합니다.');
+        if (title.length === 0 && title === null) return alert('상품명을 입력해주세요');
 
         dispatch(
             postCreateProduct({
