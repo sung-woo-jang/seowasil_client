@@ -20,8 +20,7 @@ import { RootState } from '../../store';
 import { useEffect, useState } from 'react';
 import { getProducts } from '../../utils/api/Product/getProducts';
 import dayjs from 'dayjs';
-import { ThreeDots } from '../../icons';
-import Colors from '../../styles/Colors';
+import PopOver from '../../components/PopOver';
 
 interface productsData {
     id: number;
@@ -61,7 +60,7 @@ const ManageProduct = () => {
                 <ManagedContainer>
                     <div>전체 카테고리</div>
                     <CategoryList>
-                        {categories.map(({ name, id }) => (
+                        {categories?.map(({ name, id }) => (
                             <li key={id}>{name}</li>
                         ))}
                     </CategoryList>
@@ -94,12 +93,14 @@ const ManageProduct = () => {
                                     <td>{sellPrice}₩</td>
                                     <td>{dayjs(createdAt).format('YYYY-MM-DD')}</td>
                                     <td style={{ position: 'relative' }}>
-                                        <ThreeDots
+                                        <PopOver />
+                                        {/* <ThreeDots
                                             style={{
                                                 width: '20px',
                                                 height: 'auto',
                                             }}
                                         />
+
                                         <div
                                             style={{
                                                 width: '150px',
@@ -115,7 +116,7 @@ const ManageProduct = () => {
                                                 <div>인기 상품 등록</div>
                                                 <div>상품 삭제</div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </td>
                                 </TableUnderRow>
                             ))}

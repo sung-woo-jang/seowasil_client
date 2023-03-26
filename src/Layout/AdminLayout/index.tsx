@@ -30,7 +30,7 @@ const AdminLayout = () => {
     const [toggle, setToggle] = useState<boolean>(false);
 
     const toggleHandler = () => {
-        setToggle(!toggle);
+        setToggle((prevState) => !prevState);
     };
 
     const { role } = useSelector((state: RootState) => state.auth);

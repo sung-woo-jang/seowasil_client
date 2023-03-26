@@ -25,7 +25,7 @@ function OrdererInfo({
 }: OrdererInfoProps) {
     const [toggle, setToggle] = useState(false);
     const toggleHandler = () => {
-        setToggle(!toggle);
+        setToggle((prevState) => !prevState);
     };
 
     return (

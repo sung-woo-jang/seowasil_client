@@ -44,7 +44,7 @@ function OrderSummary() {
 
     const [toggle, setToggle] = useState(true);
     const toggleHandler = () => {
-        setToggle(!toggle);
+        setToggle((prevState) => !prevState);
     };
 
     return (

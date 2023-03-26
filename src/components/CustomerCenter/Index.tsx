@@ -46,7 +46,7 @@ function CustomerCenter() {
     const [contactId, setContactId] = useState(0);
     const toggleHandler = (id: number) => {
         setContactId(id);
-        setToggle(!toggle);
+        setToggle((prevState) => !prevState);
     };
 
     return (

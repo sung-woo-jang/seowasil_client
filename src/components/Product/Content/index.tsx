@@ -25,7 +25,7 @@ function Content({ productData }: ContentProps) {
     const { product_id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
-    const { id } = useSelector((state: RootState) => state.auth);
+    const { id, isLogin } = useSelector((state: RootState) => state.auth);
     const { address1, address2, address3, user_id } = useSelector(
         (state: RootState) => state.deliverAddress,
     );
@@ -43,6 +43,8 @@ function Content({ productData }: ContentProps) {
 
     // 주문하기
     const navigateToOrderPageHandler = () => {
+        // if (!isLogin) alert(`로그인 후 이용 가능합니다.\n*추후 비회원 구매 업데이트 예정*.`);
+        // else
         if (amount >= minAmount) {
             dispatch(
                 setSelectedOrder({
@@ -110,9 +112,9 @@ function Content({ productData }: ContentProps) {
                 >
                     주문하기
                 </Button>
-                <Button border={true} onClick={addCartItemHandler}>
+                {/* <Button border={true} onClick={addCartItemHandler}>
                     장바구니 추가
-                </Button>
+                </Button> */}
             </div>
         </ProductContent>
     );
