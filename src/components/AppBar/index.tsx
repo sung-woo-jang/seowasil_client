@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { YouTubeIcon } from '../../icons';
-import { RootState } from '../../store';
-import { logOut } from '../../store/slice/authSlice';
+import { AppDispatch, RootState } from '../../store';
+import { asyncLogOutFetch } from '../../utils/api/Auth/authApi';
 import { Button } from '../UI/Button';
 import { BetweenFlex } from '../UI/Flex';
 import { AppBarWrapper, Right, SNS } from './style';
 
 const AppBar = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const { isLogin, role, id } = useSelector((state: RootState) => state.auth);
 
-    const logoutHandler = () => {
-        dispatch(logOut());
+    const logoutHandler = async () => {
+        dispatch(asyncLogOutFetch());
         navigate('/', { replace: true });
     };
 

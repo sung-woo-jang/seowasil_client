@@ -1,12 +1,9 @@
+import { removeserInfoToLocalStorage } from './../../utils/auth/useInfo';
+import { formatPhoneNumber } from './../../utils/fomatter/formatPhoneNumber';
+import { asyncSignupFetch, asyncLogOutFetch } from './../../utils/api/Auth/authApi';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as authApi from '../../utils/api/Auth/authApi';
-import {
-    getUserInfo,
-    removeUserData,
-    setAccessToken,
-    setRefreshToken,
-    setUserInfo,
-} from '../../utils/auth/useInfo';
+import { asyncLoginFetch } from '../../utils/api/Auth/authApi';
+import { getUserInfoToLocalStorage } from '../../utils/auth/useInfo';
 
 interface userInfo {
     id: number;
@@ -26,22 +23,10 @@ const initialState: userInfo = {
     isLogin: false,
 };
 
-// createAsyncThunk는 비동기 작업을 처리하는 액션을 만들어준다.
-export const asyncLoginFetch = createAsyncThunk(
-    'auth/login',
-    async (formData: { account: string | undefined; password: string | undefined }) => {
-        const { accessToken, refreshToken, user } = await authApi.login(formData);
-        setAccessToken(accessToken);
-        setRefreshToken(refreshToken);
-        setUserInfo(user);
-        return user;
-    },
-);
-
 export const asyncSignUpFetch = createAsyncThunk(
     'auth/signup',
     async (formData: signupFormData) => {
-        const response = await authApi.signupApi(formData);
+        const response = await asyncSignupFetch(formData);
         return response;
     },
 );
@@ -51,7 +36,7 @@ export const { reducer: authReducer, actions } = createSlice({
     initialState,
     reducers: {
         loginCheck(state) {
-            const userInfo = getUserInfo();
+            const userInfo = getUserInfoToLocalStorage();
             if (userInfo) {
                 state.isLogin = true;
                 state.isRegistCompleted = false;
@@ -61,15 +46,7 @@ export const { reducer: authReducer, actions } = createSlice({
                 state.role = userInfo.role;
             }
         },
-        logOut(state) {
-            removeUserData();
-            state.isLogin = false;
-            state.isRegistCompleted = false;
-            state.id = 0;
-            state.name = '';
-            state.phoneNumber = '';
-            state.role = '';
-        },
+
         setSelectedIsRegistCompleted(state) {
             state.isRegistCompleted = false;
         },
@@ -80,9 +57,7 @@ export const { reducer: authReducer, actions } = createSlice({
             state.isLogin = true;
             state.id = payload.id;
             state.name = payload.name;
-            state.phoneNumber = payload.phoneNumber
-                .replace(/-/g, '')
-                .replace(/(\d{3})(\d{3,4})(\d{4})/, '$1-$2-$3');
+            state.phoneNumber = formatPhoneNumber(payload.phoneNumber);
             state.role = payload.role;
         });
         // 회원가입 성공
@@ -90,9 +65,19 @@ export const { reducer: authReducer, actions } = createSlice({
             state.id = payload.id;
             state.isRegistCompleted = true;
         });
+        // 로그아웃
+        builder.addCase(asyncLogOutFetch.fulfilled, (state) => {
+            removeserInfoToLocalStorage();
+            state.isLogin = false;
+            state.isRegistCompleted = false;
+            state.id = 0;
+            state.name = '';
+            state.phoneNumber = '';
+            state.role = '';
+        });
     },
 });
 
-export const { loginCheck, logOut, setSelectedIsRegistCompleted } = actions;
+export const { loginCheck, setSelectedIsRegistCompleted } = actions;
 
 export default authReducer;

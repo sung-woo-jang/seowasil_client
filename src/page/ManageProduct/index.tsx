@@ -94,29 +94,6 @@ const ManageProduct = () => {
                                     <td>{dayjs(createdAt).format('YYYY-MM-DD')}</td>
                                     <td style={{ position: 'relative' }}>
                                         <PopOver />
-                                        {/* <ThreeDots
-                                            style={{
-                                                width: '20px',
-                                                height: 'auto',
-                                            }}
-                                        />
-
-                                        <div
-                                            style={{
-                                                width: '150px',
-                                                height: '150px',
-                                                background: Colors.Gray8,
-                                                position: 'absolute',
-                                                right: '50%',
-                                                top: '50%',
-                                                display: 'none',
-                                            }}
-                                        >
-                                            <div style={{ marginTop: '10px' }}>
-                                                <div>인기 상품 등록</div>
-                                                <div>상품 삭제</div>
-                                            </div>
-                                        </div> */}
                                     </td>
                                 </TableUnderRow>
                             ))}

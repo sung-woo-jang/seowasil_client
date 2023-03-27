@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store';
-import { asyncLoginFetch } from '../../store/slice/authSlice';
+import { asyncLoginFetch } from '../../utils/api/Auth/authApi';
 import { Actions, Control, Section } from './style';
 
 const Login = () => {
