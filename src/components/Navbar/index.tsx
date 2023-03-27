@@ -8,7 +8,7 @@ const Navbar = () => {
 
     return (
         <NavbarWrapper>
-            {categories.map(({ id, name }) => (
+            {categories?.map(({ id, name }) => (
                 <Link key={id} to={`/category/${id}`}>
                     <NavItem>{name}</NavItem>
                 </Link>

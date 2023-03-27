@@ -29,7 +29,7 @@ function Dropdown({
                 </Caret>
             </Select>
             <Menu isActive={isSelected}>
-                {categories.map(({ id, name }, index) => (
+                {categories?.map(({ id, name }, index) => (
                     <li
                         key={id}
                         onClick={() => {

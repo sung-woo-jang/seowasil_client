@@ -47,8 +47,42 @@ function Order() {
         }
     }, [orderSuccess, dispatch, navigate]);
 
+    useEffect(() => {
+        console.log({
+            price,
+            name,
+            phoneNumber: reformatPhoneNumber(phoneNumber),
+            amount,
+            delivery_request,
+            address1,
+            address2,
+            address3,
+            user_id: userInfo.id,
+            product_id,
+        });
+    }, [
+        price,
+        name,
+        phoneNumber,
+        amount,
+        delivery_request,
+        address1,
+        address2,
+        address3,
+        userInfo.id,
+        product_id,
+    ]);
+
     const postOrderHandler = () => {
-        console.log(reformatPhoneNumber(phoneNumber));
+        if (address1?.length === 0 && address2?.length === 0 && address3?.length === 0)
+            return alert('배송지를 입력하여 주세요.');
+        if (price === 0 && !amount && !product_id) {
+            alert('알 수 없는 오류로 인해 주문하기가 실패하였습니다.');
+            return navigate('/', { replace: true });
+        }
+        if (name.length === 0) return alert('주문자 성함을 입력해주세요');
+        if (phoneNumber.length === 0) return alert('주문자 전화번호를 입력해주세요');
+
         dispatch(
             postCreateOrder({
                 price,
@@ -64,26 +98,6 @@ function Order() {
             }),
         );
     };
-
-    /*  주문 넣기
-    Todo 1
-        데이터 보내기 전에 유효성 검사하기
-
-    Todo 2
-        api/orders에 데이터 보내기
-        address1: 우편번호
-        address2: 우편번호
-        address3: 우편번호
-        delivery_request: 배송 요청사항
-        user_id: 사용자 id
-
-    Todo 3
-        api/order-details에 데이터 보내기
-        amount: 주문 수량
-        price: 가격 (주문 수량 * 제품 가격)
-        product_id: 상품번호
-        order_id: 주문번호
-    */
 
     return (
         <OrderWrapper>

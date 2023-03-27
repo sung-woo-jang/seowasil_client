@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Colors from '../../styles/Colors';
 import { getProductDetail } from '../../utils/api/Product/getProductDetail';
 import { numberWithCommas } from '../../utils/fomatter/numberWithCommas';
@@ -18,12 +18,8 @@ function OrderSummary() {
     const { product_id } = useParams<{ product_id?: string }>();
     const [{ title, category, sellPrice, productImageUrl }, setProductData] = useState<ProductData>(
         {
-            id: 0,
             title: '',
-            description: '',
             sellPrice: 0,
-            prevPrice: 0,
-            minAmount: 0,
             category: { name: '' },
             productImageUrl: { storedFileName: [''] },
         },
@@ -41,6 +37,19 @@ function OrderSummary() {
     }, [product_id]);
 
     // dispatch를 사용해서 minAmount 변경하기
+    const location = useLocation();
+    const navigation = useNavigate();
+
+    // 현재 화면에서 새로고침 버튼을 누르면 index페이지로 이동
+    useEffect(() => {
+        const shouldRedirect = JSON.parse(sessionStorage.getItem('shouldRedirect') as string);
+        if (shouldRedirect) {
+            sessionStorage.removeItem('shouldRedirect');
+            navigation('/', { replace: true });
+        } else {
+            sessionStorage.setItem('shouldRedirect', JSON.stringify(true));
+        }
+    }, [location.pathname, navigation]);
 
     const [toggle, setToggle] = useState(true);
     const toggleHandler = () => {
@@ -68,7 +77,7 @@ function OrderSummary() {
                     <StartFlex>
                         <picture>
                             <img
-                                src={`${process.env.REACT_APP_AWS_URL}${productImageUrl.storedFileName[0]}`}
+                                src={`${process.env.REACT_APP_AWS_URL}${productImageUrl?.storedFileName[0]}`}
                                 alt={title}
                                 style={{
                                     width: '80px',
@@ -78,7 +87,7 @@ function OrderSummary() {
                             />
                         </picture>
                         <div>
-                            <div style={{ marginBottom: '8px' }}>{category.name}</div>
+                            <div style={{ marginBottom: '8px' }}>{category?.name}</div>
                             <ul>
                                 <li>
                                     <FontStyle
@@ -94,7 +103,8 @@ function OrderSummary() {
                             </ul>
                             <StartFlex style={{ marginTop: '11px' }}>
                                 <FontStyle>
-                                    {numberWithCommas(sellPrice * Number(amount))}원
+                                    {numberWithCommas((sellPrice ? sellPrice : 0) * Number(amount))}
+                                    원
                                 </FontStyle>
                                 <FontStyle
                                     style={{

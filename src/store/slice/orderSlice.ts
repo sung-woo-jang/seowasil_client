@@ -10,7 +10,7 @@ interface OrderState {
     address3: string; //  상세주소
     amount: number; // 주문 수량
     price: number; // 주문 가격
-    orderSuccess: boolean;
+    orderSuccess: boolean; // 주문 성공 여부
 }
 
 const initialState: OrderState = {

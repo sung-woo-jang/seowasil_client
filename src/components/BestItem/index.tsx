@@ -28,7 +28,6 @@ const BestItem = () => {
     useEffect(() => {
         (async () => {
             const data = await getProducts();
-            data.map((el: any) => (el.description = truncateString(el.description, 55)));
             setProducts(data);
         })();
     }, []);
@@ -59,7 +58,7 @@ const BestItem = () => {
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {title}
                                     </Typography>
-                                    <Typography>{description}</Typography>
+                                    <Typography>{truncateString(description, 55)}</Typography>
                                 </CardContent>
                             </Link>
                             <CardActions>

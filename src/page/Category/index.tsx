@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import { Button } from '../../components/UI/Button';
 import { getProductsByCategoryId } from '../../utils/api/Category/getProductsByCategoryId';
+import { truncateString } from '../../utils/fomatter/truncateString';
 import { CategoryWrapper } from './style';
 
 interface productsData {
@@ -58,7 +59,7 @@ const Category = () => {
                                     <Typography gutterBottom variant="h5" component="h2">
                                         {title}
                                     </Typography>
-                                    <Typography>{description}</Typography>
+                                    <Typography>{truncateString(description, 55)}</Typography>
                                 </CardContent>
                             </Link>
                             <CardActions>

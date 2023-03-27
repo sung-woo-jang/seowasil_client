@@ -57,7 +57,7 @@ function Dialog({ isCategory, onDialog, onDropdownCloseHandler }: DialogProps) {
                 </AddCategory>
 
                 <CategoryList>
-                    {categories.map(({ name, id }, index) => (
+                    {categories?.map(({ name, id }, index) => (
                         <CategoryItem
                             key={id}
                             onClick={() => {

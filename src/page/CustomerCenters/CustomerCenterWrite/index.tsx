@@ -47,7 +47,7 @@ function CustomerCenterWrite() {
             <form onSubmit={formSubmitHandler}>
                 <Section>
                     <select name="category" style={{ width: '100px' }}>
-                        {categories.map(({ id, title }, index) => (
+                        {categories?.map(({ id, title }) => (
                             <option value={title} key={id}>
                                 {title}
                             </option>
