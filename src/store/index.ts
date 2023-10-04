@@ -1,18 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './slice/authSlice';
-import cartReducer from './slice/cartSlice';
-import deliverAddressReducer from './slice/deliverAddressSlice';
-import orderReducer from './slice/orderSlice';
-import productReducer from './slice/productSlice';
+import counterReducer from './slice/counterSlice';
 
 const store = configureStore({
     reducer: {
-        auth: authReducer,
-        product: productReducer,
-        cart: cartReducer,
-        order: orderReducer,
-        deliverAddress: deliverAddressReducer,
+        counter: counterReducer,
     },
+    devTools: process.env.NODE_ENV !== 'production',
 });
 
 export default store;
