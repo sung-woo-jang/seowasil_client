@@ -4,8 +4,7 @@ import TanStackProviders from '@/lib/react-query/QueryProvider';
 import StyledComponentsRegistry from '@/lib/styled-components/registry';
 import MuiProvier from '@/lib/mui/MuiProvier';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Link from 'next/link';
+import Header from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,18 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <StyledComponentsRegistry>
               <MuiProvier options={{ key: 'mui' }}>
                 <Container maxWidth="xl">
-                  <Box
-                    sx={{
-                      marginTop: 2,
-                      bgcolor: '#cfe8fc',
-                      height: '100vh',
-                    }}
-                  >
-                    <div>
-                      <Link href="/">메인 페이지로 이동</Link>
-                    </div>
-                    {children}
-                  </Box>
+                  <Header />
+                  {children}
                 </Container>
               </MuiProvier>
             </StyledComponentsRegistry>
