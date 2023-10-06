@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ProductPreviewWrapper = styled.div`
-  max-width: 900px;
+  /* max-width: 900px; */
   display: flex;
   gap: 20px;
   margin-bottom: 1rem;

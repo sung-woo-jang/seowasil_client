@@ -14,20 +14,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko-kr">
-      <body>
-        <ReduxProviders>
+      <ReduxProviders>
+        <body suppressHydrationWarning={true}>
           <TanStackProviders>
-            <StyledComponentsRegistry>
-              <MuiProvier options={{ key: 'mui' }}>
-                <Container maxWidth="xl">
+            <MuiProvier options={{ key: 'mui' }}>
+              <Container maxWidth="xl">
+                <StyledComponentsRegistry>
                   <Header />
                   {children}
-                </Container>
-              </MuiProvier>
-            </StyledComponentsRegistry>
+                </StyledComponentsRegistry>
+              </Container>
+            </MuiProvier>
           </TanStackProviders>
-        </ReduxProviders>
-      </body>
+        </body>
+      </ReduxProviders>
     </html>
   );
 }

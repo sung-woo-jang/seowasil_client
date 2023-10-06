@@ -12,6 +12,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'robohash.org',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.nike.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

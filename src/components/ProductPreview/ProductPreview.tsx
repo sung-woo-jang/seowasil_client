@@ -1,5 +1,5 @@
 'use client';
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import numberWithCommas from '@/utils/numberWithCommas';
 import NorthIcon from '@mui/icons-material/North';
@@ -14,15 +14,17 @@ const ProductPreview = () => {
 
   return (
     <S.ProductPreviewWrapper>
-      <Image
-        src="https://res.cloudinary.com/dfdnn20e7/image/upload/v1685124680/uajohsg8q6wwfvtbrw6q.avif"
-        alt={'name'}
-        // effect="blur"
-        width={200}
-        height={200}
-      />
+      <Link href={`/products/${1}`}>
+        <Image
+          src="https://res.cloudinary.com/dfdnn20e7/image/upload/v1685124680/uajohsg8q6wwfvtbrw6q.avif"
+          alt={'name'}
+          // effect="blur"
+          width={200}
+          height={200}
+        />
+      </Link>
       <S.ProductPreviewInfo>
-        <Link href={`/product-details`}>
+        <Link href={`/product-detail/${1}`}>
           <S.ProductTitle>상품명</S.ProductTitle>
         </Link>
         <S.ProductDescriptionToggle onClick={() => setDetailShow((prev) => !prev)}>
@@ -43,4 +45,4 @@ const ProductPreview = () => {
   );
 };
 
-export default memo(ProductPreview);
+export default ProductPreview;
