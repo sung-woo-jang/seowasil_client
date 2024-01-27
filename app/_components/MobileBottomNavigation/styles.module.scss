@@ -1,0 +1,43 @@
+.mobileBottomNavigationWrapper {
+  background: var(--white);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0;
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.25);
+  z-index: 5;
+
+  & button {
+    position: relative;
+    font-size: 26px;
+    color: 'hsl(0, 0%, 13%)';
+    padding: 10px;
+  }
+
+  & span {
+    background: var(--bittersweet);
+    color: '#FFFFFF';
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 20px;
+  }
+  @media (min-width: 480px) {
+    border-top-left-radius: var(--border-radius-md);
+    border-top-right-radius: var(--border-radius-md);
+  }
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}

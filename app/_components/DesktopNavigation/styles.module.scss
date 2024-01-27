@@ -1,0 +1,55 @@
+.desktopNavigationWrapper {
+  display: none;
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.desktopMenuCategoryList {
+  @media (min-width: 1024px) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  @media (min-width: 1200px) {
+    gap: 45px;
+  }
+}
+
+.menuCategory {
+  @media (min-width: 1024px) {
+    position: relative;
+  }
+}
+
+.menuTitle {
+  @media (min-width: 1024px) {
+    position: relative;
+    color: '0.2s ease';
+    font-size: var(--fs-7);
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 15px 0;
+    transition: var(--transition-timing);
+    &:hover {
+      color: black;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: black;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition-timing);
+    }
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}

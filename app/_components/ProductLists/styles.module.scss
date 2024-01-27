@@ -1,0 +1,43 @@
+.selectBox {
+  display: flex;
+  margin: 2rem;
+  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.flexItem {
+  display: flex;
+  margin-top: 0.5rem;
+  align-items: center;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContent {
+  object-fit: cover;
+  border-radius: 0.375rem;
+  width: 100%;
+  height: 16rem;
+  // aspect-ratio: 7 / 3;
+}
