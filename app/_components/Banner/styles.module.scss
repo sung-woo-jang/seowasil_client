@@ -25,7 +25,7 @@
   min-width: 100%;
   max-height: 450px;
   aspect-ratio: 1 / 1;
-  border-radius: var(--border-radius-md);
+  border-radius: 10px;
   overflow: hidden;
   scroll-snap-align: start;
   @media (min-width: 480px) {
@@ -51,7 +51,7 @@
   @media (min-width: 480px) {
     display: block;
     color: 'hsl(0, 0%, 47%)';
-    font-size: var(--fs-7);
+    font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 10px;
     & b {
@@ -80,7 +80,7 @@
 
 .bannerSubtitle {
   color: black;
-  font-size: var(--fs-7);
+  font-size: 0.875rem;
   font-weight: 500;
   text-transform: capitalize;
   letter-spacing: 2px;
@@ -103,7 +103,7 @@
   left: 25px;
   right: 25px;
   padding: 20px 25px;
-  border-radius: var(--border-radius-md);
+  border-radius: 10px;
   @media (min-width: 480px) {
     top: 50%;
     right: auto;
@@ -138,7 +138,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  border-radius: var(--border-radius-md);
+  border-radius: 10px;
   overflow: auto hidden;
   scroll-snap-type: inline mandatory;
   overscroll-behavior-inline: contain;

@@ -4,7 +4,7 @@
   @media (min-width: 480px) {
     display: block;
     padding: 10px 0;
-    border-bottom: 1px solid var(--cultured);
+    border-bottom: 1px solid hsl(0, 0%, 93%);
   }
   @media (min-width: 570px) {
     display: flex;
@@ -37,6 +37,11 @@
   }
 }
 
+.ButtonGroup {
+  display: flex;
+  gap: 10px;
+}
+
 .headerSocialLink {
   @media (min-width: 1024px) {
     padding: 8px;
@@ -57,7 +62,7 @@
 
 .headerMain {
   padding: 20px 0;
-  border-bottom: 1px solid var(--cultured);
+  border-bottom: 1px solid hsl(0, 0%, 93%);
   @media (min-width: 480px) {
     padding: 25px 0;
   }
@@ -107,12 +112,12 @@
 }
 
 .searchField {
-  font-size: var(--fs-7);
+  font-size: 0.875rem;
   color: #616061;
   padding: 10px 15px;
   padding-right: 50px;
-  border: 1px solid 'hsl(0, 0%, 60%)';
-  border-radius: var(--border-radius-md);
+  border: 1px solid hsl(0, 0%, 60%);
+  border-radius: 10px;
 
   &::-webkit-search-cancel-button {
     display: none;
@@ -157,7 +162,7 @@
       position: absolute;
       top: -2px;
       right: -3px;
-      background: var(--bittersweet);
+      background: hsl(0, 100%, 70%);
       color: '#FFFFFF';
       font-size: 12px;
       font-weight: 500;

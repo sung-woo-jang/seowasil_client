@@ -7,7 +7,7 @@ import CommonContainer from '@/components/CommonContainer';
 const banner = [
   {
     id: 1,
-    image_path: `/images/banner-1.jpg`,
+    image_path: `/images/sample-2.jpg`,
     image_alt: `women's latest fashion sale`,
     sub_title: ``,
     title: ``,
@@ -17,7 +17,7 @@ const banner = [
 
   {
     id: 3,
-    image_path: `/images/banner-2.jpg`,
+    image_path: `/images/sample-1.jpg`,
     image_alt: `new fashion summer sale`,
     sub_title: `Sale Offer`,
     title: `New fashion summer sale`,
@@ -32,15 +32,7 @@ export default function Banner() {
       <CommonContainer>
         <div className={classes.sliderContainer}>
           {banner.map(
-            ({
-              id,
-              image_path,
-              image_alt,
-              sub_title,
-              title,
-              banner_text,
-              link,
-            }) => (
+            ({ id, image_path, image_alt, sub_title, title, banner_text, link }) => (
               <div className={classes.sliderItem} key={id}>
                 <Image
                   className={classes.bannerImg}
@@ -69,7 +61,7 @@ export default function Banner() {
                   )}
                 </div>
               </div>
-            ),
+            )
           )}
         </div>
       </CommonContainer>

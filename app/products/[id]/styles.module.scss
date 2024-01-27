@@ -1,0 +1,236 @@
+.productMain {
+  margin-bottom: 30px;
+}
+.productGridWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  @media (min-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.priceBox {
+  display: flex;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: 'hsl(0, 0%, 13%)';
+  margin-bottom: 10px;
+}
+
+.price {
+  font-weight: 700;
+}
+
+.showcaseCategory {
+  color: black;
+  font-size: var(--fs-9);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.showcaseTitle {
+  color: 'hsl(0, 0%, 47%)';
+  font-size: var(--fs-8);
+  font-weight: 300;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  transition: var(--transition-timing);
+
+  &:hover {
+    color: 'hsl(0, 0%, 13%)';
+  }
+}
+
+.showcaseContent {
+  margin-top: 2rem;
+  padding: 15px 20px 0;
+}
+
+.showCase {
+  border: 1px solid hsl(0, 0%, 93%);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: var(--transition-timing);
+  &:hover {
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
+  }
+}
+.productImgDefault {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-timing);
+  position: relative;
+  z-index: 1;
+
+  .showCase:hover & {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+.showcaseBanner {
+  position: relative;
+}
+
+.productImgHover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-timing);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+
+  .showCase:hover & {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.ProductContainer {
+  padding: 0 15px;
+  @media (min-width: 768px) {
+    max-width: 750px;
+    margin: auto;
+  }
+  @media (min-width: 1024px) {
+    max-width: 980px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
+  @media (min-width: 1400px) {
+    max-width: 1350px;
+  }
+}
+
+.ProductBox {
+  @media (min-width: 1024px) {
+    min-width: calc(75% - 15px);
+  }
+}
+
+.CustomImage {
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto !important;
+  position: relative !important;
+}
+
+.MainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.ImageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  flex-flow: row wrap;
+  padding: 40px;
+}
+.MainImage {
+  aspect-ratio: 400/400;
+  object-fit: contain;
+  width: 100%;
+  height: 650px;
+  border-radius: 0.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
+}
+
+// img
+.ProductImage {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  aspect-ratio: '60/60';
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
+  object-fit: 'cover';
+}
+// div
+.FlexContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 50%; /* Adjust as needed */
+}
+// div
+.TitleContainer {
+  span {
+    color: #9333ea; /* Replace with your desired color */
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 1.875rem; /* Equivalent to text-3xl */
+    font-weight: bold;
+  }
+}
+// p
+.Description {
+  color: #4b5563; /* Replace with your desired color */
+}
+// h6
+.Price {
+  font-size: 1.5rem; /* Equivalent to text-2xl */
+  font-weight: 600;
+}
+// div
+.QuantityContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+
+  button {
+    background-color: #e5e7eb; /* Replace with your desired color */
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* Equivalent to rounded-lg */
+    color: #9333ea; /* Replace with your desired color */
+    font-size: 1.5rem; /* Equivalent to text-3xl */
+    cursor: pointer;
+  }
+}
+// span
+.Quantity {
+  padding: 1rem 1.5rem;
+  border-radius: 0.375rem; /* Equivalent to rounded-lg */
+}
+// button
+.AddToCartButton {
+  background-color: #9333ea; /* Replace with your desired color */
+  color: white;
+  font-weight: 600;
+  padding: 1.125rem 4rem; /* Equivalent to py-3 px-16 */
+  border-radius: 1rem; /* Equivalent to rounded-xl */
+  cursor: pointer;
+}

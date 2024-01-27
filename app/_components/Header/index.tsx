@@ -1,4 +1,3 @@
-'use client';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -11,9 +10,10 @@ import AuthButton from './AuthButton';
 import classes from './styles.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import Badge from '../Badge';
 import DesktopNavigation from '../DesktopNavigation';
 import MobileBottomNavigation from '../MobileBottomNavigation';
+import { getCategories } from '@/api/categories/getCategories';
+import { Badge } from '@/components/Badge';
 
 function HeaderSocialLink({
   children,
@@ -23,13 +23,14 @@ function HeaderSocialLink({
   href: string;
 }) {
   return (
-    <a target="_blank" href={href}>
+    <Link target="_blank" href={href}>
       {children}
-    </a>
+    </Link>
   );
 }
 
-export default function Header() {
+export default async function Header() {
+  const categories = await getCategories();
   return (
     <header>
       <div className={classes.headerTop}>
@@ -71,9 +72,9 @@ export default function Header() {
           </li>
         </ul>
 
-        <div className={classes.headerAlertNews}>{/* <p>무료 배송</p> */}</div>
+        <div className={classes.headerAlertNews}></div>
 
-        <ButtonGroup style={{ display: 'flex', gap: '10px' }}>
+        <ButtonGroup className={classes.ButtonGroup}>
           <AuthButton />
 
           <Link href={'/products/add'}>
@@ -87,13 +88,7 @@ export default function Header() {
       <div className={classes.headerMain}>
         <div className={classes.headerMainContainer}>
           <Link href="/" className={classes.headerLogo}>
-            <Image
-              src="/logo2.svg"
-              alt="Next.js Logo"
-              width={200}
-              height={50}
-              priority
-            />
+            <Image src="/logo2.svg" alt="Next.js Logo" width={200} height={50} />
           </Link>
 
           <div className={classes.headerSearchContainer}>
@@ -116,18 +111,17 @@ export default function Header() {
 
             <button>
               <FavoriteBorderOutlinedIcon />
-              <Badge count={0} />
+              <Badge variant="default">0</Badge>
             </button>
 
             <button>
               <ShoppingCartOutlinedIcon />
-              <Badge count={0} />
+              <Badge variant="default">0</Badge>
             </button>
           </div>
         </div>
       </div>
-
-      <DesktopNavigation />
+      <DesktopNavigation categories={categories} />
       <MobileBottomNavigation />
     </header>
   );

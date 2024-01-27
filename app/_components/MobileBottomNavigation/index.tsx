@@ -1,10 +1,11 @@
+'use client';
 import classes from './styles.module.scss';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import Badge from '../Badge';
+import { Badge } from '@/components/Badge';
 
 export default function MobileBottomNavigation() {
   return (
@@ -16,7 +17,7 @@ export default function MobileBottomNavigation() {
 
       <button>
         <ShoppingCartOutlinedIcon />
-        <Badge count={0} />
+        <Badge variant="default">0</Badge>
       </button>
 
       <button>
@@ -25,7 +26,7 @@ export default function MobileBottomNavigation() {
 
       <button>
         <FavoriteBorderOutlinedIcon />
-        <Badge count={0} />
+        <Badge variant="default">0</Badge>
       </button>
 
       {/* 클릭 시 카테고리 관련 창 띄우기 */}

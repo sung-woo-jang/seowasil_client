@@ -1,4 +1,3 @@
-'use client';
 import Button from '@mui/material/Button';
 import { Colors } from '@/styles/global-variables';
 import Link from 'next/link';

@@ -1,10 +1,11 @@
-import { useGetCategories } from '@/api/categories/getCategories';
+'use client';
+import { ICategory, useGetCategories } from '@/api/categories/getCategories';
 import classes from './styles.module.scss';
 import Link from 'next/link';
 import CommonContainer from '@/components/CommonContainer';
 
-export default function DesktopNavigation() {
-  const { data } = useGetCategories();
+export default function DesktopNavigation({ categories }: { categories: ICategory[] }) {
+  const { data } = useGetCategories(categories);
   return (
     <nav className={classes.desktopNavigationWrapper}>
       <CommonContainer>

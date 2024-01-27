@@ -22,7 +22,7 @@
   }
 
   & span {
-    background: var(--bittersweet);
+    background: hsl(0, 100%, 70%);
     color: '#FFFFFF';
     position: absolute;
     top: 0;
@@ -34,8 +34,8 @@
     border-radius: 20px;
   }
   @media (min-width: 480px) {
-    border-top-left-radius: var(--border-radius-md);
-    border-top-right-radius: var(--border-radius-md);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
   @media (min-width: 1024px) {
     display: none;

@@ -14,7 +14,7 @@ interface Category {
   department: string;
 }
 
-interface IGetProductsResponse {
+export interface IGetProductsResponse {
   id: number;
   title: string;
   description: string;
@@ -29,15 +29,16 @@ interface IGetProductsResponse {
   category: Category;
 }
 
-const getProducts = async (): Promise<IGetProductsResponse[]> => {
+export const getProducts = async (): Promise<IGetProductsResponse[]> => {
   const { data } = await axiosInstance.get(API_URL.PRODUCTS.GET_LIST);
   return data.data;
 };
 
-export const useGetProducts = () => {
+export const useGetProducts = (initialData: IGetProductsResponse[]) => {
   const result = useQuery({
     queryKey: generateQueryKeysFromUrl(API_URL.PRODUCTS.GET_LIST),
     queryFn: getProducts,
+    initialData,
   });
 
   return result;

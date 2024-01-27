@@ -1,0 +1,75 @@
+// div
+.productPreviewWrapper {
+  /* max-width: 900px; */
+  display: flex;
+  gap: 20px;
+  margin-bottom: 1rem;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 20px 0 20px 10px;
+}
+
+// img
+.productPreviewImage {
+  max-width: 200px;
+  max-height: 200px !important;
+}
+
+// div
+.productPreviewInfo {
+  width: 100%;
+  padding: 0 40px 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+// div
+.productDescriptionToggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: auto;
+}
+
+// h4
+.productTitle {
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// div
+.InfoFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: flex-end;
+}
+
+// p
+.productPrice {
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 7px;
+}
+
+// div
+.productReviewRating {
+  i {
+    color: skyblue;
+  }
+  span {
+    color: #9e9e9e;
+  }
+}
+
+// Skeleton sty
+// divle
+.SkeletonImage {
+  width: 200px;
+  height: 200px;
+  background-color: #f7f9fa;
+}

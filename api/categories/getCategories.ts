@@ -12,7 +12,7 @@ export interface ICategory {
   department: string;
 }
 
-const getCategories = async (): Promise<ICategory[]> => {
+export const getCategories = async (): Promise<ICategory[]> => {
   const { data } = await axiosInstance.get(API_URL.CATEGORIES.GET_LIST);
   return data.data;
 };
@@ -28,7 +28,7 @@ const mapCategories = (data: ICategory[]) => [
     id,
     name,
     menu_item: null,
-    link: `/products/category/${id}`,
+    link: `/category/${id}`,
   })),
   {
     id: 10001,
@@ -38,9 +38,10 @@ const mapCategories = (data: ICategory[]) => [
   },
 ];
 
-export const useGetCategories = () =>
+export const useGetCategories = (initialData: ICategory[]) =>
   useQuery({
     queryKey: generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_LIST),
     queryFn: getCategories,
     select: mapCategories,
+    initialData,
   });

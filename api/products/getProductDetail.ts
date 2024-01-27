@@ -29,39 +29,22 @@ export interface IGetProductDetailResponse {
   category: Category;
 }
 
-const initalData = {
-  id: 0,
-  title: '',
-  description: '',
-  prevPrice: 0,
-  sellPrice: 0,
-  minAmount: 0,
-  isBest: false,
-  status: '',
-  viewCount: 0,
-  productImageUrl: [{ id: 0, storedFileName: '/images/default_product.jpg' }],
-  productDetailImageUrl: [
-    { id: 0, storedFileName: '/images/default_product.jpg' },
-  ],
-  category: {
-    name: '',
-    department: '',
-    scientific: '',
-  },
-} as IGetProductDetailResponse;
-
-const getProductDetail = async (
-  id: string,
+export const getProductDetail = async (
+  id: string
 ): Promise<IGetProductDetailResponse> => {
   const { data } = await axiosInstance.get(API_URL.PRODUCTS.GET_DETAIL(id));
   return data.data;
 };
 
-export const useGetProductDetail = (id: string) => {
-  const { data = initalData, ...rest } = useQuery({
+export const useGetProductDetail = (
+  id: string,
+  initialData: IGetProductDetailResponse
+) => {
+  const { data, ...rest } = useQuery({
     queryKey: generateQueryKeysFromUrl(API_URL.PRODUCTS.GET_DETAIL(id)),
     queryFn: () => getProductDetail(id),
     enabled: id.length !== 0,
+    initialData,
   });
 
   return { data, ...rest };
