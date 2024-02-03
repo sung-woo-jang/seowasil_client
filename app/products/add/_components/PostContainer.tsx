@@ -11,7 +11,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 import { API_URL } from '@/constants/API_URL';
 import { ICategory } from '@/api/categories/getCategories';
-import useCreateProductMutation from '@/api/products/createProduct';
+import useCreateProductMutation from '@/api/products/client/useCreateProductMutation';
 import isNaN from 'lodash/isNaN';
 import toNumber from 'lodash/toNumber';
 import Alert from '@mui/material/Alert';
@@ -23,8 +23,8 @@ export interface PostFormValues {
   description: string;
   sellPrice: number;
   minAmount: number;
-  productImages: FileList | File[] | null;
-  detailImages: FileList | File[] | null;
+  productImages: File[] | null;
+  detailImages: File[] | null;
   categoryId: number;
 }
 
@@ -35,19 +35,17 @@ interface State extends SnackbarOrigin {
 export default function PostContainer() {
   const queryClient = useQueryClient();
   const categories = queryClient
-    .getQueryData<
-      ICategory[]
-    >(generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_LIST))
+    .getQueryData<ICategory[]>(generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_LIST))
     ?.map(({ id, name }) => ({ id, value: name }));
 
-  const { handleSubmit, register, setValue } = useForm<PostFormValues>();
+  const { handleSubmit, register, setValue, getValues } = useForm<PostFormValues>();
 
   const { mutate } = useCreateProductMutation();
 
   const [errorMessage, setErrorMessage] = useState('');
   const showErrorAndReturn = (errorMessage: string) => {
     setErrorMessage(errorMessage);
-    setState((prev) => ({ ...prev, open: true }));
+    setSnackbarOption((prev) => ({ ...prev, open: true }));
   };
 
   const onSubmitHandler: SubmitHandler<PostFormValues> = ({
@@ -81,15 +79,7 @@ export default function PostContainer() {
     if (detailImages === undefined || detailImages === null) {
       return showErrorAndReturn('사진 추가 해야됨');
     }
-    console.log({
-      categoryId: toNumber(categoryId),
-      description,
-      detailImages,
-      minAmount,
-      productImages,
-      sellPrice,
-      title,
-    });
+
     mutate({
       categoryId: toNumber(categoryId),
       description,
@@ -101,15 +91,15 @@ export default function PostContainer() {
     });
   };
 
-  const [state, setState] = useState<State>({
+  const [snackbarOption, setSnackbarOption] = useState<State>({
     open: false,
     vertical: 'top',
     horizontal: 'center',
   });
-  const { vertical, horizontal, open } = state;
+  const { vertical, horizontal, open } = snackbarOption;
 
   const handleClose = () => {
-    setState((prev) => ({ ...prev, open: false }));
+    setSnackbarOption((prev) => ({ ...prev, open: false }));
   };
 
   return (
@@ -181,6 +171,7 @@ export default function PostContainer() {
         <Grid item xs={6}>
           <DragNDrop
             areaTitlt={'상품 사진'}
+            getValues={getValues}
             setValue={setValue}
             setValueName="productImages"
             register={register}
@@ -191,6 +182,7 @@ export default function PostContainer() {
         <Grid item xs={6}>
           <DragNDrop
             areaTitlt={'상세 사진'}
+            getValues={getValues}
             setValue={setValue}
             setValueName="detailImages"
             register={register}

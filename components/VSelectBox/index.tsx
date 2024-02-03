@@ -9,7 +9,7 @@ import {
   Select,
 } from './select';
 
-interface SelectBoxProps {
+interface VSelectBoxProps {
   id: string;
   label: string;
   placeholder: string;
@@ -21,14 +21,14 @@ interface SelectBoxProps {
   required?: boolean;
 }
 
-export function SelectBox({
+export function VSelectBox({
   id,
   label,
   options,
   placeholder,
   required,
   selectLabel,
-}: SelectBoxProps) {
+}: VSelectBoxProps) {
   return (
     <div className="flex flex-col h-screen">
       <Label htmlFor={id}>{label}</Label>

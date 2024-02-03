@@ -1,13 +1,12 @@
 'use client';
-import { Button } from '@/components/VButton';
+import { VButton } from '@/components/VButton';
 import classes from './styles.module.scss';
 import Image from 'next/image';
 import { useState } from 'react';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
-import {
+import useGetProductDetail, {
   IGetProductDetailResponse,
-  useGetProductDetail,
-} from '@/api/products/getProductDetail';
+} from '@/api/products/client/getProductDetail';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -124,7 +123,9 @@ export function ProductDescription({
         </div>
         <div className="my-4">
           <div className="flex items-center space-x-2">
-            <Button className="px-4 py-2 bg-blue-600 text-white rounded">구매하기</Button>
+            <VButton className="px-4 py-2 bg-blue-600 text-white rounded">
+              구매하기
+            </VButton>
             {/* <Button className="px-4 py-2 bg-gray-100 text-gray-600 rounded">
                 장바구니
               </Button> */}

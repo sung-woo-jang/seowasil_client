@@ -6,6 +6,11 @@
   align-items: center;
 }
 
+.loading {
+  text-align: center;
+  animation: loading 1.2s ease-in-out infinite;
+}
+
 .button {
   font-size: 0.75rem;
   line-height: 1rem;

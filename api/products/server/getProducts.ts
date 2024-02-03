@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { API_URL } from '../../constants/API_URL';
-import axiosInstance from '../axiosInstance';
-import { generateQueryKeysFromUrl } from '../../utils/generateQueryKeysFromUrl';
+'use server';
+
+import axiosInstance from '@/api/axiosInstance';
+import { API_URL } from '@/constants/API_URL';
 
 interface ImageUrl {
   id: number;
@@ -29,17 +29,7 @@ export interface IGetProductsResponse {
   category: Category;
 }
 
-export const getProducts = async (): Promise<IGetProductsResponse[]> => {
+export default async function getProducts(): Promise<IGetProductsResponse[]> {
   const { data } = await axiosInstance.get(API_URL.PRODUCTS.GET_LIST);
   return data.data;
-};
-
-export const useGetProducts = (initialData: IGetProductsResponse[]) => {
-  const result = useQuery({
-    queryKey: generateQueryKeysFromUrl(API_URL.PRODUCTS.GET_LIST),
-    queryFn: getProducts,
-    initialData,
-  });
-
-  return result;
-};
+}

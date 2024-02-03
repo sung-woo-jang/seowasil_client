@@ -1,3 +1,5 @@
+'use client';
+import useIsMounted from '@/hooks/useIsMounted';
 import classes from './styles.module.scss';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
@@ -6,15 +8,10 @@ interface ISelectBoxProps {
   id: string;
   label: string;
   register: UseFormRegisterReturn;
-  options: { id: number; value: string }[] | undefined;
+  options?: { id: number; value: string }[];
 }
-function SelectBox({
-  label,
-  id,
-  placeholder,
-  options,
-  register,
-}: ISelectBoxProps) {
+function SelectBox({ label, id, placeholder, options, register }: ISelectBoxProps) {
+  const isMounted = useIsMounted();
   return (
     <div className={classes.selectWrapper}>
       <label className={classes.selectLabel} htmlFor={id}>
@@ -29,18 +26,15 @@ function SelectBox({
         <option className={classes.selectPlaceholder} value={undefined} hidden>
           {placeholder}
         </option>
-        <option
-          className={classes.selectOption}
-          value={undefined}
-          disabled={true}
-        >
+        <option className={classes.selectOption} value={undefined} disabled={true}>
           카테고리 선택
         </option>
-        {options?.map(({ id, value }) => (
-          <option className={classes.selectOption} key={id} value={id}>
-            {value}
-          </option>
-        ))}
+        {isMounted &&
+          options?.map(({ id, value }) => (
+            <option className={classes.selectOption} key={id} value={id}>
+              {value}
+            </option>
+          ))}
       </select>
     </div>
   );

@@ -20,8 +20,6 @@ export default function VerticalGallery({ productDetailImageUrl }: IProductGridP
             key={id}
             src={storedImageUrlGenerator(storedFileName)}
             alt={`상품명_${'상세사진'}`}
-            // width={100}
-            // height={100}
             fill
           />
         ))}

@@ -1,6 +1,6 @@
 import classes from './styles.module.scss';
 
-import { getProducts, useGetProducts } from '@/api/products/getProducts';
+import { getProducts, useGetProducts } from '@/api/products/client/useGetProducts';
 import Link from 'next/link';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
 import Image from 'next/image';
