@@ -1,7 +1,7 @@
-'use server';
-
-import axiosInstance from '@/api/axiosInstance';
-import { API_URL } from '@/constants/API_URL';
+import { useMutation } from '@tanstack/react-query';
+import { API_URL } from '../../constants/API_URL';
+import axiosInstance from '../axiosInstance';
+import { useRouter } from 'next/navigation';
 
 interface ICreateProductBody {
   title: string;
@@ -13,7 +13,7 @@ interface ICreateProductBody {
   detailImages: FileList | File[];
 }
 
-export default async function createProduct(body: ICreateProductBody) {
+const createProduct = async (body: ICreateProductBody) => {
   const formData = new FormData();
 
   // 기존 body 데이터 추가
@@ -37,4 +37,15 @@ export default async function createProduct(body: ICreateProductBody) {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
   return data;
+};
+
+export default function useCreateProductMutation() {
+  const router = useRouter();
+  const result = useMutation({
+    mutationFn: createProduct,
+    onSuccess() {
+      router.push('/');
+    },
+  });
+  return result;
 }

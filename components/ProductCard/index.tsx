@@ -1,3 +1,4 @@
+'use client';
 import { Card, CardContent, CardHeader } from '@/components/ProductCard/card';
 import numberWithCommas from '@/utils/numberWithCommas';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
@@ -6,16 +7,53 @@ import classes from './styles.module.scss';
 import isNull from 'lodash/isNull';
 import { Badge } from '@/components/Badge';
 import Link from 'next/link';
-import getProducts from '@/api/products/server/getProducts';
-import { Suspense } from 'react';
+import { IGetProductsResponse, useGetProducts } from '@/api/products/getProducts';
 
-export default function ProductCard() {
+interface ProductCardProps {
+  initalData: IGetProductsResponse[];
+}
+
+export default function ProductCard({ initalData }: ProductCardProps) {
+  const { data } = useGetProducts(initalData);
   return (
     <div style={{ maxWidth: '1280px', marginBottom: '3rem' }}>
       <div className={classes.cardGrid}>
-        <Suspense fallback={<p>Fetching meals...</p>}>
-          <ProductCards />
-        </Suspense>
+        {data.map(
+          ({
+            category,
+            description,
+            id,
+            isBest,
+            minAmount,
+            prevPrice,
+            productImageUrl,
+            sellPrice,
+            status,
+            title,
+            viewCount,
+          }) => (
+            <Card key={id} className={classes.Card}>
+              <CardHeader>
+                <Link href={`/products/${id}`}>
+                  <div className={classes.imgBox}>
+                    <Image
+                      alt="Blog Cover"
+                      className={classes.imgContent}
+                      height={300}
+                      src={storedImageUrlGenerator(productImageUrl[0].storedFileName)}
+                      width={700}
+                    />
+                  </div>
+                </Link>
+              </CardHeader>
+              <CardContent>
+                <h3 className="text-lg font-semibold">{title}</h3>
+                <p className="text-sm text-gray-500">{description}</p>
+                <PriceArea prevPrice={prevPrice} sellPrice={sellPrice} />
+              </CardContent>
+            </Card>
+          )
+        )}
       </div>
     </div>
   );
@@ -43,31 +81,4 @@ function PriceArea({
       </span>
     </div>
   );
-}
-
-async function ProductCards() {
-  const data = await getProducts();
-
-  return data.map(({ description, id, prevPrice, productImageUrl, sellPrice, title }) => (
-    <Card key={id} className={classes.Card}>
-      <CardHeader>
-        <Link href={`/products/${id}`}>
-          <div className={classes.imgBox}>
-            <Image
-              alt="Blog Cover"
-              className={classes.imgContent}
-              height={300}
-              src={storedImageUrlGenerator(productImageUrl[0].storedFileName)}
-              width={700}
-            />
-          </div>
-        </Link>
-      </CardHeader>
-      <CardContent>
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-sm text-gray-500">{description}</p>
-        <PriceArea prevPrice={prevPrice} sellPrice={sellPrice} />
-      </CardContent>
-    </Card>
-  ));
 }

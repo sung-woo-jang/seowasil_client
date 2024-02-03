@@ -1,16 +1,13 @@
 'use client';
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import classes from './style.module.scss';
-import { UseFormGetValues, UseFormRegister, UseFormSetValue } from 'react-hook-form';
+import { UseFormRegister, UseFormSetValue } from 'react-hook-form';
 import { PostFormValues } from './PostContainer';
 import Image from 'next/image';
-import isNull from 'lodash/isNull';
 
 interface DragNDropProps {
   areaTitlt: string;
   setValue: UseFormSetValue<PostFormValues>;
-  getValues: UseFormGetValues<PostFormValues>;
-
   setValueName: 'productImages' | 'detailImages';
   register: UseFormRegister<PostFormValues>;
 }
@@ -20,29 +17,17 @@ export default function DragNDrop({
   register,
   setValueName,
   setValue,
-  getValues,
 }: DragNDropProps) {
-  const [images, setImages] = useState<Array<{ name: string; url: string }>>([]);
+  const [images, setImages] = useState<Array<{ name: string; url: string }>>(
+    [],
+  );
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const setValueHandler = (newFiles: File[]) => {
-    const prevImages = getValues(setValueName);
-    if (!!prevImages) {
-      setValue(setValueName, [...prevImages, ...newFiles]); // 필드 값 설정
-    } else {
-      setValue(setValueName, newFiles); // 필드 값 설정
-    }
-  };
-
   const onFileSelect = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-
     const files = event.target.files;
     if (!files) return;
     const currentImages = images.slice();
-    const newFiles = [];
-
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       if (file.type.split('/')[0] !== 'image') continue;
@@ -51,35 +36,8 @@ export default function DragNDrop({
           name: file.name,
           url: URL.createObjectURL(file),
         });
-        newFiles.push(file);
       }
     }
-    setValueHandler(newFiles);
-    setImages(currentImages);
-  };
-
-  const onDrop = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    setIsDragging(false);
-
-    const files = event.dataTransfer.files;
-    const currentImages = images.slice();
-    const newFiles = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      if (file.type.split('/')[0] !== 'image') continue;
-      if (!currentImages.some((e) => e.name === file.name)) {
-        currentImages.push({
-          name: file.name,
-          url: URL.createObjectURL(file),
-        });
-        newFiles.push(file);
-      }
-    }
-
-    setValueHandler(newFiles);
-
     setImages(currentImages);
   };
 
@@ -87,15 +45,7 @@ export default function DragNDrop({
     const currentImages = images.slice();
     currentImages.splice(index, 1);
 
-    const prevImages = getValues(setValueName);
-    if (!!prevImages) {
-      const newImages = prevImages.slice();
-      newImages.splice(index, 1);
-      setValue(setValueName, newImages); // 필드 값 설정
-    }
-
     setImages(currentImages);
-    // setValue(setValueName, newFiles); // 필드 값 설정
     // 'file' 필드에 파일 목록(FileList)을 설정
   };
   const onDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -106,6 +56,30 @@ export default function DragNDrop({
   const onDragLeave = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setIsDragging(false);
+  };
+  const onDrop = (event: DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragging(false);
+
+    const files = event.dataTransfer.files;
+
+    const currentImages = images.slice();
+    const newFiles = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (file.type.split('/')[0] !== 'image') continue;
+      if (!currentImages.some((e) => e.name === file.name)) {
+        currentImages.push({
+          name: file.name,
+          url: URL.createObjectURL(file),
+        });
+        newFiles.push(file);
+      }
+    }
+
+    setImages(currentImages);
+    setValue(setValueName, newFiles); // 필드 값 설정
   };
 
   const selectFiles = () => {
@@ -128,7 +102,11 @@ export default function DragNDrop({
         ) : (
           <>
             이미지를 여기로 끌어다 놓거나
-            <span className={classes.Select} role="button" onClick={selectFiles}>
+            <span
+              className={classes.Select}
+              role="button"
+              onClick={selectFiles}
+            >
               찾아보기
             </span>
           </>
@@ -145,7 +123,10 @@ export default function DragNDrop({
       <div className={classes.Container}>
         {images.map((image, index) => (
           <div className={classes.ImageContainer} key={image.name}>
-            <span className={classes.DeleteButton} onClick={() => deleteImage(index)}>
+            <span
+              className={classes.DeleteButton}
+              onClick={() => deleteImage(index)}
+            >
               &times;
             </span>
             <Image

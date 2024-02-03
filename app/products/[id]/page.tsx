@@ -1,4 +1,4 @@
-import { getProductDetail } from '@/api/products/client/getProductDetail';
+import { getProductDetail } from '@/api/products/getProductDetail';
 import VerticalGallery from './VerticalGallery';
 import classes from './styles.module.scss';
 import { ProductDescription } from './ProductDescription';
