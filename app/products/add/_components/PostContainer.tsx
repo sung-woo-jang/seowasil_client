@@ -7,13 +7,12 @@ import { Colors } from '@/styles/global-variables';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Grid from '@mui/material/Grid';
 import SelectBox from '@/components/SelectBox';
-import { ICategory } from '@/api/categories/getCategories';
+import { useGetCategories } from '@/api/categories/getCategories';
 import isNaN from 'lodash/isNaN';
 import toNumber from 'lodash/toNumber';
 import Alert from '@mui/material/Alert';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { useState } from 'react';
-import { useFormState } from 'react-dom';
 import useCreateProductMutation from '@/api/products/createProduct';
 
 export interface PostFormValues {
@@ -29,10 +28,10 @@ export interface PostFormValues {
 interface State extends SnackbarOrigin {
   open: boolean;
 }
-interface PostContainerProps {
-  categories: ICategory[];
-}
-export default function PostContainer({ categories }: PostContainerProps) {
+
+export default function PostContainer() {
+  const { data: categories } = useGetCategories();
+
   const { handleSubmit, register, setValue } = useForm<PostFormValues>();
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -123,7 +122,7 @@ export default function PostContainer({ categories }: PostContainerProps) {
             id="title"
             placeholder="카테고리 선택"
             register={register('categoryId')}
-            options={categories.map(({ id, name }) => ({ id, value: name }))}
+            options={categories?.map(({ id, name }) => ({ id, value: name }))}
           />
         </Grid>
         <div style={{ marginTop: '2rem' }} />

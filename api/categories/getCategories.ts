@@ -1,8 +1,8 @@
-'use server';
-
+import { useQuery } from '@tanstack/react-query';
 import { API_URL } from '../../constants/API_URL';
-import axiosInstance from '../axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 import { CommonResponse } from '../types';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
 
 export interface ICategory extends CommonResponse {
   id: number;
@@ -47,3 +47,9 @@ const mapCategories = (data: ICategory[]) => [
     link: 'contact',
   },
 ];
+
+export const useGetCategories = () =>
+  useQuery({
+    queryKey: generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_LIST),
+    queryFn: getCategories,
+  });

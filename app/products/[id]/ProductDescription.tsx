@@ -4,7 +4,10 @@ import classes from './styles.module.scss';
 import Image from 'next/image';
 import { useState } from 'react';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
-import { IGetProductDetailResponse } from '@/api/products/getProductDetail';
+import {
+  IGetProductDetailResponse,
+  useGetProductDetail,
+} from '@/api/products/getProductDetail';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -12,17 +15,14 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import isNull from 'lodash/isNull';
 import numberWithCommas from '@/utils/numberWithCommas';
 
-export function ProductDescription({
-  initialData,
-}: {
-  initialData: IGetProductDetailResponse;
-  params: string;
-}) {
+export function ProductDescription({ params }: { params: string }) {
+  const { data } = useGetProductDetail(params);
+
   const { productImageUrl, category, description, prevPrice, sellPrice, title } =
-    initialData;
+    data as IGetProductDetailResponse;
 
   const [activeImg, setActiveImage] = useState<string>(
-    storedImageUrlGenerator(initialData.productImageUrl[0].storedFileName)
+    storedImageUrlGenerator(productImageUrl[0].storedFileName)
   );
 
   return (

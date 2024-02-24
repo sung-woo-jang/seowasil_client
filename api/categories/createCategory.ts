@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { API_URL } from '../../constants/API_URL';
-import axiosInstance from '../axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 
 interface ICreateCategoryBody {
   name: string;

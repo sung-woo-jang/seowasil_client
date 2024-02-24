@@ -6,6 +6,7 @@ import { ReduxProviders } from '@/provider/ReduxProvider';
 import Header from './_components/Header';
 import Footer from './_components/Footer';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { AxiosInterceptor } from '@/api/AxiosInterceptor';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,8 +26,10 @@ export default function RootLayout({
         <body className={inter.className} suppressHydrationWarning={true}>
           <ReactQueryProvider>
             <AppRouterCacheProvider>
-              <Header />
-              <Footer>{children}</Footer>
+              <AxiosInterceptor>
+                <Header />
+                <Footer>{children}</Footer>
+              </AxiosInterceptor>
             </AppRouterCacheProvider>
           </ReactQueryProvider>
         </body>

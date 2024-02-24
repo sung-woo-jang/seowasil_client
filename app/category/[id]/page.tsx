@@ -1,47 +1,26 @@
 import CommonContainer from '@/components/CommonContainer';
 import Grid from '@mui/material/Unstable_Grid2';
 import { getProductsByCategoryId } from '@/api/categories/getProductsByCategoryId';
-import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
-import classes from './style.module.scss';
-import Image from 'next/image';
-import Link from 'next/link';
-import numberWithCommas from '@/utils/numberWithCommas';
-import Typography from '@mui/material/Typography';
+
+import getQueryClient from '@/provider/getQueryClient';
+import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
+import { API_URL } from '@/constants/API_URL';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
+import Products from './Products';
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
-  const { products } = await getProductsByCategoryId(id);
+  const queryClient = getQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_DETAIL(id)),
+    queryFn: () => getProductsByCategoryId(id),
+  });
   return (
     <CommonContainer>
       <Grid container spacing={2} columns={12}>
-        {products.map(({ id, title, description, sellPrice, productImageUrl }) => (
-          <Grid key={id} xs={6}>
-            <div className={classes.productPreviewWrapper}>
-              <Link href={`/products/${id}`}>
-                <Image
-                  src={storedImageUrlGenerator(productImageUrl[0]?.storedFileName)}
-                  alt={'name'}
-                  // effect="blur"
-                  width={200}
-                  height={200}
-                />
-              </Link>
-              <div className={classes.productPreviewInfo}>
-                <Link href={`/products/${id}`}>
-                  <div className={classes.productTitle}>{title}</div>
-                </Link>
-
-                <Typography>{description}</Typography>
-                <div className={classes.infoFooter}>
-                  <div>
-                    <div className={classes.productPrice}>
-                      {numberWithCommas(sellPrice)}원
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Grid>
-        ))}
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Products id={id} />
+        </HydrationBoundary>
       </Grid>
     </CommonContainer>
   );

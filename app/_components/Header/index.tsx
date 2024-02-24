@@ -4,6 +4,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { cn } from '@/utils/cn';
 
 import { Colors } from '@/styles/global-variables';
 import AuthButton from './AuthButton';
@@ -13,6 +14,7 @@ import Image from 'next/image';
 import DesktopNavigation from '../DesktopNavigation';
 import MobileBottomNavigation from '../MobileBottomNavigation';
 import { Badge } from '@/components/Badge';
+import React from 'react';
 
 function HeaderSocialLink({
   children,
@@ -74,12 +76,6 @@ export default async function Header() {
 
         <ButtonGroup className={classes.ButtonGroup}>
           <AuthButton />
-
-          <Link href={'/products/add'}>
-            <Button variant="text" style={{ color: Colors.SonicSilver }}>
-              상품 등록
-            </Button>
-          </Link>
         </ButtonGroup>
       </div>
 
@@ -89,20 +85,9 @@ export default async function Header() {
             <Image src="/logo2.svg" alt="Next.js Logo" width={200} height={50} />
           </Link>
 
-          <div className={classes.headerSearchContainer}>
-            <input
-              className={classes.searchField}
-              type="search"
-              name="search"
-              placeholder="상품명 검색"
-            />
+          {/* <SearchInput /> */}
 
-            <button className={classes.searchButton} type="button">
-              <SearchOutlinedIcon />
-            </button>
-          </div>
-
-          <div className={classes.headerUserActions}>
+          {/* <div className={classes.headerUserActions}>
             <button>
               <PersonOutlineOutlinedIcon />
             </button>
@@ -116,11 +101,34 @@ export default async function Header() {
               <ShoppingCartOutlinedIcon />
               <Badge variant="default">0</Badge>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <DesktopNavigation />
       <MobileBottomNavigation />
     </header>
+  );
+}
+
+function SearchInput() {
+  return (
+    <div key="1" className={classes.headerSearchContainer}>
+      <input className={classes.searchField} placeholder="Search" type="search" />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={classes.searchButton}
+      >
+        <circle cx="11" cy="11" r="8" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+    </div>
   );
 }

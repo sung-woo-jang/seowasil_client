@@ -2,7 +2,7 @@ import { API_URL } from '../../constants/API_URL';
 import { useMutation } from '@tanstack/react-query';
 import { UserProfile } from './types';
 import { useLoginMutate } from './login';
-import axiosInstance from '../axiosInstance';
+import { axiosInstance } from '../axiosInstance';
 
 interface ISignupBody {
   username: string;

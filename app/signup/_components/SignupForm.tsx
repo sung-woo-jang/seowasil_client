@@ -53,7 +53,6 @@ function SignupForm() {
     if (zoneCode.trim().length === 0 || roadAddress.trim().length === 0) {
       return console.error('주소를 입력해주세요');
     }
-    console.log(username);
     signupMutation({
       account,
       username,

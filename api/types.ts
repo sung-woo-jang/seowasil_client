@@ -11,4 +11,5 @@ export interface CommonResponse {
   success: boolean;
   timestamp: Date;
   message: SucessStatusCodeMessage[keyof SucessStatusCodeMessage];
+  isLogin: boolean;
 }

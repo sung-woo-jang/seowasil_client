@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { API_URL } from '../../constants/API_URL';
-import axiosInstance from '../axiosInstance';
+import { formInstance } from '../axiosInstance';
 import { useRouter } from 'next/navigation';
 
 interface ICreateProductBody {
@@ -33,7 +33,7 @@ const createProduct = async (body: ICreateProductBody) => {
     formData.append('detailImages', body.detailImages[i]);
   }
 
-  const { data } = await axiosInstance.post(API_URL.PRODUCTS.CREATE, formData, {
+  const { data } = await formInstance.post(API_URL.PRODUCTS.CREATE, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 

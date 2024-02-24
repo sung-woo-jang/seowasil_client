@@ -1,13 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type Role = 'ADMIN' | 'CUSTOMER';
-export enum IsLoginEnum {
-  FETCHING = 'FETCHING',
-  LOGIN = 'LOGIN',
-  LOGOUT = 'LOGOUT',
-}
+
 interface userInfo {
-  isLogin: IsLoginEnum; // 로그인 여부
+  isLogin: boolean; // 로그인 여부
   username: string;
   phoneNumber: string;
   role: Role;
@@ -15,7 +11,7 @@ interface userInfo {
 }
 
 const initialState: userInfo = {
-  isLogin: IsLoginEnum.FETCHING,
+  isLogin: false,
   username: '',
   phoneNumber: '',
   role: 'CUSTOMER',
@@ -26,16 +22,12 @@ export const { reducer: authReducer, actions } = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setIsLogin(state, { payload }: PayloadAction<IsLoginEnum>) {
+    setIsLogin(state, { payload }: PayloadAction<boolean>) {
       state.isLogin = payload;
-    },
-    setRole(state, { payload }: PayloadAction<Role>) {
-      state.role = payload;
-      state.isLogin = IsLoginEnum.LOGIN;
     },
   },
 });
 
-export const { setIsLogin, setRole } = actions;
+export const { setIsLogin } = actions;
 
 export default authReducer;

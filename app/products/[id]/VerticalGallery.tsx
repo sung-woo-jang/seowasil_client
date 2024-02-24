@@ -1,16 +1,22 @@
+'use client';
 import classes from './styles.module.scss';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
 import Image from 'next/image';
 import CommonContainer from '@/components/CommonContainer';
+import {
+  IGetProductDetailResponse,
+  useGetProductDetail,
+} from '@/api/products/getProductDetail';
 
 interface IProductGridProps {
-  productDetailImageUrl: {
-    id: number;
-    storedFileName: string;
-  }[];
+  params: string;
 }
 
-export default function VerticalGallery({ productDetailImageUrl }: IProductGridProps) {
+export default function VerticalGallery({ params }: IProductGridProps) {
+  const { data } = useGetProductDetail(params);
+
+  const { productDetailImageUrl } = data as IGetProductDetailResponse;
+
   return (
     <CommonContainer>
       <div style={{ marginTop: '10rem' }}>
