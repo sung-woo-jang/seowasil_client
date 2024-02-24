@@ -14,6 +14,7 @@ import Alert from '@mui/material/Alert';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { useState } from 'react';
 import { useFormState } from 'react-dom';
+import useCreateProductMutation from '@/api/products/createProduct';
 
 export interface PostFormValues {
   title: string;
@@ -39,6 +40,8 @@ export default function PostContainer({ categories }: PostContainerProps) {
     setErrorMessage(errorMessage);
     setState((prev) => ({ ...prev, open: true }));
   };
+
+  const { mutate } = useCreateProductMutation();
 
   const onSubmitHandler: SubmitHandler<PostFormValues> = ({
     description,
@@ -71,15 +74,15 @@ export default function PostContainer({ categories }: PostContainerProps) {
       return showErrorAndReturn('사진 추가 해야됨');
     }
 
-    // mutate({
-    //   categoryId: toNumber(categoryId),
-    //   description,
-    //   detailImages,
-    //   minAmount,
-    //   productImages,
-    //   sellPrice,
-    //   title,
-    // });
+    mutate({
+      categoryId: toNumber(categoryId),
+      description,
+      detailImages,
+      minAmount,
+      productImages,
+      sellPrice,
+      title,
+    });
   };
 
   const [state, setState] = useState<State>({
@@ -93,28 +96,13 @@ export default function PostContainer({ categories }: PostContainerProps) {
     setState((prev) => ({ ...prev, open: false }));
   };
 
-  const formActionFunction = async (prevState: any, formData: FormData): Promise<any> => {
-    const formValues = {
-      title: formData.get('title') as string,
-      description: formData.get('description') as string,
-      sellPrice: formData.get('sellPrice') as string,
-      minAmount: formData.get('minAmount') as string,
-      productImages: formData.getAll('productImages') as File[],
-      detailImages: formData.getAll('detailImages') as File[],
-      categoryId: formData.get('categoryId') as string,
-    };
-  };
-
-  const [formState, formAction] = useFormState(formActionFunction, { message: null });
-
   return (
     <Box
       sx={{
         marginTop: 8,
       }}
       component="form"
-      // onSubmit={handleSubmit(onSubmitHandler)}
-      action={formAction}
+      onSubmit={handleSubmit(onSubmitHandler)}
     >
       <Grid container spacing={6}>
         <Grid item xs={12}>
