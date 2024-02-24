@@ -12,7 +12,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import DesktopNavigation from '../DesktopNavigation';
 import MobileBottomNavigation from '../MobileBottomNavigation';
-import { getCategories } from '@/api/categories/getCategories';
 import { Badge } from '@/components/Badge';
 
 function HeaderSocialLink({
@@ -30,7 +29,6 @@ function HeaderSocialLink({
 }
 
 export default async function Header() {
-  const categories = await getCategories();
   return (
     <header>
       <div className={classes.headerTop}>
@@ -121,7 +119,7 @@ export default async function Header() {
           </div>
         </div>
       </div>
-      <DesktopNavigation categories={categories} />
+      <DesktopNavigation />
       <MobileBottomNavigation />
     </header>
   );

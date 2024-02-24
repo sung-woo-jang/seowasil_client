@@ -1,10 +1,8 @@
 import { SelectValue, SelectTrigger, SelectItem, SelectContent, Select } from './select';
 import classes from './styles.module.scss';
-import { getProducts } from '@/api/products/getProducts';
 import ProductCard from '@/components/ProductCard';
 
 export async function ProductLists() {
-  const initalData = await getProducts();
   return (
     <>
       <div className={classes.selectBox}>
@@ -22,7 +20,7 @@ export async function ProductLists() {
         </Select>
       </div>
 
-      <ProductCard initalData={initalData} />
+      <ProductCard />
     </>
   );
 }

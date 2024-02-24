@@ -4,10 +4,7 @@ import classes from './styles.module.scss';
 import Image from 'next/image';
 import { useState } from 'react';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
-import {
-  IGetProductDetailResponse,
-  useGetProductDetail,
-} from '@/api/products/getProductDetail';
+import { IGetProductDetailResponse } from '@/api/products/getProductDetail';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -15,59 +12,15 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import isNull from 'lodash/isNull';
 import numberWithCommas from '@/utils/numberWithCommas';
 
-function PriceArea({
-  sellPrice,
-  prevPrice,
-}: {
-  sellPrice: number;
-  prevPrice: number | null;
-}) {
-  if (isNull(prevPrice))
-    return (
-      <div className="flex items-center space-x-1 my-2">
-        <span className="text-3xl font-bold text-black-600">
-          {numberWithCommas(sellPrice)}원
-        </span>
-      </div>
-    );
-  return (
-    <div className="flex items-center space-x-1 my-2">
-      <span className="text-lg line-through text-gray-400">
-        {numberWithCommas(prevPrice)}원
-      </span>
-      <span className="text-3xl font-bold text-red-600">
-        {numberWithCommas(sellPrice)}원
-      </span>
-      <span className="text-sm bg-red-200 text-red-600 px-1 rounded">
-        {Math.ceil((sellPrice / prevPrice) * 100)}%
-      </span>
-    </div>
-  );
-}
-
 export function ProductDescription({
   initialData,
-  params,
 }: {
   initialData: IGetProductDetailResponse;
   params: string;
 }) {
-  const {
-    data: {
-      productImageUrl,
-      category,
-      description,
-      id,
-      isBest,
-      minAmount,
-      prevPrice,
-      productDetailImageUrl,
-      sellPrice,
-      status,
-      title,
-      viewCount,
-    },
-  } = useGetProductDetail(params, initialData);
+  const { productImageUrl, category, description, prevPrice, sellPrice, title } =
+    initialData;
+
   const [activeImg, setActiveImage] = useState<string>(
     storedImageUrlGenerator(initialData.productImageUrl[0].storedFileName)
   );
@@ -153,3 +106,33 @@ const RenderStarsRatingComponent = ({ rating }: { rating: number }) => {
     </div>
   );
 };
+
+function PriceArea({
+  sellPrice,
+  prevPrice,
+}: {
+  sellPrice: number;
+  prevPrice: number | null;
+}) {
+  if (isNull(prevPrice))
+    return (
+      <div className="flex items-center space-x-1 my-2">
+        <span className="text-3xl font-bold text-black-600">
+          {numberWithCommas(sellPrice)}원
+        </span>
+      </div>
+    );
+  return (
+    <div className="flex items-center space-x-1 my-2">
+      <span className="text-lg line-through text-gray-400">
+        {numberWithCommas(prevPrice)}원
+      </span>
+      <span className="text-3xl font-bold text-red-600">
+        {numberWithCommas(sellPrice)}원
+      </span>
+      <span className="text-sm bg-red-200 text-red-600 px-1 rounded">
+        {Math.ceil((sellPrice / prevPrice) * 100)}%
+      </span>
+    </div>
+  );
+}

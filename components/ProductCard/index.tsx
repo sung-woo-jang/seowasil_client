@@ -1,4 +1,3 @@
-'use client';
 import { Card, CardContent, CardHeader } from '@/components/ProductCard/card';
 import numberWithCommas from '@/utils/numberWithCommas';
 import storedImageUrlGenerator from '@/utils/storedImageUrlGenerator';
@@ -7,14 +6,10 @@ import classes from './styles.module.scss';
 import isNull from 'lodash/isNull';
 import { Badge } from '@/components/Badge';
 import Link from 'next/link';
-import { IGetProductsResponse, useGetProducts } from '@/api/products/getProducts';
+import { getProducts } from '@/api/products/getProducts';
 
-interface ProductCardProps {
-  initalData: IGetProductsResponse[];
-}
-
-export default function ProductCard({ initalData }: ProductCardProps) {
-  const { data } = useGetProducts(initalData);
+export default async function ProductCard() {
+  const data = await getProducts();
   return (
     <div style={{ maxWidth: '1280px', marginBottom: '3rem' }}>
       <div className={classes.cardGrid}>

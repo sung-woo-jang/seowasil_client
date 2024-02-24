@@ -1,9 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import { generateQueryKeysFromUrl } from '../../utils/generateQueryKeysFromUrl';
+'use server';
+
 import { API_URL } from '../../constants/API_URL';
 import axiosInstance from '../axiosInstance';
+import { CommonResponse } from '../types';
 
-export interface ICategory {
+export interface ICategory extends CommonResponse {
   id: number;
   createdAt: string;
   updatedAt: string;
@@ -12,8 +13,17 @@ export interface ICategory {
   department: string;
 }
 
+export interface ConvertCategoryData {
+  id: number;
+  name: string;
+  menu_item: null;
+  link: string;
+}
+
 export const getCategories = async (): Promise<ICategory[]> => {
-  const { data } = await axiosInstance.get(API_URL.CATEGORIES.GET_LIST);
+  const { data } = await axiosInstance.get<{ data: ICategory[] }>(
+    API_URL.CATEGORIES.GET_LIST
+  );
   return data.data;
 };
 
@@ -37,11 +47,3 @@ const mapCategories = (data: ICategory[]) => [
     link: 'contact',
   },
 ];
-
-export const useGetCategories = (initialData: ICategory[]) =>
-  useQuery({
-    queryKey: generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_LIST),
-    queryFn: getCategories,
-    select: mapCategories,
-    initialData,
-  });

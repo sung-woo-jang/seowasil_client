@@ -18,15 +18,14 @@ export default function DragNDrop({
   setValueName,
   setValue,
 }: DragNDropProps) {
-  const [images, setImages] = useState<Array<{ name: string; url: string }>>(
-    [],
-  );
+  const [images, setImages] = useState<Array<{ name: string; url: string }>>([]);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const onFileSelect = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files) return;
+    const newFiles = [];
     const currentImages = images.slice();
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
@@ -36,9 +35,11 @@ export default function DragNDrop({
           name: file.name,
           url: URL.createObjectURL(file),
         });
+        newFiles.push(file);
       }
     }
     setImages(currentImages);
+    setValue(setValueName, newFiles); // 필드 값 설정
   };
 
   const deleteImage = (index: number) => {
@@ -102,11 +103,7 @@ export default function DragNDrop({
         ) : (
           <>
             이미지를 여기로 끌어다 놓거나
-            <span
-              className={classes.Select}
-              role="button"
-              onClick={selectFiles}
-            >
+            <span className={classes.Select} role="button" onClick={selectFiles}>
               찾아보기
             </span>
           </>
@@ -115,6 +112,7 @@ export default function DragNDrop({
           className={classes.Input}
           {...register(setValueName)}
           type="file"
+          id={setValueName}
           multiple
           ref={fileInputRef}
           onChange={onFileSelect}
@@ -123,10 +121,7 @@ export default function DragNDrop({
       <div className={classes.Container}>
         {images.map((image, index) => (
           <div className={classes.ImageContainer} key={image.name}>
-            <span
-              className={classes.DeleteButton}
-              onClick={() => deleteImage(index)}
-            >
+            <span className={classes.DeleteButton} onClick={() => deleteImage(index)}>
               &times;
             </span>
             <Image

@@ -7,16 +7,13 @@ import { Colors } from '@/styles/global-variables';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Grid from '@mui/material/Grid';
 import SelectBox from '@/components/SelectBox';
-import { useQueryClient } from '@tanstack/react-query';
-import { generateQueryKeysFromUrl } from '@/utils/generateQueryKeysFromUrl';
-import { API_URL } from '@/constants/API_URL';
 import { ICategory } from '@/api/categories/getCategories';
-import useCreateProductMutation from '@/api/products/createProduct';
 import isNaN from 'lodash/isNaN';
 import toNumber from 'lodash/toNumber';
 import Alert from '@mui/material/Alert';
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 import { useState } from 'react';
+import { useFormState } from 'react-dom';
 
 export interface PostFormValues {
   title: string;
@@ -31,18 +28,11 @@ export interface PostFormValues {
 interface State extends SnackbarOrigin {
   open: boolean;
 }
-
-export default function PostContainer() {
-  const queryClient = useQueryClient();
-  const categories = queryClient
-    .getQueryData<
-      ICategory[]
-    >(generateQueryKeysFromUrl(API_URL.CATEGORIES.GET_LIST))
-    ?.map(({ id, name }) => ({ id, value: name }));
-
+interface PostContainerProps {
+  categories: ICategory[];
+}
+export default function PostContainer({ categories }: PostContainerProps) {
   const { handleSubmit, register, setValue } = useForm<PostFormValues>();
-
-  const { mutate } = useCreateProductMutation();
 
   const [errorMessage, setErrorMessage] = useState('');
   const showErrorAndReturn = (errorMessage: string) => {
@@ -59,7 +49,6 @@ export default function PostContainer() {
     title,
     categoryId,
   }) => {
-    console.log(productImages);
     if (title.length === 0) {
       return showErrorAndReturn('상품명 입력 해야됨');
     }
@@ -81,24 +70,16 @@ export default function PostContainer() {
     if (detailImages === undefined || detailImages === null) {
       return showErrorAndReturn('사진 추가 해야됨');
     }
-    console.log({
-      categoryId: toNumber(categoryId),
-      description,
-      detailImages,
-      minAmount,
-      productImages,
-      sellPrice,
-      title,
-    });
-    mutate({
-      categoryId: toNumber(categoryId),
-      description,
-      detailImages,
-      minAmount,
-      productImages,
-      sellPrice,
-      title,
-    });
+
+    // mutate({
+    //   categoryId: toNumber(categoryId),
+    //   description,
+    //   detailImages,
+    //   minAmount,
+    //   productImages,
+    //   sellPrice,
+    //   title,
+    // });
   };
 
   const [state, setState] = useState<State>({
@@ -112,13 +93,28 @@ export default function PostContainer() {
     setState((prev) => ({ ...prev, open: false }));
   };
 
+  const formActionFunction = async (prevState: any, formData: FormData): Promise<any> => {
+    const formValues = {
+      title: formData.get('title') as string,
+      description: formData.get('description') as string,
+      sellPrice: formData.get('sellPrice') as string,
+      minAmount: formData.get('minAmount') as string,
+      productImages: formData.getAll('productImages') as File[],
+      detailImages: formData.getAll('detailImages') as File[],
+      categoryId: formData.get('categoryId') as string,
+    };
+  };
+
+  const [formState, formAction] = useFormState(formActionFunction, { message: null });
+
   return (
     <Box
       sx={{
         marginTop: 8,
       }}
       component="form"
-      onSubmit={handleSubmit(onSubmitHandler)}
+      // onSubmit={handleSubmit(onSubmitHandler)}
+      action={formAction}
     >
       <Grid container spacing={6}>
         <Grid item xs={12}>
@@ -139,7 +135,7 @@ export default function PostContainer() {
             id="title"
             placeholder="카테고리 선택"
             register={register('categoryId')}
-            options={categories}
+            options={categories.map(({ id, name }) => ({ id, value: name }))}
           />
         </Grid>
         <div style={{ marginTop: '2rem' }} />
