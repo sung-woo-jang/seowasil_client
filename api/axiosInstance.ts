@@ -1,9 +1,18 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { API_URL } from '../constants/API_URL';
 
+/* 
+개발 환경
+- baseUrl : localhost:8000
+process.env.NODE_ENV === development
+
+배포 환경
+- baseUrl : seowasil.shop/api
+process.env.NODE_ENV === production
+*/
 const createAxiosInstance = (contentType: string): AxiosInstance => {
   const config: AxiosRequestConfig = {
-    baseURL: `http://localhost:8000`,
+    baseURL: API_URL.BASE_URL,
     withCredentials: true,
     headers: {
       'Content-Type': contentType,
