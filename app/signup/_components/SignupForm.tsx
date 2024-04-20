@@ -47,12 +47,12 @@ function SignupForm() {
       return console.error('비밀번호가 다릅니다');
     }
 
-    if (detailAddress.trim().length === 0) {
-      return console.error('상세 주소를 입력해주세요');
-    }
-    if (zoneCode.trim().length === 0 || roadAddress.trim().length === 0) {
-      return console.error('주소를 입력해주세요');
-    }
+    // if (detailAddress.trim().length === 0) {
+    //   return console.error('상세 주소를 입력해주세요');
+    // }
+    // if (zoneCode.trim().length === 0 || roadAddress.trim().length === 0) {
+    //   return console.error('주소를 입력해주세요');
+    // }
     signupMutation({
       account,
       username,
@@ -117,9 +117,9 @@ function SignupForm() {
             register={register('phoneNumber')}
           />
         </Grid>
-        <Grid item xs={2}>
+        {/* <Grid item xs={2}>
           <AddressForm setFormValue={setValue} />
-        </Grid>
+        </Grid> 
         <Grid item xs={2}>
           <TextInput
             disabled={true}
@@ -148,7 +148,7 @@ function SignupForm() {
             placeholder="상세 주소"
             register={register('detailAddress')}
           />
-        </Grid>
+        </Grid>*/}
       </Grid>
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
         회원가입

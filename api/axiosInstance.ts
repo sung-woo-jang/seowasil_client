@@ -3,7 +3,7 @@ import { API_URL } from '../constants/API_URL';
 
 const createAxiosInstance = (contentType: string): AxiosInstance => {
   const config: AxiosRequestConfig = {
-    baseURL: `${API_URL.BASE_URL}/api`,
+    baseURL: `http://localhost:8000`,
     withCredentials: true,
     headers: {
       'Content-Type': contentType,

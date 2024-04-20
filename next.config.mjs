@@ -9,6 +9,12 @@ const nextConfig = {
         port: '8000',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'backbone',
+        port: '8000',
+        pathname: '/**',
+      },
     ],
   },
 };
